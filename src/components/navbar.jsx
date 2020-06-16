@@ -6,7 +6,7 @@ import Cookies from 'js-cookie'
 
 function Navbar(){
 
-  const [panel, setPanel] = useState('ddwdw')
+  const [panel, setPanel] = useState('')
   const isAuth = useSelector(state => state.authReducer.isAuth)
 
   useEffect(authNav,[])
