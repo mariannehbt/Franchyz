@@ -1,5 +1,5 @@
 import React from 'react';
-import 'styles/form.scss'
+import '/styles/form.scss'
 import { login } from 'redux/middlewares/authMiddlewares'
 import {useSelector, useDispatch} from 'react-redux'
 import { Redirect } from 'react-router-dom'
