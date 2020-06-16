@@ -27,7 +27,7 @@ function Navbar(){
       )
     } else {
       ans =  (
-        <button type="button" class="btn btn-danger" onClick={logout} >Danger</button>
+        <button type="button" class="btn btn-danger" onClick={logout} >Logout</button>
       )
     }
     setPanel(ans)

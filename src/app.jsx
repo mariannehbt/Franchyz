@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 // Redux
 import { Provider } from 'react-redux';
-import store from 'redux/store.js';
+import store from './redux/store.js';
 
 // Pages
 import Navbar from './components/navbar.jsx'
