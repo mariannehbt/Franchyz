@@ -4,3 +4,5 @@ function pluralyzeType(type) {
   else if(type === 'player')
     return 'players'
 }
+
+export {pluralyzeType}
