@@ -13,11 +13,21 @@ function Register() {
     e.preventDefault()
     let email = document.getElementById('email').value
     let password = document.getElementById('password').value
-    dispatch(logup(email, password, 'coache'))   // WWWWWWWWWWWWWWWWWWWWARNING
+    let type = document.getElementById('type').value
+    dispatch(logup(email, password, type))   // WWWWWWWWWWWWWWWWWWWWARNING
   }
 
   return(
     <form className="form p-4 mt-3 mb-3 rounded" action="/action_page.php" onSubmit={submit}>
+
+      <div className="form-group">
+        <label htmlFor="email">You address:</label>
+        <select type="email" className="form-control" placeholder="Enter email" id="type">
+        	<option value="coach">Coach</option>
+  				<option value="player">Player</option>
+        </select>
+      </div>
+
       <div className="form-group">
         <label htmlFor="email">Email address:</label>
         <input type="email" className="form-control" placeholder="Enter email" id="email" />

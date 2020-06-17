@@ -2,16 +2,24 @@ import Cookies from 'js-cookie'
 import jwt_decode from 'jwt-decode'
 
 function signUp(email, password, type) {
-  //const data = {[type]: {
-  const data = {coach: 
-  {
+  const data = {[type]: {
+  //const data = {coach: 
+  //{
     email: email,
     password: password,
   }};
 
   let baseURL = process.env.REACT_APP_API_URL
-  let endUrl = `/${type}s.json`
-  let url = baseURL + endUrl
+
+  const endUrl = (type) => {
+  	if (type === 'coach') {
+  		return `/${type}es.json`
+  	} else if (type === 'player') {
+  		return `/${type}s/sign_in.json`
+  	}
+  }
+
+  let url = baseURL + endUrl(type)
   console.log('url', url)
   return fetch(url, {
     method: 'post',
@@ -25,8 +33,8 @@ function signUp(email, password, type) {
 }
 
 function signIn(email, password, type) {
-  //const data = {[type]: 
-  const data = {coach: 
+  const data = {[type]: 
+  // const data = {coach: 
     {
       email: email,
       password: password,
@@ -34,8 +42,16 @@ function signIn(email, password, type) {
   };
 
   let baseURL = process.env.REACT_APP_API_URL
-  let endUrl = `/${type}s/sign_in.json`
-  let url = baseURL + endUrl
+
+  const endUrl = (type) => {
+  	if (type === 'coach') {
+  		return `/${type}es/sign_in.json`
+  	} else if (type === 'player') {
+  		return `/${type}e/sign_in.json`
+  	}
+  }
+
+  let url = baseURL + endUrl(type)
  
   return fetch(url, {
     method: 'post',
