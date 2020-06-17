@@ -4,15 +4,15 @@ import {pluralyzeType} from 'helpers/misc.jsx'
 
 function signUp(email, password, type) {
 
-  type = pluralyzeType(type)
   const data = {[type]: 
   {
     email: email,
     password: password,
   }};
 
+  let types = pluralyzeType(type)
   let baseURL = process.env.REACT_APP_API_URL
-  let endUrl = `/${type}.json`
+  let endUrl = `/${types}.json`
   let url = baseURL + endUrl
   console.log('url', url)
   return fetch(url, {
@@ -28,16 +28,16 @@ function signUp(email, password, type) {
 
 function signIn(email, password, type) {
 
-  type = pluralyzeType(type)
   const data = {[type]: 
     {
       email: email,
       password: password,
     }
   };
-
+  
+  let types = pluralyzeType(type)
   let baseURL = process.env.REACT_APP_API_URL
-  let endUrl = `/${type}/sign_in.json`
+  let endUrl = `/${types}/sign_in.json`
   let url = baseURL + endUrl
  
   return fetch(url, {
@@ -73,4 +73,4 @@ function profile(id, type) {
     .then(response => {return response})
 }
 
-export {signIn, signUp}
+export {signIn, signUp, profile}
