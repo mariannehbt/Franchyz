@@ -1,16 +1,18 @@
 import Cookies from 'js-cookie'
 import jwt_decode from 'jwt-decode'
+import {pluralyzeType} from 'helpers/misc.jsx'
 
 function signUp(email, password, type) {
-  //const data = {[type]: {
-  const data = {coach: 
+
+  type = pluralyzeType(type)
+  const data = {[type]: 
   {
     email: email,
     password: password,
   }};
 
   let baseURL = process.env.REACT_APP_API_URL
-  let endUrl = `/${type}s.json`
+  let endUrl = `/${type}.json`
   let url = baseURL + endUrl
   console.log('url', url)
   return fetch(url, {
@@ -25,8 +27,9 @@ function signUp(email, password, type) {
 }
 
 function signIn(email, password, type) {
-  //const data = {[type]: 
-  const data = {coach: 
+
+  type = pluralyzeType(type)
+  const data = {[type]: 
     {
       email: email,
       password: password,
@@ -34,7 +37,7 @@ function signIn(email, password, type) {
   };
 
   let baseURL = process.env.REACT_APP_API_URL
-  let endUrl = `/${type}s/sign_in.json`
+  let endUrl = `/${type}/sign_in.json`
   let url = baseURL + endUrl
  
   return fetch(url, {
@@ -45,6 +48,29 @@ function signIn(email, password, type) {
     body: JSON.stringify(data)
   })
     .then(response => { return response })
+}
+
+function profile(id, type) {
+
+  type = pluralyzeType(type)
+
+  let headers = {
+    'Content-Type': 'application/json',
+    Authorization: Cookies.get('token')
+  }
+
+  let request = {
+    method: 'get',
+    headers: headers,
+  }
+  
+  let baseURL = process.env.REACT_APP_API_URL
+  let endUrl = `/${type}/${id}.json`
+  let url = baseURL + endUrl
+
+  fetch(url, request)
+    .then(response => response.json())
+    .then(response => response.firstName)
 }
 
 export {signIn, signUp}

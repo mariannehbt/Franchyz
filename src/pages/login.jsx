@@ -13,7 +13,7 @@ function Login() {
     e.preventDefault()
     let email = document.getElementById('email').value
     let password = document.getElementById('password').value
-    dispatch(login(email, password, 'coache'))   // WWWWWWWWWWWWWWWWWWWWARNING
+    dispatch(login(email, password, 'coach'))   
   }
 
   return(

@@ -13,7 +13,7 @@ function Register() {
     e.preventDefault()
     let email = document.getElementById('email').value
     let password = document.getElementById('password').value
-    dispatch(logup(email, password, 'coache'))   // WWWWWWWWWWWWWWWWWWWWARNING
+    dispatch(logup(email, password, 'coach'))   
   }
 
   return(

@@ -38,7 +38,6 @@ function Navbar(){
         <ul className="navbar-nav d-flex">
           <li className="nav-item active">
             <Link to="/">Home</Link>
-    <a class="dropdown-item" href="#">Link 1</a>
           </li>
           <li className="nav-item active">
           </li>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import portrait from 'assets/portrait.jpeg'
 import {Link} from 'react-router-dom'
 import 'bootstrap';
@@ -7,13 +7,27 @@ import 'bootstrap/dist/js/bootstrap.js';
 import $ from 'jquery';
 import Popper from 'popper.js';
 import Cookies from 'js-cookie'
+import {useSelector, useDispatch} from 'react-redux'
+import {myName} from 'helpers/misc.jsx'
+import * as UserAPI from 'services/authAPI'
 
 
 function Portrait() {
 
+  const [name, setName] = useState('')
+  const myId = useSelector(state => state.authReducer.id)
+  const myType = useSelector(state => state.authReducer.typeUser)
+
+  useEffect(setupName, [])
+
   function logout(){
     Cookies.remove('token');
     window.location.pathname = '/'
+  }
+
+  function setupName() {
+    let profile = UserAPI.profile(myId, myType)
+    setupName(profile.name)
   }
 
   return(
@@ -21,8 +35,9 @@ function Portrait() {
       <div id="navbarDropdownMenuLink" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
         <img src={portrait} class="rounded-circle" alt="portrait" id='portrait'/>
       </div>
-      <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <Link className="dropdown-item-text" to="/"> Profile </Link>
+      <div id="portrait-menu" className="dropdown-menu mt-2" aria-labelledby="navbarDropdownMenuLink">
+        <p> {name} </p>
+        <Link className="dropdown-item-text" to="/"> Profile </Link>
         <p className="texcenter" onClick={logout}> Logout </p>  
       </div>
     </div> 
