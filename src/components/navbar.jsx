@@ -2,48 +2,50 @@ import React, { useState, useEffect } from "react";
 import {Link} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
 import Cookies from 'js-cookie'
+import Portrait from './portrait.jsx'
+import '../styles/nav.scss'
+
 
 
 function Navbar(){
 
-  const [panel, setPanel] = useState('')
+  const [authNav, setAuthNav] = useState('')
   const isAuth = useSelector(state => state.authReducer.isAuth)
 
-  useEffect(authNav,[])
+  useEffect(inOrOut,[])
 
-  function logout(){
-    Cookies.remove('token');
-    window.location.pathname = '/'
-  }
 
-  function authNav(){
+  function inOrOut(){
     let ans
     if (!isAuth) {
       ans = (
       <>
-        <Link to="/register">register</Link>
-        <Link to="/login">login</Link>
+        <Link to="/register"><button type="button" class="btn btn-sm btn-primary"> Register </button> </Link>
+        <Link to="/login"><button type="button" class="btn btn-sm btn-primary"> login </button> </Link>
       </>
       )
     } else {
       ans =  (
-        <button type="button" class="btn btn-danger" onClick={logout} >Logout</button>
+        <Portrait />
       )
     }
-    setPanel(ans)
+    setAuthNav(ans)
   }
   
   return(
     <>
       <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
-        <ul className="navbar-nav">
+        <ul className="navbar-nav d-flex">
           <li className="nav-item active">
             <Link to="/">Home</Link>
+    <a class="dropdown-item" href="#">Link 1</a>
           </li>
           <li className="nav-item active">
           </li>
-            {panel}
         </ul>
+        <div id='authNav'>
+          {authNav}
+        </div>
       </nav>
     </>
   )
