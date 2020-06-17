@@ -1,10 +1,19 @@
 // import React from "react";
 import FormGame from "components/formGame.jsx";
-import FormPractice from "components/formPractice.jsx";
 import { Radio } from "antd";
 import Date_picker from "images/date_picker.png";
-import { Select } from "antd";
 import React, { useState } from "react";
+import {
+	Input,
+	Col,
+	Row,
+	Select,
+	Button,
+	InputNumber,
+	DatePicker,
+	AutoComplete,
+	Cascader,
+} from "antd";
 
 function CreateEvents() {
 	const [EventType, setEventType] = useState("");
@@ -42,6 +51,7 @@ function CreateEvents() {
 				<h3 className="text-light text-center">Creation d'évenement</h3>
 				<div className="text-center">
 					<Select
+						// defaultValue="competition"
 						className="text-center"
 						showSearch
 						style={{ width: 300 }}
@@ -55,18 +65,27 @@ function CreateEvents() {
 							option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
 						}
 					>
-						<Option value="competition">Competition</Option>
-						<Option value="entrainement">Entrainement</Option>
+						<Option value="game">Competition</Option>
+						<Option value="practice">Entrainement</Option>
 					</Select>
 				</div>
 			</div>
 			<hr className="my-4" style={{ width: "600px" }}></hr>
 
-			<br />
+			{/* {EventType === "competition" ? (
+				<FormGame style={{ marginTop: "25px" }} />
+			) : (
+				<FormPractice style={{ marginTop: "25px" }} />
+			)} */}
+			<FormGame style={{ marginTop: "25px" }} />
+			<Row>
+				<Col span={3} offset={10}>
+					<Button className="mt-5" block>
+						Submit
+					</Button>
+				</Col>
+			</Row>
 
-			<br></br>
-			<br></br>
-			{EventType === "competition" ? <FormGame /> : <FormPractice />}
 			{/* <img
 				src={Date_picker}
 				alt="datepicker"
