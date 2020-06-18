@@ -36,7 +36,6 @@ const Register = () => {
 	const getDataClubs = () => {
 		api_club.getAllClubs()
 		.then(response => {
-			console.log(response);
 			let clubs = response.map((club, key) => (
 				<option key={key} value={club.id}>{club.name}</option>
 			));
@@ -46,13 +45,11 @@ const Register = () => {
 
 	const getClubId = () => {
 		setClubId(document.getElementById('club').value);
-		console.log(clubId);
 	};
 
 	const getDataTeams = () => {
 		api_team.getAllTeams(clubId)
 		.then(response => {
-			console.log(response);
 			let teams = response.map((team, key) =>(
 				<option key={key} value={team.id}>{team.title}</option>
 			));
