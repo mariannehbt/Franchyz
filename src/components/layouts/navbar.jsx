@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {Link} from 'react-router-dom'
 import {useSelector } from 'react-redux'
 import Portrait from './portrait.jsx'
-import '../styles/nav.scss'
+import '../../styles/nav.scss'
 
 
 
@@ -30,13 +30,13 @@ function Navbar(){
     }
     setAuthNav(ans)
   }
-  
+
   return(
     <>
       <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
         <ul className="navbar-nav d-flex">
-          <li className="nav-item active">
-            <Link to="/">Home</Link>
+          <li className="">
+            <Link to="/" className="logo">FRANCHYZ</Link>
           </li>
           <li className="nav-item active">
             <Link to="/dashboardAdmin"> My Dashboard </Link>
