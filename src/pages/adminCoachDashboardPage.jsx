@@ -27,7 +27,6 @@ function AdminCoachDashboardPage () {
       )
     }
    setPage(ans)
-    return ans
   }
 
   return(
