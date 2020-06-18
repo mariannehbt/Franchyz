@@ -39,6 +39,7 @@ function Navbar(){
             <Link to="/" className="logo">FRANCHYZ</Link>
           </li>
           <li className="nav-item active">
+            <Link to="/dashboardAdmin"> My Dashboard </Link>
           </li>
         </ul>
         <div id='authNav'>

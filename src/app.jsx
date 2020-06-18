@@ -15,6 +15,7 @@ import Footer from "./components/layouts/footer.jsx";
 import Home from "./pages/home.jsx";
 import Login from "./pages/login.jsx";
 import Register from "./pages/register.jsx";
+import AdminCoachDashboardPage from "./pages/adminCoachDashboardPage.jsx";
 
 const App = () => {
 	return (
@@ -30,6 +31,10 @@ const App = () => {
 					</Route>
 					<Route exact path="/">
 						<Home />
+					</Route>
+					<Route path="/dashboardAdmin">
+						{" "}
+						<AdminCoachDashboardPage />{" "}
 					</Route>
 					<Route exact path="/create-event">
 						<CreateEvent />
