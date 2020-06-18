@@ -31,6 +31,16 @@ function Navbar(){
     setAuthNav(ans)
   }
 
+  function myDashboard() {
+    if (isAuth) {
+      return (
+        <li className="nav-item active">
+          <Link to="/dashboardAdmin"> My Dashboard </Link>
+        </li>
+      )
+    }
+  }
+
   return(
     <>
       <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -38,9 +48,7 @@ function Navbar(){
           <li className="">
             <Link to="/" className="logo">FRANCHYZ</Link>
           </li>
-          <li className="nav-item active">
-            <Link to="/dashboardAdmin"> My Dashboard </Link>
-          </li>
+            {myDashboard()}
         </ul>
         <div id='authNav'>
           {authNav}
