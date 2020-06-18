@@ -59,8 +59,10 @@ const FormClub = () => {
 		<ConfigProvider locale={frFR}>
 			<div>
 				<Row>
-					<Col span={8} offset={8}>
+					<Col span={10} offset={8}>
 						<h3>Le club:</h3>
+						<label>Date de création du club:</label>
+						<br />
 						<DatePicker onChange={onChange2} />
 						{CreationDate !== "" && (
 							<h6 style={{ marginTop: "25px" }}>Date création club: {CreationDate}</h6>
@@ -72,12 +74,11 @@ const FormClub = () => {
 				<Row>
 					<Col span={8} offset={8}>
 						<div className="form-group row col-12">
-							<label htmlFor="email"></label>
+							<label style={{ marginLeft: "10px", color: "grey" }}>Nom du club:</label>
 							<input
-								style={{ marginTop: "25px" }}
 								type="text"
 								className="form-control"
-								placeholder="Nom du club"
+								placeholder="Nom"
 								id="title"
 								onChange={(e) => setClubName(e.target.value)}
 								value={ClubName}
@@ -86,12 +87,13 @@ const FormClub = () => {
 						</div>
 
 						<div className="form-group row col-12">
-							<label htmlFor="email"></label>
+							<label style={{ marginLeft: "10px", color: "grey" }}>
+								Déscription du club
+							</label>
 							<input
-								style={{ marginTop: "25px" }}
 								type="text"
 								className="form-control"
-								placeholder="Déscription du club"
+								placeholder="Déscription"
 								id="description"
 								onChange={(e) => setClubDescription(e.target.value)}
 								value={ClubDescription}
@@ -99,12 +101,13 @@ const FormClub = () => {
 						</div>
 
 						<div className="form-group row col-12">
-							<label htmlFor="email"></label>
+							<label style={{ marginLeft: "10px", color: "grey" }}>
+								League du club
+							</label>
 							<input
-								style={{ marginTop: "25px" }}
 								type="text"
 								className="form-control"
-								placeholder="League du club"
+								placeholder="League"
 								id="league"
 								onChange={(e) => setLeague(e.target.value)}
 								value={League}
@@ -112,12 +115,13 @@ const FormClub = () => {
 						</div>
 
 						<div className="form-group row col-12">
-							<label htmlFor="email"></label>
+							<label style={{ marginLeft: "10px", color: "grey" }}>
+								Conference du club
+							</label>
 							<input
-								style={{ marginTop: "25px" }}
 								type="text"
 								className="form-control"
-								placeholder="Conference du club"
+								placeholder="Conference"
 								id="conference"
 								onChange={(e) => setConference(e.target.value)}
 								value={Conference}
@@ -125,12 +129,11 @@ const FormClub = () => {
 						</div>
 
 						<div className="form-group row col-12">
-							<label htmlFor="email"></label>
+							<label style={{ marginLeft: "10px", color: "grey" }}>Pool</label>
 							<input
-								style={{ marginTop: "25px" }}
 								type="text"
 								className="form-control"
-								placeholder="Pool du club"
+								placeholder="Pool"
 								id="pool"
 								onChange={(e) => setPool(e.target.value)}
 								value={Pool}
@@ -138,9 +141,10 @@ const FormClub = () => {
 						</div>
 						<h3>L'adresse du club:</h3>
 						<div className="form-group row col-12">
-							<label htmlFor="email"></label>
+							<label style={{ marginLeft: "10px", color: "grey" }}>
+								L'adresse du club
+							</label>
 							<input
-								style={{ marginTop: "25px" }}
 								type="text"
 								className="form-control"
 								placeholder="L'adresse"
@@ -151,9 +155,8 @@ const FormClub = () => {
 						</div>
 
 						<div className="form-group row col-12">
-							<label htmlFor="email"></label>
+							<label style={{ marginLeft: "10px", color: "grey" }}>Code postal</label>
 							<input
-								style={{ marginTop: "25px" }}
 								type="text"
 								className="form-control"
 								placeholder="Code postal"
@@ -164,9 +167,8 @@ const FormClub = () => {
 						</div>
 
 						<div className="form-group row col-12">
-							<label htmlFor="email"></label>
+							<label style={{ marginLeft: "10px", color: "grey" }}>Ville</label>
 							<input
-								style={{ marginTop: "25px" }}
 								type="text"
 								className="form-control"
 								placeholder="Ville"
@@ -176,9 +178,8 @@ const FormClub = () => {
 							/>
 						</div>
 						<div className="form-group row col-12">
-							<label htmlFor="email"></label>
+							<label style={{ marginLeft: "10px", color: "grey" }}>Pays</label>
 							<input
-								style={{ marginTop: "25px" }}
 								type="text"
 								className="form-control"
 								placeholder="Pays"
