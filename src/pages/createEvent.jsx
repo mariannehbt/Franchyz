@@ -2,24 +2,30 @@ import FormGame from "components/formGame.jsx";
 import React, { useState, useEffect } from "react";
 import { Select } from "antd";
 import FormPractice from "components/formPractice";
-import * as API from "services/coachesAPI";
+import * as UserAPI from "services/authAPI";
+import { useSelector } from "react-redux";
 
 function CreateEvents() {
 	const [EventType, setEventType] = useState("");
 	const [ClubId, setClubId] = useState("");
 	const [TeamId, setTeamId] = useState("");
+
+	const myId = useSelector((state) => state.authReducer.id);
+	const myType = useSelector((state) => state.authReducer.typeUser);
+	useEffect(setupElements, []);
+
+	async function setupElements() {
+		let profile = await UserAPI.profile(myId, myType);
+		let club = profile.club_id;
+		setClubId(club);
+	}
+
 	const { Option } = Select;
 
 	function onChange(value) {
 		console.log(`selected ${value}`);
 		setEventType(value);
 	}
-
-	//Attentio nà activer!
-	// useEffect(
-	// 	API.getClubId().then((response) => setClubId),
-	// 	[ClubId]
-	// );
 
 	return (
 		<div>
