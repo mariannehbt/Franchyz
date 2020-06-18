@@ -22,21 +22,21 @@ const logup = (email, password, type, team) => {
 };
 
 const login = (email, password, type) => {
-  return (dispatch) => {
-    dispatch(loginRequest());
-    let promise = API.signIn(email, password, type)
-    
-    promise.then((response) => {
-      if (response.body.error !== undefined) {
-        dispatch(loginFailure(response.body.error))
-      } else {
-        Cookies.set('token', response.headers.get('Authorization'), {sameSite: 'lax'})
-        let decoded_token = jwt_decode(response.headers.get('Authorization'))
-        dispatch(loginSuccess(decoded_token['sub'], decoded_token['scp']))
-        window.location.pathname = '/'
-      }
-    })
-  }
-}
+	return (dispatch) => {
+		dispatch(loginRequest());
+		let promise = API.signIn(email, password, type);
 
-export {login, logup}
+		promise.then((response) => {
+			if (response.body.error !== undefined) {
+				dispatch(loginFailure(response.body.error))
+			} else {
+				Cookies.set('token', response.headers.get('Authorization'), {sameSite: 'lax'})
+				let decoded_token = jwt_decode(response.headers.get('Authorization'))
+				dispatch(loginSuccess(decoded_token['sub'], decoded_token['scp']))
+				window.location.pathname = '/'
+			};
+		});
+	};
+};
+
+export {login, logup};

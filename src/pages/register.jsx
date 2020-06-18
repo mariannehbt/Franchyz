@@ -21,8 +21,8 @@ const Register = () => {
 				messageErrors = messageErrors + `${error} ${errors[error]} \n`
 			};
 			ans = (
-				<div class='alert alert-danger alert-dismissible' role='alert'>
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<div className='alert alert-danger alert-dismissible' role='alert'>
+					<button type='button' className='close' data-dismiss='alert'>&times;</button>
 					{messageErrors}
 				</div>
 			);
@@ -75,7 +75,7 @@ const Register = () => {
 	return (
 		<div>
 			{setupAlert()}
-			
+
 			<form className="form p-4 mt-3 mb-3 rounded" action="/action_page.php" onSubmit={submit}>
 
 				<div className="form-group">
