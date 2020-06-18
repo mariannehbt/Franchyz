@@ -3,7 +3,8 @@ import { DatePicker, Col, Row, Button } from "antd";
 import moment from "moment";
 import { Input } from "antd";
 import localization from "moment/locale/fr";
-import { InputNumber } from "antd";
+import { InputNumber, Form } from "antd";
+import "../styles/app.scss";
 
 const FormGame = ({ EventType }) => {
 	const [DateTime, setDateTime] = useState("");
@@ -15,7 +16,7 @@ const FormGame = ({ EventType }) => {
 	const [City, setCity] = useState("");
 	const [Country, setCountry] = useState("");
 	const [Address, setAddress] = useState("");
-	const { TextArea } = Input;
+	// const { TextArea } = Input;
 
 	moment.updateLocale("fr", localization);
 
@@ -51,7 +52,7 @@ const FormGame = ({ EventType }) => {
 	}
 
 	function onChangeTitle() {
-		let title = document.getElementById("title").value;
+		let title = document.getElementById("notice_datetime").value;
 		setEventTitle(title);
 		console.log(EventTitle);
 	}
@@ -65,28 +66,34 @@ const FormGame = ({ EventType }) => {
 		return current && current < moment().endOf("day");
 	}
 
-	// function onSubmit() {
-	// 	const data = {
-	// 		title: values.username,
-	// 		long_description: values.username,
-	// 		address: values.username,
-	// 		city: values.email,
-	// 		country: values.password,
-	// 		zip_code: values.password,
-	// 		starting_date_time: DateTime,
-	// 		duration: Duration,
-	// 		canceled: false,
-	// 	};
-
-	// 	if (EventType == "game") {
+	function onSubmit() {
+		if (DateTime === "") {
+			document.getElementById("notice_datetime").innerHTML =
+				"Merci de choisir une date";
+		}
+		if (DateTime === "") {
+			document.getElementById("notice_title").innerHTML =
+				"Merci de saisir un titre";
+		}
+		const data = {
+			title: EventTitle,
+			long_description: EventDescription,
+			address: Address,
+			city: City,
+			country: Country,
+			zip_code: ZipCode,
+			starting_date_time: DateTime,
+			duration: Duration,
+			canceled: false,
+		};
+		console.log(data);
+	}
 	// 		let club_id = 1;
 	// 		let team_id = 1;
 	// 		let urlCreateGame =
 	// 			"https://localhost/3000/clubs/" + club_id + "/teams/" + team_id + "games";
 
 	// 		console.log(urlCreateGame);
-	// 		console.log(urlCreatePractice);
-
 	// 		fetch(urlCreateGame, {
 	// 			method: "post",
 	// 			headers: {
@@ -96,39 +103,22 @@ const FormGame = ({ EventType }) => {
 	// 		})
 	// 			.then((res) => res.json())
 	// 			.then((post) => console.log(post));
-	// 	} if (EventType == "practice")
-	// 		let club_id = 1;
-	// 		let team_id = 1;
-	// 		let urlCreatePractice =
-	// 			"https://localhost/3000/clubs/" +
-	// 			club_id +
-	// 			"/teams/" +
-	// 			team_id +
-	// 			"practices";
-
-	// 		fetch(urlCreatePractice, {
-	// 			method: "post",
-	// 			headers: {
-	// 				"Content-Type": "application/json",
-	// 			},
-	// 			body: JSON.stringify(data),
-	// 		})
-	// 			.then((res) => res.json())
-	// 			.then((post) => console.log(post));
-	// 	}
-	// }
+	//
 
 	return (
 		<div>
 			<Row>
 				<Col span={6} offset={6}>
 					<DatePicker
+						id="datetime"
 						format="DD-MM-YY HH:mm"
 						disabledDate={disabledDate}
 						onChange={onChange}
 						onOk={onOk}
 						showTime={{ defaultValue: moment("00:00:00", "HH:mm:ss") }}
 					/>
+					<p id="notice_datetime" className="redtext"></p>
+
 					{DateTime !== "" && (
 						<p style={{ marginTop: "25px" }}> Date choisie: {DateTime}</p>
 					)}
@@ -144,75 +134,111 @@ const FormGame = ({ EventType }) => {
 					/>
 				</Col>
 			</Row>
-
 			<Row>
-				<Col span={6} offset={6}>
-					<Input
-						placeholder="Titre de l'évenement"
-						style={{ marginTop: "25px" }}
-						id="title"
-						onChange={onChangeTitle}
-					/>
+				<Col span={8} offset={6}>
+					<div className="form-group row col-12">
+						<label htmlFor="email"></label>
+						<input
+							style={{ marginTop: "25px" }}
+							type="text"
+							className="form-control"
+							placeholder="Saisir un titre"
+							id="title"
+							onChange={(e) => setEventTitle(e.target.value)}
+							value={EventTitle}
+						/>
+						<p id="notice_title" className="redtext"></p>
+					</div>
+				</Col>
+			</Row>
+			<Row>
+				<Col span={8} offset={6}>
+					<div className="form-group row col-12">
+						<label htmlFor="email"></label>
+						<input
+							style={{ marginTop: "25px" }}
+							type="text"
+							className="form-control"
+							placeholder="Saisir une description"
+							id="description"
+							onChange={(e) => setEventDescription(e.target.value)}
+							value={EventDescription}
+						/>
+					</div>
 				</Col>
 			</Row>
 
 			<Row>
-				<Col span={12} offset={6}>
-					<TextArea
-						style={{ width: "250", marginTop: "25px" }}
-						placeholder="Ajouter une description pour votre evenement."
-						id="description"
-						onChange={onChange}
-						autoSize={{ minRows: 2, maxRows: 6 }}
-					/>
-					<div style={{ margin: "24px 0" }} />
+				<Col span={8} offset={6}>
+					<div className="form-group row col-12">
+						<label htmlFor="email"></label>
+						<input
+							type="text"
+							className="form-control"
+							placeholder="L'adresse"
+							id="address"
+							onChange={(e) => setAddress(e.target.value)}
+							value={Address}
+						/>
+					</div>
 				</Col>
 			</Row>
+
 			<Row>
-				<Col span={6} offset={6}>
-					<Input.Group size="medium">
-						<Row gutter={8}>
-							<Col span={8}>
-								<Input
-									placeholder="Code postal"
-									id="zipcode"
-									onChange={(e) => setZipCode(e.target.value)}
-								/>
-							</Col>
-							<Col span={10}>
-								<Input
-									placeholder="Adresse"
-									id="address"
-									onChange={(e) => setAddress(e.target.value)}
-								/>
-							</Col>
-						</Row>
-						<Row style={{ marginTop: "25px" }} gutter={8}>
-							<Col span={8}>
-								<Input
-									placeholder="Ville"
-									id="city"
-									onChange={(e) => setCity(e.target.value)}
-								/>
-							</Col>
-							<Col span={10}>
-								<Input
-									placeholder="Pays"
-									id="country"
-									onChange={(e) => setCountry(e.target.value)}
-								/>
-							</Col>
-						</Row>
-					</Input.Group>
+				<Col span={8} offset={6}>
+					<div className="form-group row col-12">
+						<label htmlFor="email"></label>
+						<input
+							type="text"
+							className="form-control"
+							placeholder="Code postal"
+							id="zipcode"
+							onChange={(e) => setZipCode(e.target.value)}
+							value={ZipCode}
+						/>
+					</div>
 				</Col>
 			</Row>
+
+			<Row>
+				<Col span={8} offset={6}>
+					<div className="form-group row col-12">
+						<label htmlFor="email"></label>
+						<input
+							type="text"
+							className="form-control"
+							placeholder="Ville"
+							id="city"
+							onChange={(e) => setCity(e.target.value)}
+							value={City}
+						/>
+					</div>
+				</Col>
+			</Row>
+
+			<Row>
+				<Col span={8} offset={6}>
+					<div className="form-group row col-12">
+						<label htmlFor="email"></label>
+						<input
+							type="text"
+							className="form-control"
+							placeholder="Pays"
+							id="country"
+							onChange={(e) => setCountry(e.target.value)}
+							value={Country}
+						/>
+					</div>
+				</Col>
+			</Row>
+
 			<Row>
 				<Col span={3} offset={10}>
 					<button
 						type="submit"
 						className="btn btn-outline-dark"
 						style={{ marginTop: "25px" }}
-						// onSubmit={onSubmit}
+						onClick={onSubmit}
 					>
 						submit
 					</button>

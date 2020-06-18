@@ -1,10 +1,11 @@
 import FormGame from "components/formGame.jsx";
 // import Date_picker from "images/date_picker.png";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Row, Select } from "antd";
 import FormPractice from "components/formPractice";
 import Button from "react-bootstrap/Button";
 //import "bootstrap/dist/css/bootstrap.css";
+import { Form } from "react-bootstrap";
 
 function CreateEvents() {
 	const [EventType, setEventType] = useState("");
@@ -14,6 +15,10 @@ function CreateEvents() {
 		console.log(`selected ${value}`);
 		setEventType(value);
 	}
+
+	useEffect(() => {
+		console.log("fetch_club_id");
+	});
 
 	return (
 		<div>
@@ -47,7 +52,7 @@ function CreateEvents() {
 			{EventType === "game" ? (
 				<FormGame style={{ marginTop: "25px" }} EventType={EventType} />
 			) : (
-				<FormPractice style={{ marginTop: "25px" }} />
+				<FormPractice style={{ marginTop: "25px" }} EventType={EventType} />
 			)}
 
 			{/* <img
