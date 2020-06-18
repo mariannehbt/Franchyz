@@ -12,8 +12,10 @@ function AdminCoachDashboardPage () {
   useEffect(setupElements, [])
 
   async function setupElements() {
-    let club = await UserAPI.myClub(myId, myType)
+    let profile = await UserAPI.profile(myId, myType)
+    let club = profile.club_id
     let ans 
+
     if (club == null ) {
       ans = (
         <Link to="/newClub"><button type="button" className="btn btn-primary"> Create Club </button> </Link>
@@ -21,10 +23,11 @@ function AdminCoachDashboardPage () {
     } else {
       ans = (
         //<Dashboard />
-        test
+        'dede'
       )
     }
    setPage(ans)
+    return ans
   }
 
   return(
