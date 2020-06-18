@@ -1,105 +1,104 @@
-import Cookies from 'js-cookie'
-import jwt_decode from 'jwt-decode'
+import Cookies from 'js-cookie';
 import {pluralyzeType} from 'helpers/misc.jsx'
 
-function signUp(email, password, type) {
+function signUp(email, password, type, team) {
+	let data;
+	if (type === 'player') {
+		data = {[type]: {
+			email: email,
+			password: password,
+			team_id: team,
+		}};
+	} else {
+		data = {[type]: {
+			email: email,
+			password: password,
+		}};
+	};
 
-  const data = {[type]: 
-  {
-    email: email,
-    password: password,
-  }};
+	let types = pluralyzeType(type);
+	let baseURL = process.env.REACT_APP_API_URL;
+	let endUrl = `/${types}.json`;
+	let url = baseURL + endUrl;
 
-  let types = pluralyzeType(type)
-  let baseURL = process.env.REACT_APP_API_URL
-  let endUrl = `/${types}.json`
-  let url = baseURL + endUrl
-  let request = 
-    {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    }
+	let ans = {
+		headers: '',
+		body: ''
+	};
 
-  let ans = {
-    headers: '',
-    body: ''
-  }
+	let request = {
+		method: 'post',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(data)
+	};
 
-  return fetch(url, request)
-    .then(response => { 
-      ans.headers = response.headers
-      return response.json()
-    })
-    .then(response => {
-      ans.body = response
-      return ans
-    })
 
-}
+
+	return fetch(url, request)
+	.then(response => {
+		ans.headers = response.headers
+		return response.json()
+	})
+	.then(response => {
+		ans.body = response
+		return ans
+	});
+};
 
 function signIn(email, password, type) {
+	const data = {[type]: {
+		email: email,
+		password: password,
+	}};
 
-  const data = {[type]: 
-    {
-      email: email,
-      password: password,
-    }
-  };
-  
-  let types = pluralyzeType(type)
-  let baseURL = process.env.REACT_APP_API_URL
-  let endUrl = `/${types}/sign_in.json`
-  let url = baseURL + endUrl
+	let types = pluralyzeType(type);
+	let baseURL = process.env.REACT_APP_API_URL;
+	let endUrl = `/${types}/sign_in.json`;
+	let url = baseURL + endUrl;
 
-  let ans = {
-    headers: '',
-    body: ''
-  }
+	let ans = {
+		headers: '',
+		body: ''
+	};
 
-  let request = 
-    {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    }
+	let request = {
+		method: 'post',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(data)
+	};
 
- 
-  return fetch(url, request)
-    .then(response => { 
-      ans.headers = response.headers
-      return response.json()
-    })
-    .then(response => {
-      ans.body = response
-      return ans
-    })
-}
+	return fetch(url, request)
+	.then(response => {
+		ans.headers = response.headers
+		return response.json()
+	})
+	.then(response => {
+		ans.body = response
+		return ans
+	});
+};
 
 function sign_out(type) {
+	let types = pluralyzeType(type);
+	let baseURL = process.env.REACT_APP_API_URL;
+	let endUrl = `/${types}/sign_out.json`;
+	let url = baseURL + endUrl;
 
-  let types = pluralyzeType(type)
-  let baseURL = process.env.REACT_APP_API_URL
-  let endUrl = `/${types}/sign_out.json`
-  let url = baseURL + endUrl
+	let request = {
+		method: 'delete',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+	};
 
-  let request = 
-    {
-      method: 'delete',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    }
-
-  return fetch(url, request)
-    .then(response => response.json())
-    .then(response => {return response})
-
-}
+	return fetch(url, request)
+	.then(response => response.json())
+	.then(response => {return response});
+};
 
 function profile(id, type) {
 
