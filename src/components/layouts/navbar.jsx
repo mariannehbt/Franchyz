@@ -8,27 +8,23 @@ import '../../styles/nav.scss'
 
 function Navbar(){
 
-  const [authNav, setAuthNav] = useState('')
   const isAuth = useSelector(state => state.authReducer.isAuth)
 
-  useEffect(inOrOut,[])
 
 
-  function inOrOut(){
-    let ans
+  function authNav(){
     if (!isAuth) {
-      ans = (
+      return (
       <>
         <Link to="/register"><button type="button" className="btn btn-sm btn-primary"> Register </button> </Link>
         <Link to="/login"><button type="button" className="btn btn-sm btn-primary"> login </button> </Link>
       </>
       )
     } else {
-      ans =  (
+      return  (
         <Portrait />
       )
     }
-    setAuthNav(ans)
   }
 
   function myDashboard() {
@@ -51,7 +47,7 @@ function Navbar(){
             {myDashboard()}
         </ul>
         <div id='authNav'>
-          {authNav}
+          {authNav()}
         </div>
       </nav>
     </>
