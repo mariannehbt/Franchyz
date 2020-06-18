@@ -2,21 +2,44 @@ import React from 'react';
 import '../styles/form.scss'
 import { logup } from 'redux/middlewares/authMiddlewares'
 import {useSelector, useDispatch} from 'react-redux'
-import { Redirect } from 'react-router-dom'
 
 
 function Register() {
 
+  const errors = useSelector(state => state.authReducer.error)
+
+  function setupAlert() {
+    let ans
+    let messageErrors = ''
+    if (errors !== undefined) {
+
+      for (const error in errors) {
+        messageErrors = messageErrors + `${error} ${errors[error]} \n`
+      }
+
+      ans = (
+        <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          {messageErrors}
+        </div>
+      )
+    } else {
+      ans = null
+    }
+    return ans
+  }
   const dispatch = useDispatch();
 
   function submit(e) {
     e.preventDefault()
     let email = document.getElementById('email').value
     let password = document.getElementById('password').value
-    dispatch(logup(email, password, 'coache'))   // WWWWWWWWWWWWWWWWWWWWARNING
+    dispatch(logup(email, password, 'coach'))   
   }
 
   return(
+    <>
+      {setupAlert()}
     <form className="form p-4 mt-3 mb-3 rounded" action="/action_page.php" onSubmit={submit}>
       <div className="form-group">
         <label htmlFor="email">Email address:</label>
@@ -33,6 +56,7 @@ function Register() {
       </div>
       <button type="submit" className="btn btn-primary">Submit</button>
     </form> 
+    </>
   )
 }
 

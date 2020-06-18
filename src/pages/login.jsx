@@ -2,10 +2,26 @@ import React from 'react';
 import '../styles/form.scss'
 import { login } from '../redux/middlewares/authMiddlewares'
 import {useSelector, useDispatch} from 'react-redux'
-import { Redirect } from 'react-router-dom'
 
 function Login() {
 
+  const error = useSelector(state => state.authReducer.error)
+
+  function setupAlert() {
+    let ans
+    if (error !== undefined) {
+      ans = (
+        <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          {error}
+        </div>
+      )
+    } else {
+      ans = null
+    }
+
+    return ans
+  }
 
   const dispatch = useDispatch();
 
@@ -13,10 +29,12 @@ function Login() {
     e.preventDefault()
     let email = document.getElementById('email').value
     let password = document.getElementById('password').value
-    dispatch(login(email, password, 'coache'))   // WWWWWWWWWWWWWWWWWWWWARNING
+    dispatch(login(email, password, 'coach'))   
   }
 
   return(
+    <>
+        {setupAlert()}
     <form className="form p-4 mt-3 mb-3 rounded" action="/action_page.php" onSubmit={submit}>
       <div className="form-group">
         <label htmlFor="username">username:</label>
@@ -33,6 +51,7 @@ function Login() {
       </div>
       <button type="submit" className="btn btn-primary">Submit</button>
     </form> 
+    </>
   )
 }
 
