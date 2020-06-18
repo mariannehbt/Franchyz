@@ -30,7 +30,7 @@ function CreateEvents() {
 				className="bg-dark pb-3 p-2 mx-auto rounded select"
 				style={{ width: "35%" }}
 			>
-				<h3 className="text-light text-center">Choisir le type d'évenement?</h3>
+				<h3 className="text-light text-center">Choisir le type d'événement?</h3>
 				<div className="text-center">
 					<Select
 						className="text-center"
