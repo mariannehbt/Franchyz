@@ -1,22 +1,20 @@
 import React, { useState } from "react";
-import { DatePicker, Col, Row, Button } from "antd";
+import { DatePicker, Col, Row } from "antd";
 import moment from "moment";
-import { Input } from "antd";
 import localization from "moment/locale/fr";
-import { InputNumber, Form } from "antd";
+import { InputNumber } from "antd";
 import "../styles/app.scss";
+import * as API from "services/eventsAPI";
 
-const FormPractice = ({ EventType }) => {
+const FormPractice = ({ EventType, ClubId, TeamId }) => {
 	const [DateTime, setDateTime] = useState("");
 	const [Duration, setDuration] = useState("");
 	const [EventTitle, setEventTitle] = useState("");
-
 	const [EventDescription, setEventDescription] = useState("");
 	const [ZipCode, setZipCode] = useState("");
 	const [City, setCity] = useState("");
 	const [Country, setCountry] = useState("");
 	const [Address, setAddress] = useState("");
-	// const { TextArea } = Input;
 
 	moment.updateLocale("fr", localization);
 
@@ -24,26 +22,7 @@ const FormPractice = ({ EventType }) => {
 		console.log(EventType);
 		// console.log("Selected Time: ", value);
 		setDateTime(dateString);
-		// let title = document.getElementById("title").value;
-		// setEventTitle(title);
-		let description = document.getElementById("description").value;
-		setEventDescription(description);
-		let zipcode = document.getElementById("zipcode").value;
-		setZipCode(zipcode);
-		let city = document.getElementById("city").value;
-		setCity(city);
-		let country = document.getElementById("country").value;
-		setCountry(country);
-
 		console.log("Formatted Selected Time: ", dateString);
-		console.log("changed", value);
-		console.log(Duration);
-
-		console.log(EventDescription);
-		console.log(ZipCode);
-		console.log(Address);
-		console.log(Country);
-		console.log(City);
 	}
 
 	function onChangeDuration(valueMin) {
@@ -51,18 +30,11 @@ const FormPractice = ({ EventType }) => {
 		setDuration(valueMin);
 	}
 
-	function onChangeTitle() {
-		let title = document.getElementById("notice_datetime").value;
-		setEventTitle(title);
-		console.log(EventTitle);
-	}
-
 	function onOk(value) {
 		console.log("onOk: ", value);
 	}
 
 	function disabledDate(current) {
-		// Can not select days before today and today
 		return current && current < moment().endOf("day");
 	}
 
@@ -88,22 +60,16 @@ const FormPractice = ({ EventType }) => {
 		};
 		console.log(data);
 	}
-	// 		let club_id = 1;
-	// 		let team_id = 1;
-	// 		let urlCreateGame =
-	// 			"https://localhost/3000/clubs/" + club_id + "/teams/" + team_id + "games";
-
-	// 		console.log(urlCreateGame);
-	// 		fetch(urlCreateGame, {
-	// 			method: "post",
-	// 			headers: {
-	// 				"Content-Type": "application/json",
-	// 			},
-	// 			body: JSON.stringify(data),
-	// 		})
-	// 			.then((res) => res.json())
-	// 			.then((post) => console.log(post));
-	//
+	// API.createPractice(
+	// 	EventTitle,
+	// 	EventDescription,
+	// 	Address,
+	// 	City,
+	// 	Country,
+	// 	ZipCode,
+	// 	DateTime,
+	// 	Duration
+	// ).then((response) => console.log(response));
 
 	return (
 		<div>

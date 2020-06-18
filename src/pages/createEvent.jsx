@@ -1,14 +1,13 @@
 import FormGame from "components/formGame.jsx";
-// import Date_picker from "images/date_picker.png";
 import React, { useState, useEffect } from "react";
-import { Col, Row, Select } from "antd";
+import { Select } from "antd";
 import FormPractice from "components/formPractice";
-import Button from "react-bootstrap/Button";
-//import "bootstrap/dist/css/bootstrap.css";
-import { Form } from "react-bootstrap";
+import * as API from "services/coachesAPI";
 
 function CreateEvents() {
 	const [EventType, setEventType] = useState("");
+	const [ClubId, setClubId] = useState("");
+	const [TeamId, setTeamId] = useState("");
 	const { Option } = Select;
 
 	function onChange(value) {
@@ -16,9 +15,11 @@ function CreateEvents() {
 		setEventType(value);
 	}
 
-	useEffect(() => {
-		console.log("fetch_club_id");
-	});
+	//Attentio nà activer!
+	// useEffect(
+	// 	API.getClubId().then((response) => setClubId),
+	// 	[ClubId]
+	// );
 
 	return (
 		<div>
@@ -50,16 +51,20 @@ function CreateEvents() {
 			<hr className="my-4" style={{ width: "600px" }}></hr>
 
 			{EventType === "game" ? (
-				<FormGame style={{ marginTop: "25px" }} EventType={EventType} />
+				<FormGame
+					style={{ marginTop: "25px" }}
+					EventType={EventType}
+					ClubId={ClubId}
+					TeamId={TeamId}
+				/>
 			) : (
-				<FormPractice style={{ marginTop: "25px" }} EventType={EventType} />
+				<FormPractice
+					style={{ marginTop: "25px" }}
+					EventType={EventType}
+					TeamId={TeamId}
+					ClubId={ClubId}
+				/>
 			)}
-
-			{/* <img
-				src={Date_picker}
-				alt="datepicker"
-				style={{ height: "250px", marginLeft: "900px" }}
-			/> */}
 		</div>
 	);
 }
