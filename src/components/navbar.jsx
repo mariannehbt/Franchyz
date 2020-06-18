@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {Link} from 'react-router-dom'
-import {useSelector, useDispatch} from 'react-redux'
-import Cookies from 'js-cookie'
+import {useSelector } from 'react-redux'
 import Portrait from './portrait.jsx'
 import '../styles/nav.scss'
 
@@ -20,8 +19,8 @@ function Navbar(){
     if (!isAuth) {
       ans = (
       <>
-        <Link to="/register"><button type="button" class="btn btn-sm btn-primary"> Register </button> </Link>
-        <Link to="/login"><button type="button" class="btn btn-sm btn-primary"> login </button> </Link>
+        <Link to="/register"><button type="button" className="btn btn-sm btn-primary"> Register </button> </Link>
+        <Link to="/login"><button type="button" className="btn btn-sm btn-primary"> login </button> </Link>
       </>
       )
     } else {

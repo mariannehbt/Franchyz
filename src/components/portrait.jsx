@@ -4,11 +4,8 @@ import {Link} from 'react-router-dom'
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
-import $ from 'jquery';
-import Popper from 'popper.js';
 import Cookies from 'js-cookie'
-import {useSelector, useDispatch} from 'react-redux'
-import {myName} from 'helpers/misc.jsx'
+import {useSelector } from 'react-redux'
 import * as UserAPI from 'services/authAPI'
 
 
@@ -22,6 +19,7 @@ function Portrait() {
 
   function logout(){
     Cookies.remove('token');
+    UserAPI.sign_out(myType)
     window.location.pathname = '/'
   }
 
@@ -42,18 +40,6 @@ function Portrait() {
       </div>
     </div> 
 
-  /*
-     <div class="dropdown">
-  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-    Dropdown button
-  </button>
-  <div class="dropdown-menu" aria-labelledby='navbarDropdown'>
-    <a class="dropdown-item" href="#">Link 1</a>
-    <a class="dropdown-item" href="#">Link 2</a>
-    <a class="dropdown-item" href="#">Link 3</a>
-  </div>
-</div> 
-*/
   )
 }
 

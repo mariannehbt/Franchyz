@@ -80,6 +80,27 @@ function signIn(email, password, type) {
     })
 }
 
+function sign_out(type) {
+
+  let types = pluralyzeType(type)
+  let baseURL = process.env.REACT_APP_API_URL
+  let endUrl = `/${types}/sign_out.json`
+  let url = baseURL + endUrl
+
+  let request = 
+    {
+      method: 'delete',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }
+
+  return fetch(url, request)
+    .then(response => response.json())
+    .then(response => {return response})
+
+}
+
 function profile(id, type) {
 
   type = pluralyzeType(type)
@@ -103,4 +124,4 @@ function profile(id, type) {
     .then(response => {return response})
 }
 
-export {signIn, signUp, profile}
+export {signIn, signUp, sign_out, profile}

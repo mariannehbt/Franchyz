@@ -1,13 +1,12 @@
 import Cookies from 'js-cookie'
 import jwt_decode from 'jwt-decode'
 import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS } from '../types/authTypes'
-import {useSelector, useDispatch} from 'react-redux'
 
 let tempo
 
 
 
-if (Cookies.get('token') == undefined){
+if (Cookies.get('token') === undefined){
   tempo = {
     loading: false,
     isAuth: false,
