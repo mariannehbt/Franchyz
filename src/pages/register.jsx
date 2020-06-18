@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/form.scss'
 import { logup } from 'redux/middlewares/authMiddlewares'
 import {useSelector, useDispatch} from 'react-redux'
@@ -7,6 +7,31 @@ import { Redirect } from 'react-router-dom'
 
 function Register() {
 
+  const [alert, setAlert] = useState()
+  const errors = useSelector(state => state.authReducer.error)
+
+  function setupAlert() {
+    console.log(errors, 'dede',(errors != undefined))
+    let ans
+    let messageErrors = ''
+    if (errors != undefined) {
+
+      for (const error in errors) {
+        messageErrors = messageErrors + `${error} ${errors[error]} \n`
+      }
+
+      console.log('eee')
+      ans = (
+        <div class="alert alert-danger" role="alert">
+          {messageErrors}
+        </div>
+      )
+    } else {
+      ans = null
+    }
+    console.log(ans)
+    return ans
+  }
   const dispatch = useDispatch();
 
   function submit(e) {
@@ -17,6 +42,8 @@ function Register() {
   }
 
   return(
+    <>
+      {setupAlert()}
     <form className="form p-4 mt-3 mb-3 rounded" action="/action_page.php" onSubmit={submit}>
       <div className="form-group">
         <label htmlFor="email">Email address:</label>
@@ -33,6 +60,7 @@ function Register() {
       </div>
       <button type="submit" className="btn btn-primary">Submit</button>
     </form> 
+    </>
   )
 }
 
