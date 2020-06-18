@@ -3,9 +3,7 @@ import jwt_decode from 'jwt-decode'
 import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS } from '../types/authTypes'
 
 let tempo
-
-
-
+let decoded_token 
 if (Cookies.get('token') === undefined){
   tempo = {
     loading: false,
@@ -15,12 +13,18 @@ if (Cookies.get('token') === undefined){
   }
 }
 else{
+  decoded_token =jwt_decode(Cookies.get('token'))
   tempo = {
     loading: false,
     isAuth: true,
-    id: jwt_decode(Cookies.get('token'))['sub'],
-    typeUser: jwt_decode(Cookies.get('token'))['scp'],
-    error: null
+    error: null,
+    id: decoded_token['sub'],
+    typeUser: decoded_token['scp'],
+    email: decoded_token['email'],
+    first_name: decoded_token['first_name'],
+    last_name: decoded_token['last_name'],
+    isAdmin: decoded_token['admin?'],
+    club_id: decoded_token['club_id'],
   } 
 }
 
@@ -41,7 +45,11 @@ const authReducer = (state = initialState, action) => {
         isAuth: true,
         loading: false,
         id: action.id,
-        typeUser: action.typeUser,
+        email: action.email,
+        first_name: action.first_name,
+        last_name: action.last_name,
+        isAdmin: action.isAdmin,
+        club_id: action.club_id,
       }
     case LOGIN_FAILURE:
       return {

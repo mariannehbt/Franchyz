@@ -11,6 +11,10 @@ function Navbar(){
   const [authNav, setAuthNav] = useState('')
   const isAuth = useSelector(state => state.authReducer.isAuth)
 
+  function test() {
+
+  }
+
   useEffect(inOrOut,[])
 
 
@@ -28,7 +32,7 @@ function Navbar(){
         <Portrait />
       )
     }
-    setAuthNav(ans)
+    return ans
   }
 
   return(

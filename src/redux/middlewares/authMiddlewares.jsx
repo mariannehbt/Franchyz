@@ -14,7 +14,7 @@ const logup = (email, password, type, team) => {
 			} else {
 				Cookies.set('token', response.headers.get('Authorization'), {sameSite: 'lax'})
 				let decoded_token = jwt_decode(response.headers.get('Authorization'))
-				dispatch(loginSuccess(decoded_token['sub'], decoded_token['scp']))
+				dispatch(loginSuccess(decoded_token))
 				window.location.pathname = '/'
 			};
 		});
@@ -32,8 +32,7 @@ const login = (email, password, type) => {
 			} else {
 				Cookies.set('token', response.headers.get('Authorization'), {sameSite: 'lax'})
 				let decoded_token = jwt_decode(response.headers.get('Authorization'))
-				dispatch(loginSuccess(decoded_token['sub'], decoded_token['scp']))
-				window.location.pathname = '/'
+				dispatch(loginSuccess(decoded_token))
 			};
 		});
 	};
