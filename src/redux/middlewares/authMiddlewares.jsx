@@ -9,8 +9,8 @@ const logup = (email, password, type) => {
     let promise = API.signUp(email, password, type)
     
     promise.then((response) => {
-      if (response.error !== undefined) {
-        dispatch(loginFailure(response.message))
+      if (response.body.errors !== undefined) {
+        dispatch(loginFailure(response.body.errors))
       } else {
         Cookies.set('token', response.headers.get('Authorization'), {sameSite: 'lax'})
         let decoded_token = jwt_decode(response.headers.get('Authorization'))
@@ -27,9 +27,8 @@ const login = (email, password, type) => {
     let promise = API.signIn(email, password, type)
     
     promise.then((response) => {
-      console.log(response)
-      if (response.error !== undefined) {
-        dispatch(loginFailure(response.message))
+      if (response.body.error !== undefined) {
+        dispatch(loginFailure(response.body.error))
       } else {
         Cookies.set('token', response.headers.get('Authorization'), {sameSite: 'lax'})
         let decoded_token = jwt_decode(response.headers.get('Authorization'))

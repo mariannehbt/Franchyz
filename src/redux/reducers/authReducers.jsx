@@ -2,16 +2,16 @@ import Cookies from 'js-cookie'
 import jwt_decode from 'jwt-decode'
 import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS } from '../types/authTypes'
 
-console.log(Cookies.get('token'), 'yoloo', (Cookies.get('token') == undefined))
 let tempo
 
-if (Cookies.get('token') == undefined){
+
+
+if (Cookies.get('token') === undefined){
   tempo = {
     loading: false,
     isAuth: false,
     id: null,
     typeUser: '',
-    error: ''
   }
 }
 else{
@@ -19,7 +19,8 @@ else{
     loading: false,
     isAuth: true,
     id: jwt_decode(Cookies.get('token'))['sub'],
-    typeUser: jwt_decode(Cookies.get('token'))['scp']
+    typeUser: jwt_decode(Cookies.get('token'))['scp'],
+    error: null
   } 
 }
 
