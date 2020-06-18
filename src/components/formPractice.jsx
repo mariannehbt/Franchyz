@@ -9,27 +9,27 @@ import { ConfigProvider } from "antd";
 import frFR from "antd/es/locale/fr_FR";
 
 const FormPractice = ({ EventType, ClubId, TeamId }) => {
-	const [DateTime, setDateTime] = useState("");
-	const [Duration, setDuration] = useState("");
-	const [EventTitle, setEventTitle] = useState("");
-	const [EventDescription, setEventDescription] = useState("");
-	const [ZipCode, setZipCode] = useState("");
-	const [City, setCity] = useState("");
-	const [Country, setCountry] = useState("");
-	const [Address, setAddress] = useState("");
+	const [DateTimeP, setDateTimeP] = useState("");
+	const [DurationP, setDurationP] = useState("");
+	const [EventTitleP, setEventTitleP] = useState("");
+	const [EventDescriptionP, setEventDescriptionP] = useState("");
+	const [ZipCodeP, setZipCodeP] = useState("");
+	const [CityP, setCityP] = useState("");
+	const [CountryP, setCountryP] = useState("");
+	const [AddressP, setAddressP] = useState("");
 
 	moment.updateLocale("fr", localization);
 
 	function onChange(value, dateString) {
 		console.log(EventType);
 		// console.log("Selected Time: ", value);
-		setDateTime(dateString);
+		setDateTimeP(dateString);
 		console.log("Formatted Selected Time: ", dateString);
 	}
 
 	function onChangeDuration(valueMin) {
 		console.log(valueMin);
-		setDuration(valueMin);
+		setDurationP(valueMin);
 	}
 
 	function onOk(value) {
@@ -41,37 +41,36 @@ const FormPractice = ({ EventType, ClubId, TeamId }) => {
 	}
 
 	function onSubmit() {
-		if (DateTime === "") {
+		if (DateTimeP === "") {
 			document.getElementById("notice_datetime").innerHTML =
 				"Merci de choisir une date";
 		}
-		if (DateTime === "") {
+		if (EventTitleP === "") {
 			document.getElementById("notice_title").innerHTML =
 				"Merci de saisir un titre";
 		}
-		const data = {
-			title: EventTitle,
-			long_description: EventDescription,
-			address: Address,
-			city: City,
-			country: Country,
-			zip_code: ZipCode,
-			starting_date_time: DateTime,
-			duration: Duration,
-			canceled: false,
-		};
-		console.log(data);
+
+		console.log(
+			EventTitleP,
+			EventDescriptionP,
+			AddressP,
+			CityP,
+			CountryP,
+			ZipCodeP,
+			DateTimeP,
+			DurationP
+		);
 	}
-	// API.createGame(
-	// 	EventTitle,
-	// 	EventDescription,
-	// 	Address,
-	// 	City,
-	// 	Country,
-	// 	ZipCode,
-	// 	DateTime,
-	// 	Duration
-	// ).then((response) => console.log(response));
+	API.createPractice(
+		EventTitleP,
+		EventDescriptionP,
+		AddressP,
+		CityP,
+		CountryP,
+		ZipCodeP,
+		DateTimeP,
+		DurationP
+	).then((response) => console.log(response));
 
 	return (
 		<ConfigProvider locale={frFR}>
@@ -91,14 +90,14 @@ const FormPractice = ({ EventType, ClubId, TeamId }) => {
 						/>
 						<p id="notice_datetime" className="redtext"></p>
 
-						{DateTime !== "" && (
-							<h6 style={{ marginTop: "25px" }}> Date choisie: {DateTime}</h6>
+						{DateTimeP !== "" && (
+							<h6 style={{ marginTop: "25px" }}> Date choisie: {DateTimeP}</h6>
 						)}
 						<label>Durée de l'entrainement:</label>
 						<br />
 						<InputNumber
 							style={{ marginBottom: "15px" }}
-							defaultValue={120}
+							defaultValue={0}
 							step={5}
 							min={0}
 							max={100000}
@@ -118,8 +117,8 @@ const FormPractice = ({ EventType, ClubId, TeamId }) => {
 								className="form-control"
 								placeholder="Saisir un titre"
 								id="title"
-								onChange={(e) => setEventTitle(e.target.value)}
-								value={EventTitle}
+								onChange={(e) => setEventTitleP(e.target.value)}
+								value={EventTitleP}
 							/>
 							<p id="notice_title" className="redtext"></p>
 						</div>
@@ -131,8 +130,8 @@ const FormPractice = ({ EventType, ClubId, TeamId }) => {
 								className="form-control"
 								placeholder="Saisir une description"
 								id="description"
-								onChange={(e) => setEventDescription(e.target.value)}
-								value={EventDescription}
+								onChange={(e) => setEventDescriptionP(e.target.value)}
+								value={EventDescriptionP}
 							/>
 						</div>
 						<h3>L'adresse de l'entrainement:</h3>
@@ -143,8 +142,8 @@ const FormPractice = ({ EventType, ClubId, TeamId }) => {
 								className="form-control"
 								placeholder="L'adresse"
 								id="address"
-								onChange={(e) => setAddress(e.target.value)}
-								value={Address}
+								onChange={(e) => setAddressP(e.target.value)}
+								value={AddressP}
 							/>
 						</div>
 
@@ -155,8 +154,8 @@ const FormPractice = ({ EventType, ClubId, TeamId }) => {
 								className="form-control"
 								placeholder="Code postal"
 								id="zipcode"
-								onChange={(e) => setZipCode(e.target.value)}
-								value={ZipCode}
+								onChange={(e) => setZipCodeP(e.target.value)}
+								value={ZipCodeP}
 							/>
 						</div>
 
@@ -167,8 +166,8 @@ const FormPractice = ({ EventType, ClubId, TeamId }) => {
 								className="form-control"
 								placeholder="Ville"
 								id="city"
-								onChange={(e) => setCity(e.target.value)}
-								value={City}
+								onChange={(e) => setCityP(e.target.value)}
+								value={CityP}
 							/>
 						</div>
 
@@ -179,8 +178,8 @@ const FormPractice = ({ EventType, ClubId, TeamId }) => {
 								className="form-control"
 								placeholder="Pays"
 								id="country"
-								onChange={(e) => setCountry(e.target.value)}
-								value={Country}
+								onChange={(e) => setCountryP(e.target.value)}
+								value={CountryP}
 							/>
 						</div>
 					</Col>

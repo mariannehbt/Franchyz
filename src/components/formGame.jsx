@@ -34,6 +34,7 @@ const FormGame = ({ EventType, ClubId, TeamId }) => {
 
 	function onOk(value) {
 		console.log("onOk: ", value);
+		setDuration(value);
 	}
 
 	function disabledDate(current) {
@@ -62,16 +63,16 @@ const FormGame = ({ EventType, ClubId, TeamId }) => {
 		};
 		console.log(data);
 	}
-	// API.createPractice(
-	// 	EventTitle,
-	// 	EventDescription,
-	// 	Address,
-	// 	City,
-	// 	Country,
-	// 	ZipCode,
-	// 	DateTime,
-	// 	Duration
-	// ).then((response) => console.log(response));
+	API.createGame(
+		EventTitle,
+		EventDescription,
+		Address,
+		City,
+		Country,
+		ZipCode,
+		DateTime,
+		Duration
+	).then((response) => console.log(response));
 
 	return (
 		<ConfigProvider locale={frFR}>
@@ -98,7 +99,7 @@ const FormGame = ({ EventType, ClubId, TeamId }) => {
 						<br />
 						<InputNumber
 							style={{ marginBottom: "15px" }}
-							defaultValue={120}
+							defaultValue={0}
 							step={5}
 							min={0}
 							max={100000}
@@ -194,7 +195,7 @@ const FormGame = ({ EventType, ClubId, TeamId }) => {
 							style={{ marginTop: "25px", marginBottom: "25px" }}
 							onClick={onSubmit}
 						>
-							sauvegarder
+							Sauvegarder
 						</button>
 					</Col>
 				</Row>
