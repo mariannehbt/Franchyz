@@ -1,25 +1,7 @@
 import FormClub from "components/formClub.jsx";
-import React, { useState, useEffect } from "react";
-import { Select } from "antd";
-import * as API from "services/coachesAPI";
+import React from "react";
 
 function CreateEvents() {
-	const [EventType, setEventType] = useState("");
-	const [ClubId, setClubId] = useState("");
-	const [TeamId, setTeamId] = useState("");
-	const { Option } = Select;
-
-	function onChange(value) {
-		console.log(`selected ${value}`);
-		setEventType(value);
-	}
-
-	//Attentio nà activer!
-	// useEffect(
-	// 	API.getClubId().then((response) => setClubId),
-	// 	[ClubId]
-	// );
-
 	return (
 		<div>
 			<br />
@@ -32,12 +14,7 @@ function CreateEvents() {
 				<h3 className="text-light text-center">Créer ton club</h3>
 			</div>
 			<hr className="my-4" style={{ width: "600px" }}></hr>
-			<FormClub
-				style={{ marginTop: "25px" }}
-				EventType={EventType}
-				ClubId={ClubId}
-				TeamId={TeamId}
-			/>
+			<FormClub style={{ marginTop: "25px" }} />
 		</div>
 	);
 }

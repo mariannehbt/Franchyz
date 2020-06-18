@@ -44,7 +44,9 @@ const FormClub = () => {
 			League,
 			Pool,
 			Conference
-		).then((response) => console.log(response));
+		).then((response) => {
+			console.log(response);
+		});
 	}
 	function onChange2(date, dateString) {
 		console.log("test " + date, dateString);
