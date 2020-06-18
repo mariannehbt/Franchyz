@@ -19,7 +19,7 @@ const FormPractice = () => {
 	return (
 		<div>
 			<div className="container text-center">
-				<DatePicker showTime onChange={onChange} onOk={onOk} />
+				{/* <DatePicker showTime onChange={onChange} onOk={onOk} /> */}
 				<br></br>
 				<p>{DateTime}</p>
 			</div>
