@@ -6,21 +6,19 @@ import {useSelector, useDispatch} from 'react-redux'
 function Login() {
 
   const error = useSelector(state => state.authReducer.error)
-  console.log(error)
 
   function setupAlert() {
     let ans
     if (error !== undefined) {
-      console.log('eee')
       ans = (
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
           {error}
         </div>
       )
     } else {
       ans = null
     }
-    console.log(ans)
 
     return ans
   }

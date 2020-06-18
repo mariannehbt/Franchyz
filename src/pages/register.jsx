@@ -18,7 +18,8 @@ function Register() {
       }
 
       ans = (
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
           {messageErrors}
         </div>
       )
