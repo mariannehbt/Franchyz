@@ -9,6 +9,7 @@ import store from "./redux/store.js";
 
 // Pages
 import CreateEvent from "./pages/createEvent.jsx";
+import CreateClub from "./pages/createClub.jsx";
 import "antd/dist/antd.css";
 import Navbar from "./components/layouts/navbar.jsx";
 import Footer from "./components/layouts/footer.jsx";
@@ -33,6 +34,9 @@ const App = () => {
 					</Route>
 					<Route exact path="/create-event">
 						<CreateEvent />
+					</Route>
+					<Route exact path="/create-club">
+						<CreateClub />
 					</Route>
 				</Switch>
 				<Footer />
