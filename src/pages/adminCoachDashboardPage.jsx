@@ -9,10 +9,10 @@ function AdminCoachDashboardPage () {
   const myId = useSelector(state => state.authReducer.id)
   const myType = useSelector(state => state.authReducer.typeUser)
   const [page, setPage] = useState('')
-  useEffect(setupElements, [])
+  useEffect(() => { setupElements () }, [])
 
   async function setupElements() {
-    let profile = await UserAPI.profile(myId, myType)
+    const profile = await UserAPI.profile(myId, myType)
     let club = profile.club_id
     let ans 
 
@@ -26,7 +26,6 @@ function AdminCoachDashboardPage () {
         'dede'
       )
     }
-   setPage(ans)
   }
 
   return(
