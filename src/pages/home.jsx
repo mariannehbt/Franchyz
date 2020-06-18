@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 function Home() {
+
+
   return(
-    <div className="bg-primary">
-      Hello World
-    </div>
+      <div className="bg-primary">
+        Hello World
+      </div>
   )
 }
 
