@@ -3,10 +3,10 @@ import jwt_decode from 'jwt-decode'
 import * as API from 'services/authAPI';
 import {loginRequest, loginSuccess , loginFailure} from 'redux/actions/authActions'
 
-const logup = (email, password, type) => {
+const logup = (email, password, type, team) => {
   return (dispatch) => {
     dispatch(loginRequest());
-    let promise = API.signUp(email, password, type)
+    let promise = API.signUp(email, password, type, team)
     
     promise.then((response) => {
       if (response.error !== undefined) {
