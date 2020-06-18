@@ -3,6 +3,7 @@ import '../styles/form.scss'
 import * as UserAPI from 'services/authAPI'
 import {useSelector } from 'react-redux'
 import {Link} from 'react-router-dom'
+//import DashboardAdmin from ./dashboardAdmin.jsx
 
 function AdminCoachDashboardPage () {
 
@@ -22,7 +23,7 @@ function AdminCoachDashboardPage () {
       )
     } else {
       ans = (
-        //<Dashboard />
+        //<DashboardAdmin />
         'dede'
       )
     }
