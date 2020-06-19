@@ -1,14 +1,12 @@
-import React from 'react';
-import Carousel from '../components/carousel';
+import React from "react";
+import Carousel from "../components/carousel";
 
 function Home() {
-
-
-  return(
-      <>
-      <Carousel />
-      </>
-  )
+	return (
+		<>
+			<Carousel />
+		</>
+	);
 }
 
-export default Home
+export default Home;
