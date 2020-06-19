@@ -24,37 +24,34 @@ const FormTeam = () => {
 
 	return (
 		<div>
-			<Row>
-				<Col span={8} offset={8}>
-					<div className="form-group row col-12">
-						<label style={{ marginLeft: "10px", color: "grey" }}>
-							Nom de la Team:
-						</label>
-						<input
-							type="text"
-							className="form-control"
-							placeholder="Nom"
-							id="title"
-							onChange={(e) => setTeamName(e.target.value)}
-							value={TeamName}
-						/>
-						<p id="notice_teamname" className="redtext"></p>
+			<div className="text-center">
+				<div className="container">
+					<div className="row d-flex align-items-center">
+						<div className=" form-group col-4 text-center pb-3 p-2 mx-auto">
+							<label style={{ marginLeft: "10px", color: "grey" }}>
+								Nom de la Team:
+							</label>
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Nom"
+								id="title"
+								onChange={(e) => setTeamName(e.target.value)}
+								value={TeamName}
+							/>
+							<p id="notice_teamname" className="redtext"></p>
+						</div>
 					</div>
-				</Col>
-			</Row>
-
-			<Row>
-				<Col span={5} offset={11}>
-					<button
-						type="submit"
-						className="btn btn-outline-danger"
-						style={{ marginTop: "25px", marginBottom: "25px" }}
-						onClick={onSubmit}
-					>
-						sauvegarder
-					</button>
-				</Col>
-			</Row>
+				</div>
+				<button
+					type="submit"
+					className="btn btn-outline-danger"
+					style={{ marginTop: "25px", marginBottom: "25px" }}
+					onClick={onSubmit}
+				>
+					sauvegarder
+				</button>
+			</div>
 		</div>
 	);
 };
