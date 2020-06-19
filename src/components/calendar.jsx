@@ -7,10 +7,12 @@ import interactionPlugin from "@fullcalendar/interaction";
 import '../styles/calendar.scss' // webpack must be configured to do this
 
 function Calendar() {
-  const [events, setEvents] = useState([{title: "Event Now", start: new Date()}])
+  const [events, setEvents] = useState([])
+
+  const tmp_event = {title: "Event Now", start: new Date()}
 
   const handleDateClick = arg => {
-    
+    setEvents([...events, {title: "New Event", start: arg.date}])
   }
 
 
