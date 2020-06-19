@@ -66,19 +66,20 @@ const FormPractice = ({ EventType, ClubId, TeamId }) => {
 			Club_id,
 			Team_id
 		);
+
+		API.createPractice(
+			EventTitleP,
+			EventDescriptionP,
+			AddressP,
+			CityP,
+			CountryP,
+			ZipCodeP,
+			DateTimeP,
+			DurationP,
+			Club_id,
+			Team_id
+		).then((response) => console.log(response));
 	}
-	API.createPractice(
-		EventTitleP,
-		EventDescriptionP,
-		AddressP,
-		CityP,
-		CountryP,
-		ZipCodeP,
-		DateTimeP,
-		DurationP,
-		Club_id,
-		Team_id
-	).then((response) => console.log(response));
 
 	return (
 		<ConfigProvider locale={frFR}>

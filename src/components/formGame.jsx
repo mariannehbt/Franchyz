@@ -66,20 +66,20 @@ const FormGame = ({ EventType, ClubId, TeamId }) => {
 			Club_id,
 			Team_id
 		);
-	}
-	API.createGame(
-		EventTitle,
-		EventDescription,
-		Address,
-		City,
-		Country,
-		ZipCode,
-		DateTime,
-		Duration,
-		Club_id,
-		Team_id
-	).then((response) => console.log(response));
 
+		API.createGame(
+			EventTitle,
+			EventDescription,
+			Address,
+			City,
+			Country,
+			ZipCode,
+			DateTime,
+			Duration,
+			Club_id,
+			Team_id
+		).then((response) => console.log(response));
+	}
 	return (
 		<ConfigProvider locale={frFR}>
 			<div>

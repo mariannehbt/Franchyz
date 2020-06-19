@@ -68,6 +68,8 @@ function createPractice(
 
 	let club_id = Club_id;
 	let team_id = Team_id;
+	// let club_id = 1;
+	// let team_id = 2;
 	let baseURL = process.env.REACT_APP_API_URL;
 	let endUrl = `/clubs/${club_id}/teams/${team_id}/practices.json`;
 	let url = baseURL + endUrl;
