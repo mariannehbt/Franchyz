@@ -9,7 +9,7 @@ const TeamList = () => {
 		api.getAllTeams(1)
 		.then(response => {
 			let teams = response.map((team, key) => (
-				<Link to={`/team/${team.id}`}><li classname='list-group-item' key={key}>{team.title}</li></Link>
+				<Link to={`/team/${team.id}`}><li className='list-group-item' key={key}>{team.title}</li></Link>
 			));
 			setData(teams);
 		});
@@ -17,11 +17,20 @@ const TeamList = () => {
 
 	useEffect(getData, []);
 
-	return (
-		<ul classname='list-group list-group-flush'>
-			{data}
-		</ul>
-	);
+  if (data.length < 1) {
+    return (
+      <div className="container">
+        <p>You don't have team yet !</p>
+        <a href="#" className="btn btn-primary">Create Team</a>
+      </div>
+    );
+  } else {
+    return (
+      <ul className='list-group list-group-flush'>
+        {data}
+      </ul>
+    );
+  }
 };
 
 export default TeamList;
