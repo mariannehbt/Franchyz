@@ -12,6 +12,7 @@ import Login from "./pages/login.jsx";
 import Register from "./pages/register.jsx";
 import CreateTeam from "./pages/createTeam.jsx";
 import AdminCoachDashboardPage from "./pages/adminCoachDashboardPage.jsx";
+import ShowTeam from './pages/showTeam.jsx'
 
 //Component 
 import Navbar from "./components/layouts/navbar.jsx";
@@ -35,7 +36,7 @@ const App = () => {
           <Route exact path="/create-event"> <CreateEvent /> </Route>
           <Route exact path="/create-club"> <CreateClub /> </Route>
           <Route path="/teams"> <TeamList /> </Route>
-          <Route path={`/team/:teamID`}><TeamCard /></Route>
+          <Route path={`/clubs/:clubId/team/:teamId`}><ShowTeam /></Route>
           <Route path="/dashboardAdmin"> <AdminCoachDashboardPage /> </Route>
           <Route path="/create-team"> <CreateTeam /> </Route>
           <Route exact path="/"> <Home /> </Route>
