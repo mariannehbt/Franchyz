@@ -4,8 +4,10 @@ import "../styles/app.scss";
 import * as API from "services/clubsAPI";
 import { ConfigProvider } from "antd";
 import frFR from "antd/es/locale/fr_FR";
+import { useSelector } from "react-redux";
 
 const FormClub = () => {
+	const Creator_id = useSelector((state) => state.userReducer.id);
 	const [CreationDate, setCreationDate] = useState("");
 	const [ClubName, setClubName] = useState("");
 	const [ClubDescription, setClubDescription] = useState("");
@@ -32,7 +34,8 @@ const FormClub = () => {
 			Address,
 			League,
 			Pool,
-			Conference
+			Conference,
+			Creator_id
 		);
 
 		API.createClub(
@@ -45,7 +48,8 @@ const FormClub = () => {
 			Address,
 			League,
 			Pool,
-			Conference
+			Conference,
+			Creator_id
 		).then((response) => {
 			console.log(response);
 		});

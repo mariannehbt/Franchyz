@@ -11,11 +11,9 @@ function createClub(
 	Address,
 	League,
 	Pool,
-	Conference
+	Conference,
+	Creator_id
 ) {
-	let jwt = Cookies.get("token");
-	let Creator_id = jwt_decode(jwt).coach_id;
-	console.log("creator_id:" + Creator_id);
 	const data = {
 		date_of_creation: CreationDate,
 		name: ClubName,
