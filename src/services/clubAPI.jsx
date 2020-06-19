@@ -1,7 +1,7 @@
-export const getAllClubs = () => {
+const getAllClubs = () => {
 
   let baseURL = process.env.REACT_APP_API_URL;
-  let endUrl = 'clubs.json'
+  let endUrl = '/clubs.json'
   let url = baseURL + endUrl
   return fetch(url, {
     headers: {
@@ -17,7 +17,7 @@ export const getAllClubs = () => {
 function getClub(id) {
 
   let baseURL = process.env.REACT_APP_API_URL;
-  let endUrl = `clubs${id}.json`
+  let endUrl = `/clubs/${id}.json`
   let url = baseURL + endUrl
 
   let headers = {
@@ -29,6 +29,12 @@ function getClub(id) {
   }
 
   fetch(url, request)
-    .then()
+    .then(response => response.json())
+    .then(response => { 
+      console.log(response)
+      return response 
+    })
 
 }
+
+export { getClub, getAllClubs }
