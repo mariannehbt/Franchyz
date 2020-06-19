@@ -36,18 +36,21 @@ function createTeam(TeamName, Creator_id, Coach_id, Club_id) {
 }
 
 
-const getTeam = (clubID, teamID) => {
-  const data = {
-    clubID: clubID,
-    teamID: teamID
-  };
+const getTeam = (clubId, teamId) => {
 
-  return fetch(`http://localhost:3000/clubs/${data.clubID}/teams/${data.teamID}`, {
+  let baseUrl = process.env.REACT_APP_API_URL;
+  let endUrl = `/clubs/${clubId}/teams/${teamId}.json`;
+  let url = baseUrl + endUrl;
+
+  let request = {
     headers: {
       'Content-Type': 'application/json'
     }
-  })
+  }
+
+  return fetch(url, request)
     .then(response => response.json())
     .then(response => { return response })
 };
+
 export { createTeam, getAllTeams, getTeam };
