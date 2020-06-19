@@ -13,6 +13,7 @@ import Home from './pages/home.jsx';
 import Login from './pages/login.jsx'
 import Register from './pages/register.jsx'
 import AdminCoachDashboardPage from './pages/adminCoachDashboardPage.jsx'
+import TeamList from './components/Team/TeamList.jsx'
 
 const App = () => {
 	return (
@@ -24,6 +25,7 @@ const App = () => {
                             <Route path="/login"> <Login /> </Route> 
                             <Route path="/register"> <Register /> </Route>
                             <Route path="/dashboardAdmin"> <AdminCoachDashboardPage /> </Route>
+                            <Route path="/teams"> <TeamList /> </Route>
                             <Route exact path="/"> <Home /> </Route>
                           </Switch>
 				<Footer />
