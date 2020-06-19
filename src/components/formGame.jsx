@@ -26,7 +26,6 @@ const FormGame = ({ EventType, ClubId, TeamId }) => {
 
 	function onChange(value, dateString) {
 		console.log(EventType);
-		// console.log("Selected Time: ", value);
 		setDateTime(dateString);
 		console.log("Formatted Selected Time: ", dateString);
 	}
