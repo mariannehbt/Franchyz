@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import * as api from '../../services/teamAPI.jsx';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 const TeamList = () => {
-	const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
+  const clubID = useSelector(state => state.userReducer.club_id)
 
 	const getData = () => {
-		api.getAllTeams(1)
+		api.getAllTeams(clubID)
 		.then(response => {
 			let teams = response.map((team, key) => (
 				<Link to={`/team/${team.id}`} key={key}><li className='list-group-item'>{team.title}</li></Link>
