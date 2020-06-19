@@ -3,16 +3,17 @@ import '../styles/form.scss'
 import * as UserAPI from 'services/authAPI'
 import {useSelector } from 'react-redux'
 import {Link} from 'react-router-dom'
+//import DashboardAdmin from ./dashboardAdmin.jsx
 
 function AdminCoachDashboardPage () {
 
   const myId = useSelector(state => state.authReducer.id)
   const myType = useSelector(state => state.authReducer.typeUser)
   const [page, setPage] = useState('')
-  useEffect(setupElements, [])
+  useEffect(() => { setupElements () }, [])
 
   async function setupElements() {
-    let profile = await UserAPI.profile(myId, myType)
+    const profile = await UserAPI.profile(myId, myType)
     let club = profile.club_id
     let ans 
 
@@ -22,11 +23,10 @@ function AdminCoachDashboardPage () {
       )
     } else {
       ans = (
-        //<Dashboard />
+        //<DashboardAdmin />
         'dede'
       )
     }
-   setPage(ans)
   }
 
   return(
