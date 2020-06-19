@@ -28,7 +28,6 @@ else{
 const initialState = tempo
 
 const authReducer = (state = initialState, action) => {
-      console.log('uppp', action.type)
   switch(action.type){
     case LOGIN_REQUEST:
       return {

@@ -7,11 +7,11 @@ function Carousel() {
 
   return(
       <>
-      <div id="carouselExampleSlidesOnly" class="carousel slide h-50" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="hero-image-1">
-              <div class="hero-text-1">
+      <div id="carouselExampleSlidesOnly" className="carousel slide h-50" data-ride="carousel">
+        <div className="carousel-inner">
+          <div className="carousel-item active">
+            <div className="hero-image-1">
+              <div className="hero-text-1">
                 <h1>FRANCHYZ</h1>
                 <p>Prends en main ton équipe</p>
                 <Link to="/register">
@@ -20,9 +20,9 @@ function Carousel() {
               </div>
             </div>
           </div>
-          <div class="carousel-item">
-            <div class="hero-image-2">
-              <div class="hero-text-2">
+          <div className="carousel-item">
+            <div className="hero-image-2">
+              <div className="hero-text-2">
                 <h1>FRANCHYZ</h1>
                 <p>Prends en main ton équipe</p>
                 <Link to="/register">
@@ -31,9 +31,9 @@ function Carousel() {
               </div>
             </div>
           </div>
-          <div class="carousel-item">
-            <div class="hero-image-3">
-              <div class="hero-text-3">
+          <div className="carousel-item">
+            <div className="hero-image-3">
+              <div className="hero-text-3">
                 <h1>FRANCHYZ</h1>
                 <p>Prends en main ton équipe</p>
                 <Link to="/register">
