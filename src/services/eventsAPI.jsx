@@ -1,15 +1,6 @@
-function createGame(
-	EventTitle,
-	EventDescription,
-	Address,
-	City,
-	Country,
-	ZipCode,
-	DateTime,
-	Duration,
-	Club_id,
-	Team_id
-) {
+import Cookies from 'js-cookie'
+function createGame( EventTitle, EventDescription, Address, City, Country, ZipCode, DateTime, Duration, Club_id, Team_id) {
+
 	const data = {
 		title: EventTitle,
 		long_description: EventDescription,
@@ -39,18 +30,8 @@ function createGame(
 	});
 }
 
-function createPractice(
-	EventTitleP,
-	EventDescriptionP,
-	AddressP,
-	CityP,
-	CountryP,
-	ZipCodeP,
-	DateTimeP,
-	DurationP,
-	Club_id,
-	Team_id
-) {
+function createPractice( EventTitleP, EventDescriptionP, AddressP, CityP, CountryP, ZipCodeP, DateTimeP, DurationP, Club_id, Team_id) {
+
 	const data = {
 		title: EventTitleP,
 		long_description: EventDescriptionP,
@@ -80,4 +61,28 @@ function createPractice(
 	});
 }
 
-export { createPractice, createGame };
+const getAttendedGames = (player_id, club_id, team_id) => {
+
+  let headers = {
+    'Content-Type': 'application/json',
+    Authorization: Cookies.get('token')
+  }
+
+  let request = {
+    method: 'get',
+    headers: headers,
+  }
+
+  let baseURL = process.env.REACT_APP_API_URL
+  let endUrl = `/clubs/${club_id}/teams/${team_id}/players/${player_id}/myevents.json`
+  let url = baseURL + endUrl
+
+  return fetch(url, request)
+    .then(response => response.json())
+    .then(response => {
+      console.log(response);
+      return response
+    })
+}
+
+export { createPractice, createGame, getAttendedGames };
