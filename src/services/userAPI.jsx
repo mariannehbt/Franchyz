@@ -19,7 +19,7 @@ function profile(id, type) {
   let endUrl = `/${type}/${id}.json`
   let url = baseURL + endUrl
 
-  fetch(url, request)
+  return fetch(url, request)
     .then(response => response.json())
     .then(response => {return response})
 }
