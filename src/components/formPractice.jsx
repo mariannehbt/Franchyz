@@ -7,6 +7,7 @@ import "../styles/app.scss";
 import * as API from "services/eventsAPI";
 import { ConfigProvider } from "antd";
 import frFR from "antd/es/locale/fr_FR";
+import { useSelector } from "react-redux";
 
 const FormPractice = ({ EventType, ClubId, TeamId }) => {
 	const [DateTimeP, setDateTimeP] = useState("");
@@ -17,6 +18,9 @@ const FormPractice = ({ EventType, ClubId, TeamId }) => {
 	const [CityP, setCityP] = useState("");
 	const [CountryP, setCountryP] = useState("");
 	const [AddressP, setAddressP] = useState("");
+
+	const Club_id = useSelector((state) => state.userReducer.coach_id);
+	const Team_id = useSelector((state) => state.userReducer.team_id);
 
 	moment.updateLocale("fr", localization);
 
@@ -58,7 +62,9 @@ const FormPractice = ({ EventType, ClubId, TeamId }) => {
 			CountryP,
 			ZipCodeP,
 			DateTimeP,
-			DurationP
+			DurationP,
+			Club_id,
+			Team_id
 		);
 	}
 	API.createPractice(
@@ -69,7 +75,9 @@ const FormPractice = ({ EventType, ClubId, TeamId }) => {
 		CountryP,
 		ZipCodeP,
 		DateTimeP,
-		DurationP
+		DurationP,
+		Club_id,
+		Team_id
 	).then((response) => console.log(response));
 
 	return (

@@ -9,7 +9,9 @@ function createGame(
 	Country,
 	ZipCode,
 	DateTime,
-	Duration
+	Duration,
+	Club_id,
+	Team_id
 ) {
 	const data = {
 		title: EventTitle,
@@ -23,8 +25,8 @@ function createGame(
 		canceled: false,
 	};
 
-	let club_id = 1;
-	let team_id = 1;
+	let club_id = Club_id;
+	let team_id = Team_id;
 	let baseURL = process.env.REACT_APP_API_URL;
 	let endUrl = `/clubs/${club_id}/teams/${team_id}/games.json`;
 	let url = baseURL + endUrl;
@@ -48,7 +50,9 @@ function createPractice(
 	CountryP,
 	ZipCodeP,
 	DateTimeP,
-	DurationP
+	DurationP,
+	Club_id,
+	Team_id
 ) {
 	const data = {
 		title: EventTitleP,
@@ -62,8 +66,8 @@ function createPractice(
 		canceled: false,
 	};
 
-	let club_id = 1;
-	let team_id = 1;
+	let club_id = Club_id;
+	let team_id = Team_id;
 	let baseURL = process.env.REACT_APP_API_URL;
 	let endUrl = `/clubs/${club_id}/teams/${team_id}/practices.json`;
 	let url = baseURL + endUrl;

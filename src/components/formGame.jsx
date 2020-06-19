@@ -7,6 +7,7 @@ import "../styles/app.scss";
 import * as API from "services/eventsAPI";
 import { ConfigProvider } from "antd";
 import frFR from "antd/es/locale/fr_FR";
+import { useSelector } from "react-redux";
 
 const FormGame = ({ EventType, ClubId, TeamId }) => {
 	const [DateTime, setDateTime] = useState("");
@@ -17,6 +18,9 @@ const FormGame = ({ EventType, ClubId, TeamId }) => {
 	const [City, setCity] = useState("");
 	const [Country, setCountry] = useState("");
 	const [Address, setAddress] = useState("");
+
+	const Club_id = useSelector((state) => state.userReducer.coach_id);
+	const Team_id = useSelector((state) => state.userReducer.team_id);
 
 	moment.updateLocale("fr", localization);
 
@@ -46,22 +50,22 @@ const FormGame = ({ EventType, ClubId, TeamId }) => {
 			document.getElementById("notice_datetime").innerHTML =
 				"Merci de choisir une date";
 		}
-		if (DateTime === "") {
+		if (EventTitle === "") {
 			document.getElementById("notice_title").innerHTML =
 				"Merci de saisir un titre";
 		}
-		const data = {
-			title: EventTitle,
-			long_description: EventDescription,
-			address: Address,
-			city: City,
-			country: Country,
-			zip_code: ZipCode,
-			starting_date_time: DateTime,
-			duration: Duration,
-			canceled: false,
-		};
-		console.log(data);
+		console.log(
+			EventTitle,
+			EventDescription,
+			Address,
+			City,
+			Country,
+			ZipCode,
+			DateTime,
+			Duration,
+			Club_id,
+			Team_id
+		);
 	}
 	API.createGame(
 		EventTitle,
@@ -71,7 +75,9 @@ const FormGame = ({ EventType, ClubId, TeamId }) => {
 		Country,
 		ZipCode,
 		DateTime,
-		Duration
+		Duration,
+		Club_id,
+		Team_id
 	).then((response) => console.log(response));
 
 	return (
