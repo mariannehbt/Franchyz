@@ -10,6 +10,7 @@ if (Cookies.get('token') === undefined){
     isAuth: false,
     id: null,
     typeUser: '',
+    error: undefined,
   }
 }
 else{

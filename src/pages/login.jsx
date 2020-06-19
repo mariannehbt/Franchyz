@@ -7,11 +7,12 @@ import { Redirect } from 'react-router-dom'
 function Login() {
   const error = useSelector(state => state.authReducer.error);
   const [redirect, setRedirect] = useState('')
+  const dispatch = useDispatch();
 
   function setupAlert() {
     let ans;
 
-    if (error !== undefined) {
+    if (error !== undefined && error !== null) {
       ans = (
         <div className='alert alert-danger alert-dismissible' role='alert'>
           <button type='button' className='close' data-dismiss='alert'>&times;</button>
@@ -25,7 +26,6 @@ function Login() {
     return ans;
   };
 
-  const dispatch = useDispatch();
 
   function submit(e) {
     e.preventDefault();

@@ -18,7 +18,7 @@ const Register = () => {
     let ans;
     let messageErrors = '';
 
-    if (errors !== undefined) {
+    if (errors !== undefined && errors !== null) {
       for (const error in errors) {
         messageErrors = messageErrors + `${error} ${errors[error]} \n`
       };
@@ -119,6 +119,7 @@ const Register = () => {
         <button type="submit" className="btn btn-primary">Submit</button>
 
       </form>
+      {redirect}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {Link} from 'react-router-dom'
 import {useSelector } from 'react-redux'
 import Portrait from './portrait.jsx'
@@ -9,11 +9,6 @@ import '../../styles/nav.scss'
 function Navbar(){
 
   const isAuth = useSelector(state => state.authReducer.isAuth)
-
-
-  function test(){
-    console.log('yoyo')
-  }
 
   function authNav(){
     if (!isAuth) {
