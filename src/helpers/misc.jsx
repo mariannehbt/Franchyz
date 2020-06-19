@@ -1,5 +1,3 @@
-import jwt_decode from 'jwt-decode';
-
 function pluralyzeType(type) {
   if(type === 'coach')
     return 'coaches'
