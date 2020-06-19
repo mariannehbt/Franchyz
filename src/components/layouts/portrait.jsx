@@ -30,7 +30,7 @@ function Portrait() {
   return(
     <div className="dropdown">
       <div id="navbarDropdownMenuLink" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-        <img src={portrait} class="rounded-circle" alt="portrait" id='portrait'/>
+        <img src={portrait} className="rounded-circle" alt="portrait" id='portrait'/>
       </div>
       <div id="portrait-menu" className="dropdown-menu mt-2" aria-labelledby="navbarDropdownMenuLink">
         <p className="m-0 dropdown-item"> {myfirstName} </p>
