@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as api from '../../services/teamAPI.jsx';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const TeamList = () => {
   const [data, setData] = useState([]);
