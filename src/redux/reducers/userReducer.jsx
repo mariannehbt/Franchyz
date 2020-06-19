@@ -4,7 +4,6 @@ import { INFO_USER_UP, INFO_USER_DOWN } from '../types/userTypes'
 
 let tempo
 let decoded_token 
-    console.log('dede')
 if (Cookies.get('token') === undefined){
   tempo = {
   }
@@ -22,9 +21,6 @@ else{
   } 
 }
 
-    console.log('dada')
-
-
 const initialState = tempo
 
 const userReducer = (state = initialState, action) => {
@@ -37,6 +33,7 @@ const userReducer = (state = initialState, action) => {
         first_name: action.first_name,
         last_name: action.last_name,
         isAdmin: action.isAdmin,
+        team_id: action.team_id,
         club_id: action.club_id,
         gender: action.de
       }

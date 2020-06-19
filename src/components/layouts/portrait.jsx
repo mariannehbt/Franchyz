@@ -8,6 +8,7 @@ import Cookies from 'js-cookie'
 import { Redirect } from 'react-router-dom'
 import * as UserAPI from 'services/authAPI'
 import { logoutSuccess } from 'redux/actions/authActions.jsx'
+import { infoUserDown } from 'redux/actions/userActions.jsx'
 import { useSelector, useDispatch } from 'react-redux';
 
 
@@ -24,6 +25,7 @@ function Portrait() {
   function logout(){
     UserAPI.sign_out(myType)
     dispatch(logoutSuccess())   
+    dispatch(infoUserDown())
     Cookies.remove('token', {sameSite: 'lax'});
     setRedirect(<Redirect to='/' />)
   }
