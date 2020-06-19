@@ -10,7 +10,7 @@ if (Cookies.get('token') === undefined){
     isAuth: false,
     id: null,
     typeUser: '',
-    error: undefined,
+    error: null,
   }
 }
 else{
@@ -40,7 +40,8 @@ const authReducer = (state = initialState, action) => {
         ...state,
         isAuth: true,
         loading: false,
-        typeUser: action.typeUser
+        typeUser: action.typeUser,
+        error: null,
       }
     case LOGIN_FAILURE:
       return {
