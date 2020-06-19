@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 const TeamList = () => {
   const [data, setData] = useState([]);
   const clubID = useSelector(state => state.userReducer.club_id)
+  const isAdmin = useSelector(state => state.userReducer.isAdmin)
 
 	const getData = () => {
 		api.getAllTeams(clubID)
@@ -17,19 +18,28 @@ const TeamList = () => {
 		});
 	};
 
-	useEffect(getData, []);
+  useEffect(getData, []);
+
+  const createTeam = () => {
+    if (isAdmin) {
+      return <li><Link to={`/create-team`} className="btn btn-primary">Create New Team</Link></li>
+    } 
+  }
 
   if (data.length < 1) {
     return (
       <div className="container">
-        <p>You don't have team yet !</p>
-        <a href="#" className="btn btn-primary">Create Team</a>
+        <p>This club don't have team yet !</p>
+        <ul>
+          {createTeam()}
+        </ul>
       </div>
     );
   } else {
     return (
       <ul className='list-group list-group-flush'>
         {data}
+        {createTeam()}
       </ul>
     );
   }
