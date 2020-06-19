@@ -28,7 +28,7 @@ function getClub(id) {
     headers: headers
   }
 
-  fetch(url, request)
+  return fetch(url, request)
     .then(response => response.json())
     .then(response => { 
       console.log(response)

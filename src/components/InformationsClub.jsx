@@ -5,20 +5,16 @@ import {useSelector } from 'react-redux'
 function InformationsClub() {
   
   const myClubId = useSelector(state => state.userReducer.club_id)
-  useEffect(() => { setupInfo() }, [])
+  useEffect(() => { 
+    async function setupInfo() {
+      const club = await clubApi.getClub(myClubId)
+      console.log(club)
+    }
+    console.log(setupInfo(), 'dededede')
+  }, [])
   const [club, setClub] = useState('')
 
 
-  async function setupInfo() {
-    const club = await clubApi.getClub(myClubId)
-    console.log(club)
-    let ans = (
-      <p>
-        {club.id}
-      </p>
-    )
-    setClub(ans)
-  }
 
 
   return(
