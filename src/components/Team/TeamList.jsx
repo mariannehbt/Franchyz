@@ -9,7 +9,7 @@ const TeamList = () => {
 		api.getAllTeams(1)
 		.then(response => {
 			let teams = response.map((team, key) => (
-				<Link to={`/team/${team.id}`}><li className='list-group-item' key={key}>{team.title}</li></Link>
+				<Link to={`/team/${team.id}`} key={key}><li className='list-group-item'>{team.title}</li></Link>
 			));
 			setData(teams);
 		});
