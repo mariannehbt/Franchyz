@@ -10,8 +10,8 @@ function InformationsClub() {
 
 
   async function setupInfo() {
-    const club = await clubApi.getClub(myClubId)
-    setClub( club )
+    const response = await clubApi.getClub(myClubId)
+    setClub( response )
   }
 
 
