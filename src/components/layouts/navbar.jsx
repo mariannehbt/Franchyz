@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {Link} from 'react-router-dom'
 import {useSelector } from 'react-redux'
 import Portrait from './portrait.jsx'
@@ -8,27 +8,31 @@ import '../../styles/nav.scss'
 
 function Navbar(){
 
-  const [authNav, setAuthNav] = useState('')
   const isAuth = useSelector(state => state.authReducer.isAuth)
 
-  useEffect(inOrOut,[])
-
-
-  function inOrOut(){
-    let ans
+  function authNav(){
     if (!isAuth) {
-      ans = (
+      return (
       <>
         <Link to="/register"><button type="button" className="btn btn-sm btn-primary"> Register </button> </Link>
         <Link to="/login"><button type="button" className="btn btn-sm btn-primary"> login </button> </Link>
       </>
       )
     } else {
-      ans =  (
+      return  (
         <Portrait />
       )
     }
-    setAuthNav(ans)
+  }
+
+  function myDashboardLink() {
+    if (isAuth) {
+      return (
+        <li className="nav-item active">
+          <Link to="/dashboardAdmin"> My Dashboard </Link>
+        </li>
+      )
+    }
   }
 
   return(
@@ -38,11 +42,10 @@ function Navbar(){
           <li className="">
             <Link to="/" className="logo">FRANCHYZ</Link>
           </li>
-          <li className="nav-item active">
-          </li>
+            {myDashboardLink()}
         </ul>
         <div id='authNav'>
-          {authNav}
+          {authNav()}
         </div>
       </nav>
     </>
