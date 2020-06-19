@@ -15,9 +15,6 @@ function getAllTeams(id) {
 }
 
 function createTeam(TeamName, Creator_id, Coach_id, Club_id) {
-	Club_id = 9;
-	Creator_id = 13;
-	Coach_id = 13;
 	const data = {
 		title: TeamName,
 		creator_id: Creator_id,
@@ -27,7 +24,6 @@ function createTeam(TeamName, Creator_id, Coach_id, Club_id) {
 
 	console.log(data);
 
-	//clubs/:club_id/teams(.:format)
 	let baseURL = process.env.REACT_APP_API_URL;
 	let endUrl = `/clubs/${Club_id}/teams.json`;
 	let url = baseURL + endUrl;
