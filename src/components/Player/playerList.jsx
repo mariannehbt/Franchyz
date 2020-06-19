@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux';
 const PlayerList = (props) => {
   const [players, setPlayers] = useState(props.players);
 
-  if (props.players.length < 1) {
+  if (props.players == null) {
     return (
-      <div className="container">
+      <div className="container d-flex flex-column justify-content-center align-items-center my-5">
         <p>It seems you don't have players yet, let's add some of them now</p>
         <Link to='/' className='btn btn-primary'>Add Players</Link>
       </div>

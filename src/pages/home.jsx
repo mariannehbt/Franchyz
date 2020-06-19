@@ -9,7 +9,6 @@ function Home() {
   return(
       <>
         <Carousel />
-        // <Calendar />
         <PlayerList />
       </>
   )
