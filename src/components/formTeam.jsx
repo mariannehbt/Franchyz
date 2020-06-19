@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Col, Row } from "antd";
-// import "../styles/app.scss";
+import "../styles/app.scss";
 import * as API from "services/teamAPI";
 import { useSelector } from "react-redux";
 
 const FormTeam = () => {
-	//const Creator_id = useSelector((state) => state.userReducer.id);
+	const Creator_id = useSelector((state) => state.userReducer.id);
+	const Club_id = useSelector((state) => state.userReducer.club_id);
+	const Coach_id = useSelector((state) => state.userReducer.id);
 	const [TeamName, setTeamName] = useState("");
 
 	function onSubmit() {
@@ -15,11 +17,9 @@ const FormTeam = () => {
 		}
 		console.log(TeamName);
 
-		// API.createTeam(
-		// 	CreationDate,
-		// ).then((response) => {
-		// 	console.log(response);
-		// });
+		API.createTeam(TeamName, Creator_id, Coach_id, Club_id).then((response) => {
+			console.log(response);
+		});
 	}
 
 	return (
