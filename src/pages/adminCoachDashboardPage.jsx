@@ -15,7 +15,7 @@ function AdminCoachDashboardPage () {
   async function setupElements() {
     const profile = await UserAPI.profile(myId, myType)
     let club = profile.club_id
-    let ans 
+    let ans
 
     if (club == null ) {
       ans = (

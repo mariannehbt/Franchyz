@@ -6,13 +6,18 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 
-// import * as EventsAPI from 'services/Events';
+import { useSelector } from 'react-redux';
+
+import * as EventsAPI from 'services/eventsAPI';
 
 import '../styles/calendar.scss' // webpack must be configured to do this
 
 function Calendar() {
   const [events, setEvents] = useState([])
-  let history = useHistory();
+  const user_id = 2
+  const club_id = 1
+  const team_id = 1
+  const history = useHistory();
 
   const tmp_event = {title: "Event Now", start: new Date()}
 
@@ -24,11 +29,14 @@ function Calendar() {
     history.push('/register')
   }
 
-  const getEvents = () => {
-    // EventsAPI.GetEventsRequest
+  const getEvents =() => {
+    EventsAPI.getAttendedGames(user_id, club_id, team_id)
+    .then(response => {
+      response.map(game => setEvents([...events, {title: game.title, start: game.starting_date_time}]));
+    })
   }
 
-  // useEffect(getEvents, [])
+  useEffect(() => { getEvents () }, [])
 
 
   return (
