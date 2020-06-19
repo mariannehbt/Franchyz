@@ -1,55 +1,75 @@
 import React, { useEffect, useState } from 'react';
-import * as UserAPI from '../services/userAPI.jsx';
-import { useSelector } from 'react-redux';
+import * as userAPI from '../services/userAPI.jsx';
+import { useSelector, useDispatch } from 'react-redux';
 import '../styles/form.scss';
 
 const Profile = () => {
+	const dispatch = useDispatch();
 	const user_id = useSelector(state => state.userReducer.id);
 	const user_type = useSelector(state => state.authReducer.typeUser);
-	const [data, setData] = useState();
+	const [data, setData] = useState([]);
 	useEffect(getData, []);
 
 		async function getData() {
-			const response = await UserAPI.profile(user_id, user_type);
-			console.log(response);
+			const response = await userAPI.profile(user_id, user_type);
 			if (user_type === 'coach') {
-				setData(
-					<ul>
-						<li>Email: {response.email}</li>
-						<li>First Name: {response.first_name}</li>
-						<li>Last Name: {response.last_name}</li>
-						<li>Phone: {response.phone}</li>
-						<li>Birthdate: {response.birthdate}</li>
-						<li>Arrival: {response.arrival}</li>
-						<li>Admin: {response.admin}</li>
-						<li>Club_id: {response.club_id}</li>
-					</ul>
-				);
+				setData({
+					email: response.email,
+					first_name: response.first_name,
+					last_name: response.last_name,
+					phone: response.phone,
+					birthdate: response.birthdate,
+					arrival: response.arrival,
+					admin: response.admin,
+					club_id: response.club_id,
+				});
 			} else if (user_type === 'player') {
-				setData(
-					<ul>
-						<li>Email: {response.email}</li>
-						<li>First Name: {response.first_name}</li>
-						<li>Last Name: {response.last_name}</li>
-						<li>Phone: {response.phone}</li>
-						<li>Birthdate: {response.birthdate}</li>
-						<li>Arrival: {response.arrival}</li>
-						<li>Availability: {response.availability}</li>
-						<li>Height: {response.height}</li>
-						<li>Weight: {response.weight}</li>
-						<li>Gender: {response.gender}</li>
-						<li>Jersey Number: {response.jersey_number}</li>
-						<li>Position: {response.position}</li>
-						<li>Team_id: {response.team_id}</li>
-					</ul>
-				);		
+				setData({
+					email: response.email,
+					first_name: response.first_name,
+					last_name: response.last_name,
+					phone: response.phone,
+					birthdate: response.birthdate,
+					arrival: response.arrival,
+					availability: response.availability,
+					height: response.height,
+					weight: response.weight,
+					gender: response.gender,
+					jersey_number: response.jersey_number,
+					position: response.position,
+					team_id: response.team_id,
+				});		
 			};
 		};
 
-	return (
+		console.log(data)
+
+		const submit = (event) => {
+			event.preventDefault();
+			let email = document.getElementById('email').value;
+			let first_name = document.getElementById('first_name').value
+			dispatch(userAPI.profileUpdate(first_name));
+		};
+
+		return (
 		<div>
 			<h1>My Profile...</h1>
-			{data}
+
+			<form className='form p-4 mt-3 mb-3 rounded' onSubmit={submit}>
+
+				<div className='form-group'>
+					<label htmlFor='email'>Email :</label>
+					<input id='email' type='email' className='form-control' placeholder={(data.email != null) ? data.email : 'john.doe@gmail.com'} />
+				</div>
+
+				<div className='form-group'>
+					<label htmlFor='first_name'>First Name :</label>
+					<input id='first_name' type='first_name' className='form-control' placeholder={(data.first_name != null) ? data.first_name : 'John'} />
+				</div>
+
+				<button type='submit' className='btn btn-primary'>Submit</button>
+
+			</form>
 		</div>
 	);
 };
