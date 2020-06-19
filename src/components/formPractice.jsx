@@ -5,29 +5,35 @@ import localization from "moment/locale/fr";
 import { InputNumber } from "antd";
 import "../styles/app.scss";
 import * as API from "services/eventsAPI";
+import { ConfigProvider } from "antd";
+import frFR from "antd/es/locale/fr_FR";
+import { useSelector } from "react-redux";
 
 const FormPractice = ({ EventType, ClubId, TeamId }) => {
-	const [DateTime, setDateTime] = useState("");
-	const [Duration, setDuration] = useState("");
-	const [EventTitle, setEventTitle] = useState("");
-	const [EventDescription, setEventDescription] = useState("");
-	const [ZipCode, setZipCode] = useState("");
-	const [City, setCity] = useState("");
-	const [Country, setCountry] = useState("");
-	const [Address, setAddress] = useState("");
+	const [DateTimeP, setDateTimeP] = useState("");
+	const [DurationP, setDurationP] = useState("");
+	const [EventTitleP, setEventTitleP] = useState("");
+	const [EventDescriptionP, setEventDescriptionP] = useState("");
+	const [ZipCodeP, setZipCodeP] = useState("");
+	const [CityP, setCityP] = useState("");
+	const [CountryP, setCountryP] = useState("");
+	const [AddressP, setAddressP] = useState("");
+
+	const Club_id = useSelector((state) => state.userReducer.coach_id);
+	const Team_id = useSelector((state) => state.userReducer.team_id);
 
 	moment.updateLocale("fr", localization);
 
 	function onChange(value, dateString) {
 		console.log(EventType);
 		// console.log("Selected Time: ", value);
-		setDateTime(dateString);
+		setDateTimeP(dateString);
 		console.log("Formatted Selected Time: ", dateString);
 	}
 
 	function onChangeDuration(valueMin) {
 		console.log(valueMin);
-		setDuration(valueMin);
+		setDurationP(valueMin);
 	}
 
 	function onOk(value) {
@@ -39,180 +45,169 @@ const FormPractice = ({ EventType, ClubId, TeamId }) => {
 	}
 
 	function onSubmit() {
-		if (DateTime === "") {
+		if (DateTimeP === "") {
 			document.getElementById("notice_datetime").innerHTML =
 				"Merci de choisir une date";
 		}
-		if (DateTime === "") {
+		if (EventTitleP === "") {
 			document.getElementById("notice_title").innerHTML =
 				"Merci de saisir un titre";
 		}
-		const data = {
-			title: EventTitle,
-			long_description: EventDescription,
-			address: Address,
-			city: City,
-			country: Country,
-			zip_code: ZipCode,
-			starting_date_time: DateTime,
-			duration: Duration,
-			canceled: false,
-		};
-		console.log(data);
+
+		console.log(
+			EventTitleP,
+			EventDescriptionP,
+			AddressP,
+			CityP,
+			CountryP,
+			ZipCodeP,
+			DateTimeP,
+			DurationP,
+			Club_id,
+			Team_id
+		);
+
+		API.createPractice(
+			EventTitleP,
+			EventDescriptionP,
+			AddressP,
+			CityP,
+			CountryP,
+			ZipCodeP,
+			DateTimeP,
+			DurationP,
+			Club_id,
+			Team_id
+		).then((response) => console.log(response));
 	}
-	// API.createPractice(
-	// 	EventTitle,
-	// 	EventDescription,
-	// 	Address,
-	// 	City,
-	// 	Country,
-	// 	ZipCode,
-	// 	DateTime,
-	// 	Duration
-	// ).then((response) => console.log(response));
 
 	return (
-		<div>
-			<Row>
-				<Col span={6} offset={6}>
-					<DatePicker
-						id="datetime"
-						format="DD-MM-YY HH:mm"
-						disabledDate={disabledDate}
-						onChange={onChange}
-						onOk={onOk}
-						showTime={{ defaultValue: moment("00:00:00", "HH:mm:ss") }}
-					/>
-					<p id="notice_datetime" className="redtext"></p>
-
-					{DateTime !== "" && (
-						<p style={{ marginTop: "25px" }}> Date choisie: {DateTime}</p>
-					)}
-					<InputNumber
-						style={{ marginTop: "25px" }}
-						defaultValue={120}
-						step={5}
-						min={0}
-						max={100000}
-						formatter={(valueMin) => `${valueMin} min`}
-						parser={(valueMin) => valueMin.replace(" min", "")}
-						onChange={onChangeDuration}
-					/>
-				</Col>
-			</Row>
-
-			<Row>
-				<Col span={8} offset={6}>
-					<div className="form-group row col-12">
-						<label htmlFor="email"></label>
-						<input
-							style={{ marginTop: "25px" }}
-							type="text"
-							className="form-control"
-							placeholder="Saisir un titre"
-							id="title"
-							onChange={(e) => setEventTitle(e.target.value)}
-							value={EventTitle}
+		<ConfigProvider locale={frFR}>
+			<div>
+				<Row>
+					<Col span={10} offset={8}>
+						<h3>L'entrainement:</h3>
+						<label>Date et heure de l'entrainement:</label>
+						<br />
+						<DatePicker
+							id="datetime"
+							format="DD-MM-YY HH:mm"
+							disabledDate={disabledDate}
+							onChange={onChange}
+							onOk={onOk}
+							showTime={{ defaultValue: moment("00:00:00", "HH:mm:ss") }}
 						/>
-						<p id="notice_title" className="redtext"></p>
-					</div>
-				</Col>
-			</Row>
+						<p id="notice_datetime" className="redtext"></p>
 
-			<Row>
-				<Col span={8} offset={6}>
-					<div className="form-group row col-12">
-						<label htmlFor="email"></label>
-						<input
-							style={{ marginTop: "25px" }}
-							type="text"
-							className="form-control"
-							placeholder="Saisir une description"
-							id="description"
-							onChange={(e) => setEventDescription(e.target.value)}
-							value={EventDescription}
+						{DateTimeP !== "" && (
+							<h6 style={{ marginTop: "25px" }}> Date choisie: {DateTimeP}</h6>
+						)}
+						<label>Durée de l'entrainement:</label>
+						<br />
+						<InputNumber
+							style={{ marginBottom: "15px" }}
+							defaultValue={0}
+							step={5}
+							min={0}
+							max={100000}
+							formatter={(valueMin) => `${valueMin} min`}
+							parser={(valueMin) => valueMin.replace(" min", "")}
+							onChange={onChangeDuration}
 						/>
-					</div>
-				</Col>
-			</Row>
+					</Col>
+				</Row>
 
-			<Row>
-				<Col span={8} offset={6}>
-					<div className="form-group row col-12">
-						<label htmlFor="email"></label>
-						<input
-							type="text"
-							className="form-control"
-							placeholder="L'adresse"
-							id="address"
-							onChange={(e) => setAddress(e.target.value)}
-							value={Address}
-						/>
-					</div>
-				</Col>
-			</Row>
+				<Row>
+					<Col span={8} offset={8}>
+						<div className="form-group row col-12">
+							<label style={{ marginLeft: "10px", color: "grey" }}>Titre:</label>
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Saisir un titre"
+								id="title"
+								onChange={(e) => setEventTitleP(e.target.value)}
+								value={EventTitleP}
+							/>
+							<p id="notice_title" className="redtext"></p>
+						</div>
 
-			<Row>
-				<Col span={8} offset={6}>
-					<div className="form-group row col-12">
-						<label htmlFor="email"></label>
-						<input
-							type="text"
-							className="form-control"
-							placeholder="Code postal"
-							id="zipcode"
-							onChange={(e) => setZipCode(e.target.value)}
-							value={ZipCode}
-						/>
-					</div>
-				</Col>
-			</Row>
+						<div className="form-group row col-12">
+							<label style={{ marginLeft: "10px", color: "grey" }}>Déscription:</label>
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Saisir une description"
+								id="description"
+								onChange={(e) => setEventDescriptionP(e.target.value)}
+								value={EventDescriptionP}
+							/>
+						</div>
+						<h3>L'adresse de l'entrainement:</h3>
+						<div className="form-group row col-12 ">
+							<label style={{ marginLeft: "10px", color: "grey" }}>Adresse:</label>
+							<input
+								type="text"
+								className="form-control"
+								placeholder="L'adresse"
+								id="address"
+								onChange={(e) => setAddressP(e.target.value)}
+								value={AddressP}
+							/>
+						</div>
 
-			<Row>
-				<Col span={8} offset={6}>
-					<div className="form-group row col-12">
-						<label htmlFor="email"></label>
-						<input
-							type="text"
-							className="form-control"
-							placeholder="Ville"
-							id="city"
-							onChange={(e) => setCity(e.target.value)}
-							value={City}
-						/>
-					</div>
-				</Col>
-			</Row>
+						<div className="form-group row col-12">
+							<label style={{ marginLeft: "10px", color: "grey" }}>Code Postal:</label>
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Code postal"
+								id="zipcode"
+								onChange={(e) => setZipCodeP(e.target.value)}
+								value={ZipCodeP}
+							/>
+						</div>
 
-			<Row>
-				<Col span={8} offset={6}>
-					<div className="form-group row col-12">
-						<label htmlFor="email"></label>
-						<input
-							type="text"
-							className="form-control"
-							placeholder="Pays"
-							id="country"
-							onChange={(e) => setCountry(e.target.value)}
-							value={Country}
-						/>
-					</div>
-				</Col>
-			</Row>
+						<div className="form-group row col-12">
+							<label style={{ marginLeft: "10px", color: "grey" }}>Ville:</label>
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Ville"
+								id="city"
+								onChange={(e) => setCityP(e.target.value)}
+								value={CityP}
+							/>
+						</div>
 
-			<Row>
-				<Col span={3} offset={10}>
-					<button
-						type="submit"
-						className="btn btn-outline-dark"
-						style={{ marginTop: "25px" }}
-						onClick={onSubmit}
-					>
-						submit
-					</button>
-				</Col>
-			</Row>
-		</div>
+						<div className="form-group row col-12">
+							<label style={{ marginLeft: "10px", color: "grey" }}>Pays:</label>
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Pays"
+								id="country"
+								onChange={(e) => setCountryP(e.target.value)}
+								value={CountryP}
+							/>
+						</div>
+					</Col>
+				</Row>
+
+				<Row>
+					<Col span={5} offset={11}>
+						<button
+							type="submit"
+							className="btn btn-outline-danger"
+							style={{ marginTop: "25px", marginBottom: "25px" }}
+							onClick={onSubmit}
+						>
+							sauvegarder
+						</button>
+					</Col>
+				</Row>
+			</div>
+		</ConfigProvider>
 	);
 };
 

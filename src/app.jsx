@@ -33,6 +33,10 @@ const App = () => {
 					<Route exact path="/">
 						<Home />
 					</Route>
+					<Route path="/dashboardAdmin">
+						{" "}
+						<AdminCoachDashboardPage />{" "}
+					</Route>
 					<Route exact path="/create-event">
 						<CreateEvent />
 					</Route>
