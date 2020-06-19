@@ -13,6 +13,9 @@ function createClub(
 	Pool,
 	Conference
 ) {
+	let jwt = Cookies.get("token");
+	let Creator_id = jwt_decode(jwt).coach_id;
+	console.log("creator_id:" + Creator_id);
 	const data = {
 		date_of_creation: CreationDate,
 		name: ClubName,
@@ -24,7 +27,10 @@ function createClub(
 		league: League,
 		pool: Pool,
 		conference: Conference,
+		creator_id: Creator_id,
 	};
+
+	console.log(data);
 
 	let baseURL = process.env.REACT_APP_API_URL;
 	let endUrl = `/clubs.json`;
