@@ -5,22 +5,27 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import Cookies from 'js-cookie'
-import {useSelector } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import * as UserAPI from 'services/authAPI'
+import { logoutSuccess } from 'redux/actions/authActions.jsx'
+import { useSelector, useDispatch } from 'react-redux';
 
 
 function Portrait() {
 
-  const [name, setName] = useState('d')
-  const myId = useSelector(state => state.authReducer.id)
+  const dispatch = useDispatch();
+  const [name, setName] = useState('')
+  const [redirect, setRedirect] = useState('')
+  const myId = useSelector(state => state.userReducer.id)
   const myType = useSelector(state => state.authReducer.typeUser)
 
   useEffect(setupName, [])
 
   function logout(){
-    Cookies.remove('token');
     UserAPI.sign_out(myType)
-    window.location.pathname = '/'
+    dispatch(logoutSuccess())   
+    Cookies.remove('token', {sameSite: 'lax'});
+    setRedirect(<Redirect to='/' />)
   }
 
   function setupName() {
@@ -38,6 +43,7 @@ function Portrait() {
         <Link className="dropdown-item" to="/"> Profile </Link>
         <p className="m-0 dropdown-item" onClick={logout}> Logout </p>  
       </div>
+      {redirect}
     </div> 
 
   )

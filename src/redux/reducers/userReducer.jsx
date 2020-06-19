@@ -4,6 +4,7 @@ import { INFO_USER_UP, INFO_USER_DOWN } from '../types/userTypes'
 
 let tempo
 let decoded_token 
+    console.log('dede')
 if (Cookies.get('token') === undefined){
   tempo = {
   }
@@ -21,6 +22,7 @@ else{
   } 
 }
 
+    console.log('dada')
 
 
 const initialState = tempo
