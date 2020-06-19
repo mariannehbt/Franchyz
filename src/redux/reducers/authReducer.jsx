@@ -18,13 +18,7 @@ else{
     loading: false,
     isAuth: true,
     error: null,
-    id: decoded_token['sub'],
     typeUser: decoded_token['scp'],
-    email: decoded_token['email'],
-    first_name: decoded_token['first_name'],
-    last_name: decoded_token['last_name'],
-    isAdmin: decoded_token['admin?'],
-    club_id: decoded_token['club_id'],
   } 
 }
 
@@ -33,6 +27,7 @@ else{
 const initialState = tempo
 
 const authReducer = (state = initialState, action) => {
+      console.log('uppp', action.type)
   switch(action.type){
     case LOGIN_REQUEST:
       return {
@@ -44,12 +39,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         isAuth: true,
         loading: false,
-        id: action.id,
-        email: action.email,
-        first_name: action.first_name,
-        last_name: action.last_name,
-        isAdmin: action.isAdmin,
-        club_id: action.club_id,
+        typeUser: action.typeUser
       }
     case LOGIN_FAILURE:
       return {

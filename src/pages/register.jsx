@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { logup } from 'redux/middlewares/authMiddlewares';
 import { useSelector, useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom'
 import * as api_club from '../services/clubAPI.jsx';
 import * as api_team from '../services/teamAPI.jsx';
 import '../styles/form.scss';
@@ -10,6 +11,7 @@ const Register = () => {
   const [dataClubs, setDataClubs] = useState([]);
   const [clubId, setClubId] = useState(1);
   const [dataTeams, setDataTeams] = useState([]);
+  const [redirect, setRedirect] = useState('')
   const dispatch = useDispatch();
 
   function setupAlert() {
@@ -67,6 +69,7 @@ const Register = () => {
     let password = document.getElementById('password').value;
     let team = document.getElementById('team').value;
     dispatch(logup(email, password, type, team));
+    setRedirect(<Redirect to='/' />)
   };
 
   return (
