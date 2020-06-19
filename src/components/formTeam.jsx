@@ -1,200 +1,57 @@
 import React, { useState } from "react";
-import { DatePicker, Col, Row } from "antd";
-import moment from "moment";
-import { InputNumber } from "antd";
+import { Col, Row } from "antd";
 // import "../styles/app.scss";
-// import * as API from "services/eventsAPI";
+import * as API from "services/teamAPI";
+import { useSelector } from "react-redux";
 
-const FormTeam = ({ EventType, ClubId, TeamId }) => {
-	const [DateTime, setDateTime] = useState("");
-	const [Duration, setDuration] = useState("");
-	const [EventTitle, setEventTitle] = useState("");
-
-	const [EventDescription, setEventDescription] = useState("");
-	const [ZipCode, setZipCode] = useState("");
-	const [City, setCity] = useState("");
-	const [Country, setCountry] = useState("");
-	const [Address, setAddress] = useState("");
-
-	function onChange(value, dateString) {
-		console.log(EventType);
-		// console.log("Selected Time: ", value);
-		setDateTime(dateString);
-		console.log("Formatted Selected Time: ", dateString);
-		console.log("changed", value);
-	}
-
-	function onChangeDuration(valueMin) {
-		console.log(valueMin);
-		setDuration(valueMin);
-	}
-
-	function onOk(value) {
-		console.log("onOk: ", value);
-	}
-
-	function disabledDate(current) {
-		return current && current < moment().endOf("day");
-	}
+const FormTeam = () => {
+	//const Creator_id = useSelector((state) => state.userReducer.id);
+	const [TeamName, setTeamName] = useState("");
 
 	function onSubmit() {
-		if (DateTime === "") {
-			document.getElementById("notice_datetime").innerHTML =
-				"Merci de choisir une date";
+		if (TeamName === "") {
+			document.getElementById("notice_teamname").innerHTML =
+				"Merci de saisir un nom pour la team";
 		}
-		if (DateTime === "") {
-			document.getElementById("notice_title").innerHTML =
-				"Merci de saisir un titre";
-		}
+		console.log(TeamName);
 
-		// API.createGame(
-		// 	EventTitle,
-		// 	EventDescription,
-		// 	Address,
-		// 	City,
-		// 	Country,
-		// 	ZipCode,
-		// 	DateTime,
-		// 	Duration
-		// ).then((response) => console.log(response));
+		// API.createTeam(
+		// 	CreationDate,
+		// ).then((response) => {
+		// 	console.log(response);
+		// });
 	}
 
 	return (
 		<div>
 			<Row>
-				<Col span={6} offset={6}>
-					<DatePicker
-						id="datetime"
-						format="DD-MM-YY HH:mm"
-						disabledDate={disabledDate}
-						onChange={onChange}
-						onOk={onOk}
-						showTime={{ defaultValue: moment("00:00:00", "HH:mm:ss") }}
-					/>
-					<p id="notice_datetime" className="redtext"></p>
-
-					{DateTime !== "" && (
-						<p style={{ marginTop: "25px" }}> Date choisie: {DateTime}</p>
-					)}
-					<InputNumber
-						style={{ marginTop: "25px" }}
-						defaultValue={120}
-						step={5}
-						min={0}
-						max={100000}
-						formatter={(valueMin) => `${valueMin} min`}
-						parser={(valueMin) => valueMin.replace(" min", "")}
-						onChange={onChangeDuration}
-					/>
-				</Col>
-			</Row>
-			<Row>
-				<Col span={8} offset={6}>
+				<Col span={8} offset={8}>
 					<div className="form-group row col-12">
-						<label htmlFor="email"></label>
+						<label style={{ marginLeft: "10px", color: "grey" }}>
+							Nom de la Team:
+						</label>
 						<input
-							style={{ marginTop: "25px" }}
 							type="text"
 							className="form-control"
-							placeholder="Saisir un titre"
+							placeholder="Nom"
 							id="title"
-							onChange={(e) => setEventTitle(e.target.value)}
-							value={EventTitle}
+							onChange={(e) => setTeamName(e.target.value)}
+							value={TeamName}
 						/>
-						<p id="notice_title" className="redtext"></p>
-					</div>
-				</Col>
-			</Row>
-			<Row>
-				<Col span={8} offset={6}>
-					<div className="form-group row col-12">
-						<label htmlFor="email"></label>
-						<input
-							style={{ marginTop: "25px" }}
-							type="text"
-							className="form-control"
-							placeholder="Saisir une description"
-							id="description"
-							onChange={(e) => setEventDescription(e.target.value)}
-							value={EventDescription}
-						/>
+						<p id="notice_teamname" className="redtext"></p>
 					</div>
 				</Col>
 			</Row>
 
 			<Row>
-				<Col span={8} offset={6}>
-					<div className="form-group row col-12">
-						<label htmlFor="email"></label>
-						<input
-							type="text"
-							className="form-control"
-							placeholder="L'adresse"
-							id="address"
-							onChange={(e) => setAddress(e.target.value)}
-							value={Address}
-						/>
-					</div>
-				</Col>
-			</Row>
-
-			<Row>
-				<Col span={8} offset={6}>
-					<div className="form-group row col-12">
-						<label htmlFor="email"></label>
-						<input
-							type="text"
-							className="form-control"
-							placeholder="Code postal"
-							id="zipcode"
-							onChange={(e) => setZipCode(e.target.value)}
-							value={ZipCode}
-						/>
-					</div>
-				</Col>
-			</Row>
-
-			<Row>
-				<Col span={8} offset={6}>
-					<div className="form-group row col-12">
-						<label htmlFor="email"></label>
-						<input
-							type="text"
-							className="form-control"
-							placeholder="Ville"
-							id="city"
-							onChange={(e) => setCity(e.target.value)}
-							value={City}
-						/>
-					</div>
-				</Col>
-			</Row>
-
-			<Row>
-				<Col span={8} offset={6}>
-					<div className="form-group row col-12">
-						<label htmlFor="email"></label>
-						<input
-							type="text"
-							className="form-control"
-							placeholder="Pays"
-							id="country"
-							onChange={(e) => setCountry(e.target.value)}
-							value={Country}
-						/>
-					</div>
-				</Col>
-			</Row>
-
-			<Row>
-				<Col span={3} offset={10}>
+				<Col span={5} offset={11}>
 					<button
 						type="submit"
-						className="btn btn-outline-dark"
-						style={{ marginTop: "25px" }}
+						className="btn btn-outline-danger"
+						style={{ marginTop: "25px", marginBottom: "25px" }}
 						onClick={onSubmit}
 					>
-						submit
+						sauvegarder
 					</button>
 				</Col>
 			</Row>
