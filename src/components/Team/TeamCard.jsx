@@ -8,11 +8,13 @@ const TeamCard = () => {
   const [playersData, setPlayersData] = useState([]);
   const [teamData, setTeamData] = useState([]);
   const clubID = useSelector(state => state.userReducer.club_id);
-  const { teamID } = useParams();
+  const { team_id } = useParams();
   const isAdmin = useSelector(state => state.userReducer.isAdmin);
+
+  console.log(useParams())
   
 	const getData = () => {
-		api.getTeam(clubID, teamID)
+		api.getTeam(clubID, team_id)
 		.then(response => {
       console.log(response)
 			let players = response.players.map((player, key) => (

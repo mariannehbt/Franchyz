@@ -22,7 +22,7 @@ const TeamList = () => {
 
   const createTeam = () => {
     if (isAdmin) {
-      return <li><Link to={`/create-team`} className="btn btn-primary">Create New Team</Link></li>
+      return <p><Link to={`/create-team`} className="btn btn-primary mt-3">Create New Team</Link></p>
     } 
   }
 
@@ -30,17 +30,17 @@ const TeamList = () => {
     return (
       <div className="container">
         <p>This club don't have team yet !</p>
-        <ul>
           {createTeam()}
-        </ul>
       </div>
     );
   } else {
     return (
-      <ul className='list-group list-group-flush'>
-        {data}
+      <div className="container">
+        <ul className='list-group list-group-flush'>
+          {data}
+        </ul>
         {createTeam()}
-      </ul>
+      </div>
     );
   }
 };
