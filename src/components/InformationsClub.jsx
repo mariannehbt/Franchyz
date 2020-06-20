@@ -17,7 +17,7 @@ function InformationsClub() {
 
   return(
     <div className='container'>
-      <h1 className='text-center'>
+      <h1 className='text-center my-4'>
         { club.name }
       </h1>
         <div className='row'>
