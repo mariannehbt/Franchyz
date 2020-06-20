@@ -14,7 +14,9 @@ const TeamList = ({teams}) => {
   }
 
   function setList() {
-    return teams.map(team => <Team key={team.id} team={team} />)
+    if (teams !== undefined){
+      return teams.map(team => <Team key={team.id} team={team} />)
+    }
   }
 
   if (teams === null) {

@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import * as teamAPI from '../services/teamAPI.jsx';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Team = ({team}) => {
 
   return (
-    <li className='list-group-item'> <Link to={`/clubs/team.club_id${team.id}`}> {team.title} </Link> </li>
+    <li className='list-group-item'> <Link to={`/clubs/${team.club_id}/teams/${team.id}`}> {team.title} </Link> </li>
   );
 }
 

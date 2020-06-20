@@ -8,6 +8,7 @@ function DashboardAdmin({club}) {
     <div className="container">
       <InformationsClub club={club} />
       <h2>Teams</h2>
+      <TeamList teams={club.teams} />
     </div>
   )
 }
