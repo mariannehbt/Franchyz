@@ -17,8 +17,6 @@ import ShowTeam from './pages/showTeam.jsx'
 //Component 
 import Navbar from "./components/layouts/navbar.jsx";
 import Footer from "./components/layouts/footer.jsx";
-import TeamList from './components/Team/TeamList.jsx'
-import TeamCard from './components/Team/TeamCard.jsx';
 
 //CSS
 import "bootstrap/dist/js/bootstrap.js";
@@ -35,8 +33,6 @@ const App = () => {
           <Route path="/register"> <Register /> </Route>
           <Route exact path="/create-event"> <CreateEvent /> </Route>
           <Route exact path="/create-club"> <CreateClub /> </Route>
-          <Route path="/teams"> <TeamList /> </Route>
-          <Route path={`/team/:team_id`}> <TeamCard /> </Route>
           <Route path={`/clubs/:clubId/team/:teamId`}><ShowTeam /></Route>
           <Route path="/dashboardAdmin"> <AdminCoachDashboardPage /> </Route>
           <Route path="/create-team"> <CreateTeam /> </Route>
