@@ -1,31 +1,31 @@
 import React, { useState } from "react";
 import { DatePicker, Col, Row } from "antd";
 import "../styles/app.scss";
-import * as API from "services/clubsAPI";
+import * as API from "services/clubAPI";
 import { ConfigProvider } from "antd";
 import frFR from "antd/es/locale/fr_FR";
 import { useSelector } from "react-redux";
 
 const FormClub = () => {
-  const Creator_id = useSelector((state) => state.userReducer.id);
-  const [CreationDate, setCreationDate] = useState("");
-  const [ClubName, setClubName] = useState("");
-  const [ClubDescription, setClubDescription] = useState("");
-  const [ZipCode, setZipCode] = useState("");
-  const [City, setCity] = useState("");
-  const [Country, setCountry] = useState("");
-  const [Address, setAddress] = useState("");
-  const [League, setLeague] = useState("");
-  const [Pool, setPool] = useState("");
-  const [Conference, setConference] = useState("");
+  const creator_id = useSelector((state) => state.userReducer.id);
+  const [creationDate, setCreationDate] = useState("");
+  const [clubName, setClubName] = useState("");
+  const [clubDescription, setClubDescription] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+  const [address, setAddress] = useState("");
+  const [league, setLeague] = useState("");
+  const [pool, setPool] = useState("");
+  const [conference, setConference] = useState("");
 
   function onSubmit() {
-    if (ClubName === "") {
+    if (clubName === "") {
       document.getElementById("notice_clubname").innerHTML =
         "Merci de saisir un nom du club";
     }
 
-    API.createClub( CreationDate, ClubName, ClubDescription, ZipCode, City, Country, Address, League, Pool, Conference, Creator_id).then((response) => { console.log(response); });
+    API.createClub( creationDate, clubName, clubDescription, zipCode, city, country, address, league, pool, conference, creator_id).then((response) => { console.log(response); });
   }
 
   function onChange2(date, dateString) {
@@ -42,8 +42,8 @@ const FormClub = () => {
             <label>Date de création du club:</label>
             <br />
             <DatePicker onChange={onChange2} />
-            {CreationDate !== "" && (
-              <h6 style={{ marginTop: "25px" }}>Date création club: {CreationDate}</h6>
+            {creationDate !== "" && (
+              <h6 style={{ marginTop: "25px" }}>Date création club: {creationDate}</h6>
             )}
           </Col>
         </Row>
@@ -53,7 +53,7 @@ const FormClub = () => {
           <Col span={8} offset={8}>
             <div className="form-group row col-12">
               <label style={{ marginLeft: "10px", color: "grey" }}>Nom du club:</label>
-              <input type="text" className="form-control" placeholder="Nom" id="title" onChange={(e) => setClubName(e.target.value)} value={ClubName} />
+              <input type="text" className="form-control" placeholder="Nom" id="title" onChange={(e) => setClubName(e.target.value)} value={clubName} />
               <p id="notice_clubname" className="redtext"></p>
             </div>
 
@@ -61,47 +61,47 @@ const FormClub = () => {
               <label style={{ marginLeft: "10px", color: "grey" }}>
                 Déscription du club
               </label>
-              <input type="text" className="form-control" placeholder="Déscription" id="description" onChange={(e) => setClubDescription(e.target.value)} value={ClubDescription} />
+              <input type="text" className="form-control" placeholder="Déscription" id="description" onChange={(e) => setClubDescription(e.target.value)} value={clubDescription} />
             </div>
 
             <div className="form-group row col-12">
               <label style={{ marginLeft: "10px", color: "grey" }}>
                 League du club
               </label>
-              <input type="text" className="form-control" placeholder="League" id="league" onChange={(e) => setLeague(e.target.value)} value={League} />
+              <input type="text" className="form-control" placeholder="League" id="league" onChange={(e) => setLeague(e.target.value)} value={league} />
             </div>
 
             <div className="form-group row col-12">
               <label style={{ marginLeft: "10px", color: "grey" }}>
                 Conference du club
               </label>
-              <input type="text" className="form-control" placeholder="Conference" id="conference" onChange={(e) => setConference(e.target.value)} value={Conference} />
+              <input type="text" className="form-control" placeholder="Conference" id="conference" onChange={(e) => setConference(e.target.value)} value={conference} />
             </div>
 
             <div className="form-group row col-12">
               <label style={{ marginLeft: "10px", color: "grey" }}>Pool</label>
-              <input type="text" className="form-control" placeholder="Pool" id="pool" onChange={(e) => setPool(e.target.value)} value={Pool} />
+              <input type="text" className="form-control" placeholder="Pool" id="pool" onChange={(e) => setPool(e.target.value)} value={pool} />
             </div>
             <h3>L'adresse du club:</h3>
             <div className="form-group row col-12">
               <label style={{ marginLeft: "10px", color: "grey" }}>
                 L'adresse du club
               </label>
-              <input type="text" className="form-control" placeholder="L'adresse" id="adresse" onChange={(e) => setAddress(e.target.value)} value={Address} />
+              <input type="text" className="form-control" placeholder="L'adresse" id="adresse" onChange={(e) => setAddress(e.target.value)} value={address} />
             </div>
 
             <div className="form-group row col-12">
               <label style={{ marginLeft: "10px", color: "grey" }}>Code postal</label>
-              <input type="text" className="form-control" placeholder="Code postal" id="zipcode" onChange={(e) => setZipCode(e.target.value)} value={ZipCode} />
+              <input type="text" className="form-control" placeholder="Code postal" id="zipcode" onChange={(e) => setZipCode(e.target.value)} value={zipCode} />
             </div>
 
             <div className="form-group row col-12">
               <label style={{ marginLeft: "10px", color: "grey" }}>Ville</label>
-              <input type="text" className="form-control" placeholder="Ville" id="city" onChange={(e) => setCity(e.target.value)} value={City} />
+              <input type="text" className="form-control" placeholder="Ville" id="city" onChange={(e) => setCity(e.target.value)} value={city} />
             </div>
             <div className="form-group row col-12">
               <label style={{ marginLeft: "10px", color: "grey" }}>Pays</label>
-              <input type="text" className="form-control" placeholder="Pays" id="country" onChange={(e) => setCountry(e.target.value)} value={Country} />
+              <input type="text" className="form-control" placeholder="Pays" id="country" onChange={(e) => setCountry(e.target.value)} value={country} />
             </div>
           </Col>
         </Row>
