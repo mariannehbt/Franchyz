@@ -37,7 +37,7 @@ function getClub(id) {
 }
 
 
-function createClub( creationDate, clubName, clubDescription, zipCode, city, country, address, league, pool, conference, creatorId) {
+function createClub({ creationDate, clubName, clubDescription, zipCode, city, country, address, league, pool, conference, creatorId}) {
   let baseUrl = process.env.REACT_APP_API_URL;
   let endUrl = `/clubs.json`;
   let url = baseUrl + endUrl;
@@ -66,6 +66,7 @@ function createClub( creationDate, clubName, clubDescription, zipCode, city, cou
     body: JSON.stringify(data),
   }
 
+  console.log(data)
   return fetch(url, request)
     .then((response) => response.json())
     .then((response) => { return response })

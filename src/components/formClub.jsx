@@ -4,8 +4,9 @@ import "../styles/app.scss";
 import * as API from "services/clubAPI";
 import { ConfigProvider } from "antd";
 import frFR from "antd/es/locale/fr_FR";
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { callAPI } from 'redux/middlewares/resourcesMiddlewares'
+ 
 const FormClub = () => {
   const creator_id = useSelector((state) => state.userReducer.id);
   const [creationDate, setCreationDate] = useState("");
@@ -19,17 +20,20 @@ const FormClub = () => {
   const [pool, setPool] = useState("");
   const [conference, setConference] = useState("");
 
+
+  const dispatch = useDispatch();
+
   function onSubmit() {
     if (clubName === "") {
       document.getElementById("notice_clubname").innerHTML =
         "Merci de saisir un nom du club";
     }
 
-    API.createClub( creationDate, clubName, clubDescription, zipCode, city, country, address, league, pool, conference, creator_id).then((response) => { console.log(response); });
+    dispatch(callAPI('createClub', {creationDate: creationDate, clubName: clubName, clubDescription: clubDescription, zipCode: zipCode, city: city, country: country, address: address, league: league, pool: pool, conference: conference, creatorId: creator_id}))   
+    //API.createClub(creationDate, clubName, clubDescription, zipCode, city, country, address, league, pool, conference, creator_id)
   }
 
   function onChange2(date, dateString) {
-    console.log("test " + date, dateString);
     setCreationDate(dateString);
   }
 
