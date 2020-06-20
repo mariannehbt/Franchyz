@@ -20,28 +20,28 @@ function InformationsClub() {
       <h1 className='text-center'>
         { club.name }
       </h1>
-      <img src={club.logo_url}  style={{width: "100px"}}></img>
-      <div className='container'>
         <div className='row'>
           <div className='col'>
+          <img src={club.logo_url}  style={{width: "100px", margin: "auto"}}></img>
             <ul>
               <li>
-                {`adrress: ${club.address} ${club.city} ${club.zip}`}
+                {`Adress: ${club.address} ${club.city} ${club.zip}`}
               </li>
               <li>
-                {`country: ${club.country }`}
+                {`Country: ${club.country }`}
+              </li>
+              <li>
+                {`League: ${club.league} `}
+              </li>
+              <li>
+              {`Conference: ${club.conference} `}
               </li>
             </ul>
           </div>
 
           <div className='col'>
             <ul>
-              <li>
-                { club.league }
-              </li>
-              <li>
-                { club.conference }
-              </li>
+   
               <li>
                 { club.description }
               </li>
@@ -49,7 +49,6 @@ function InformationsClub() {
           </div>
 
         </div>
-      </div>
     </div>
   )
 }
