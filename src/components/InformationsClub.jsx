@@ -20,6 +20,7 @@ function InformationsClub() {
       <h1 className='text-center'>
         { club.name }
       </h1>
+      <img src={club.logo_url}  style={{width: "100px"}}></img>
       <div className='container'>
         <div className='row'>
           <div className='col'>

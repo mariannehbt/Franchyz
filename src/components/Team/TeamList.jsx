@@ -37,10 +37,12 @@ const TeamList = () => {
     );
   } else {
     return (
-      <ul className='list-group list-group-flush'>
-        {data}
-        {createTeam()}
-      </ul>
+      <div className="container">
+        <ul className='list-group list-group-flush'>
+          {data}
+          {createTeam()}
+        </ul>
+      </div>
     );
   }
 };

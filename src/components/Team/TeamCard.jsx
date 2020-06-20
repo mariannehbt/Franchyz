@@ -14,7 +14,7 @@ const TeamCard = () => {
   console.log(useParams())
   
 	const getData = () => {
-		api.getTeam(clubID, team_id )
+		api.getTeam(clubID, team_id)
 		.then(response => {
       console.log(response)
 			let players = response.players.map((player, key) => (
