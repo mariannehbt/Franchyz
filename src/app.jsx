@@ -36,6 +36,7 @@ const App = () => {
           <Route exact path="/create-event"> <CreateEvent /> </Route>
           <Route exact path="/create-club"> <CreateClub /> </Route>
           <Route path="/teams"> <TeamList /> </Route>
+          <Route path={`/team/:team_id`}> <TeamCard /> </Route>
           <Route path={`/clubs/:clubId/team/:teamId`}><ShowTeam /></Route>
           <Route path="/dashboardAdmin"> <AdminCoachDashboardPage /> </Route>
           <Route path="/create-team"> <CreateTeam /> </Route>
