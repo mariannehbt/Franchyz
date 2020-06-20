@@ -28,7 +28,6 @@ function InformationsClub({club}) {
 
         <div className='col'>
           <ul>
-
             <li>
               { club.description }
             </li>
