@@ -33,7 +33,7 @@ const App = () => {
           <Route path="/register"> <Register /> </Route>
           <Route exact path="/create-event"> <CreateEvent /> </Route>
           <Route exact path="/create-club"> <CreateClub /> </Route>
-          <Route path={`/clubs/:clubId/team/:teamId`}><ShowTeam /></Route>
+          <Route path={`/clubs/:clubId/teams/:teamId`}><ShowTeam /></Route>
           <Route path="/dashboardAdmin"> <AdminCoachDashboardPage /> </Route>
           <Route path="/create-team"> <CreateTeam /> </Route>
           <Route exact path="/"> <Home /> </Route>
