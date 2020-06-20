@@ -25,7 +25,7 @@ function InformationsClub() {
           <img src={club.logo_url}  style={{width: "100px", margin: "auto"}}></img>
             <ul>
               <li>
-                {`Adress: ${club.address} ${club.city} ${club.zip}`}
+                {`Adress: ${club.address} ${club.city} ${club.zip_code}`}
               </li>
               <li>
                 {`Country: ${club.country }`}
