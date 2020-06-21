@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Player from 'components/player.jsx'
 
-const PlayerList = ({players}) => {
+const PlayerList = ({players, setChoices}) => {
   const isAdmin = useSelector(state => state.userReducer.isAdmin)
   console.log(players)
 
@@ -16,7 +16,7 @@ const PlayerList = ({players}) => {
 
   function setList() {
     if (players !== undefined){
-      return players.map(player => <Player key={player.id} player={player} />)
+      return players.map(player => <Player key={player.id} player={player} setChoices={setChoices} />)
     }
   }
 

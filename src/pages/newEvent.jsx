@@ -11,6 +11,8 @@ function CreateEvents() {
   const clubId = useSelector(state => state.userReducer.club_id);
   const [eventType, setEventType] = useState("");
   const [teams, setTeams] = useState('')
+  const [players, setPlayers] = useState('')
+  const [choices, setChoices] = useState([])
   const { Option } = Select;
 
   useEffect(() => { setupTeams() }, [])
@@ -18,8 +20,10 @@ function CreateEvents() {
   async function setupTeams(){
     const ans = await teamAPI.getTeamsOfClub(clubId)
     console.log(ans)
-    //setTeams(ans)
-        //<PlayerList players={teams[0].players} />
+    setTeams(ans)
+    setPlayers(
+    <PlayerList players={ans[1].players} setChoices={setChoices} />
+    )
   }
 
   function onChange(value) {
@@ -42,6 +46,7 @@ function CreateEvents() {
         </div>
       </div>
       <hr className="my-4" style={{ width: "600px" }}></hr>
+      {players}
 
       {eventType === "game" ? (
         <FormGame style={{ marginTop: "25px" }} eventType={eventType} />
