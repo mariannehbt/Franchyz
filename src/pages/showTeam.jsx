@@ -22,7 +22,6 @@ function TeamShow () {
     <>
       <h1> {team.title} </h1>
       <PlayerList players={team.players} />
-      <Link to='/newEvent'> createEvent </Link>
     </>
   )
 
