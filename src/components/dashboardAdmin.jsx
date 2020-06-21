@@ -1,12 +1,15 @@
 import React from 'react';
-import InformationsClub from './InformationsClub.jsx'
+import InformationsClub from './informationsClub.jsx'
+import TeamList from './teamList.jsx'
 
-function DashboardAdmin() {
+function DashboardAdmin({club}) {
 
   return(
-    <>
-      <InformationsClub />
-    </>
+    <div className="container">
+      <InformationsClub club={club} />
+      <h2>Teams</h2>
+      <TeamList teams={club.teams} />
+    </div>
   )
 }
 
