@@ -10,14 +10,14 @@ import { useSelector } from 'react-redux';
 
 import * as EventsAPI from 'services/eventsAPI';
 
-import '../styles/calendar.scss' // webpack must be configured to do this
+import '../styles/calendar.scss'
 
 function Calendar() {
   const [games, setGames] = useState([])
   const [practices, setPractices] = useState([])
-  const user_id = 2
+  const user_id = 14
   const club_id = 1
-  const team_id = 1
+  const team_id = 3
   const history = useHistory();
 
   const tmp_event = {title: "Event Now", start: new Date()}
@@ -30,28 +30,32 @@ function Calendar() {
     history.push('/register')
   }
 
-  const getAllEvents = () => {
-    getGames()
-    getPractices()
-  }
-
   const getGames =() => {
     EventsAPI.getAttendedGames(user_id, club_id, team_id)
     .then(response => {
-      response.map(game => setGames([...games, {title: game.title, start: game.starting_date_time}]));
+      response.map(game => setGames([...games, {
+        title: `GAME ${game.title}`,
+        start: game.start,
+        color: game.color,
+        allDay: false
+      }]));
     })
   }
 
   const getPractices =() => {
-    EventsAPI.getAttendedGames(user_id, club_id, team_id)
+    EventsAPI.getAttendedPractices(user_id, club_id, team_id)
     .then(response => {
-      response.map(practice => setGames([...games, {title: practice.title, start: practice.starting_date_time}]));
+      response.map(practice => setPractices([...practices, {
+        title: `PRACTICE ${practice.title}`,
+        start: practice.start,
+        color: practice.color,
+        allDay: false
+      }]));
     })
   }
 
-  useEffect(() => {
-    getAllEvents()
-  }, [])
+  useEffect(() => { getGames () }, [])
+  useEffect(() => { getPractices () }, [])
 
 
   return (
@@ -59,13 +63,14 @@ function Calendar() {
       plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
       defaultView="dayGridMonth"
       themeSystem="bootstrap"
+      height="auto"
       header={{
               left: "prev,next today",
               center: "title",
               right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
             }}
       allDaySlot={false}
-      firstDay="1"
+      firstDay={1}
       locale= "fr"
       timeZone="UTC"
       buttonText= {{
@@ -74,11 +79,8 @@ function Calendar() {
         month: 'Mois',
         week: 'Semaine',
       }}
-      events={{
-        games,
-        practices
-      }}
-      dateClick={goToEventNew}
+      eventSources={[games, practices]}
+      dateClick={addEventManually}
     />
   )
 }

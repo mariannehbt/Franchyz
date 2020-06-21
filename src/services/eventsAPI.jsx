@@ -74,7 +74,7 @@ const getAttendedGames = (player_id, club_id, team_id) => {
   }
 
   let baseURL = process.env.REACT_APP_API_URL
-  let endUrl = `/clubs/${club_id}/teams/${team_id}/players/${player_id}/myevents.json`
+  let endUrl = `/clubs/${club_id}/teams/${team_id}/players/${player_id}/mygames.json`
   let url = baseURL + endUrl
 
   return fetch(url, request)
@@ -85,4 +85,28 @@ const getAttendedGames = (player_id, club_id, team_id) => {
     })
 }
 
-export { createPractice, createGame, getAttendedGames };
+const getAttendedPractices = (player_id, club_id, team_id) => {
+
+  let headers = {
+    'Content-Type': 'application/json',
+    Authorization: Cookies.get('token')
+  }
+
+  let request = {
+    method: 'get',
+    headers: headers,
+  }
+
+  let baseURL = process.env.REACT_APP_API_URL
+  let endUrl = `/clubs/${club_id}/teams/${team_id}/players/${player_id}/mypractices.json`
+  let url = baseURL + endUrl
+
+  return fetch(url, request)
+    .then(response => response.json())
+    .then(response => {
+      console.log(response);
+      return response
+    })
+}
+
+export { createPractice, createGame, getAttendedGames ,getAttendedPractices };
