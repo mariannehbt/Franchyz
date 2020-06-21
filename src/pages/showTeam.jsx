@@ -3,6 +3,7 @@ import '../styles/form.scss'
 import { useParams } from 'react-router-dom'
 import * as teamAPI from 'services/teamAPI'
 import PlayerList from 'components/playerList.jsx'
+import { Link } from 'react-router-dom';
 
 function TeamShow () {
 
@@ -21,6 +22,7 @@ function TeamShow () {
     <>
       <h1> {team.title} </h1>
       <PlayerList players={team.players} />
+      <Link to='/newEvent'> createEvent </Link>
     </>
   )
 
