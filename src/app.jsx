@@ -31,20 +31,16 @@ const App = () => {
 				<Navbar />
 				<Switch>
 					<Route path="/login">
-						{" "}
-						<Login />{" "}
+						<Login />
 					</Route>
 					<Route path="/register">
-						{" "}
-						<Register />{" "}
+						<Register />
 					</Route>
 					<Route exact path="/create-event">
-						{" "}
-						<CreateEvent />{" "}
+						<CreateEvent />
 					</Route>
 					<Route exact path="/newClub">
-						{" "}
-						<CreateClub />{" "}
+						<CreateClub />
 					</Route>
 					<Route path={`/clubs/:clubId/teams/:teamId`}>
 						<ShowTeam />
@@ -53,16 +49,13 @@ const App = () => {
 						<ShowPractice />
 					</Route>
 					<Route path="/dashboardAdmin">
-						{" "}
-						<AdminCoachDashboardPage />{" "}
+						<AdminCoachDashboardPage />
 					</Route>
 					<Route path="/create-team">
-						{" "}
-						<CreateTeam />{" "}
+						<CreateTeam />
 					</Route>
 					<Route exact path="/">
-						{" "}
-						<Home />{" "}
+						<Home />
 					</Route>
 				</Switch>
 				<Footer />
