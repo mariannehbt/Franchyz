@@ -33,7 +33,8 @@ function Login() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
     dispatch(login(email, password, type))   
-    setRedirect(<Redirect to='/' />)
+    dispatch(login(email, password, type))   
+    setRedirect(<Redirect to='/dashboardAdmin' />)
   };
 
   return (

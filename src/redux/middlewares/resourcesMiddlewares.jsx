@@ -12,7 +12,6 @@ function callAPI(callName, args) {
     let token = response.headers.get('Authorization')
     if (response.body.errors !== undefined) {
       dispatch(loginFailure(response.body.errors))
-      return 'error'
     } else {
       Cookies.set('token', response.headers.get('Authorization'), {sameSite: 'lax'})
       let decoded_token = jwt_decode(response.headers.get('Authorization'))

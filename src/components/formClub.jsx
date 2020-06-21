@@ -6,6 +6,7 @@ import { ConfigProvider } from "antd";
 import frFR from "antd/es/locale/fr_FR";
 import { useSelector, useDispatch } from "react-redux";
 import { callAPI } from 'redux/middlewares/resourcesMiddlewares'
+import { Redirect } from 'react-router-dom'
  
 const FormClub = () => {
   const creator_id = useSelector((state) => state.userReducer.id);
@@ -21,6 +22,7 @@ const FormClub = () => {
   const [conference, setConference] = useState("");
 
 
+  const [redirect, setRedirect] = useState('')
   const dispatch = useDispatch();
 
   function onSubmit() {
@@ -29,8 +31,9 @@ const FormClub = () => {
         "Merci de saisir un nom du club";
     }
 
-    dispatch(callAPI('createClub', {creationDate: creationDate, clubName: clubName, clubDescription: clubDescription, zipCode: zipCode, city: city, country: country, address: address, league: league, pool: pool, conference: conference, creatorId: creator_id}))   
+    let ok = dispatch(callAPI('createClub', {creationDate: creationDate, clubName: clubName, clubDescription: clubDescription, zipCode: zipCode, city: city, country: country, address: address, league: league, pool: pool, conference: conference, creatorId: creator_id}))   
     //API.createClub(creationDate, clubName, clubDescription, zipCode, city, country, address, league, pool, conference, creator_id)
+    setRedirect(<Redirect to='/' />)
   }
 
   function onChange2(date, dateString) {
@@ -117,6 +120,7 @@ const FormClub = () => {
             </button>
           </Col>
         </Row>
+        {redirect}
       </div>
     </ConfigProvider>
   );
