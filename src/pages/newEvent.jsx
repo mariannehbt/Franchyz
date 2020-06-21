@@ -4,7 +4,7 @@ import { Select } from "antd";
 import FormPractice from "components/formPractice";
 
 function CreateEvents() {
-  const [EventType, setEventType] = useState("");
+  const [eventType, setEventType] = useState("");
   const { Option } = Select;
 
   function onChange(value) {
@@ -27,10 +27,10 @@ function CreateEvents() {
       </div>
       <hr className="my-4" style={{ width: "600px" }}></hr>
 
-      {EventType === "game" ? (
-        <FormGame style={{ marginTop: "25px" }} EventType={EventType} />
+      {eventType === "game" ? (
+        <FormGame style={{ marginTop: "25px" }} eventType={eventType} />
       ) : (
-        <FormPractice style={{ marginTop: "25px" }} EventType={EventType} />
+        <FormPractice style={{ marginTop: "25px" }} eventType={eventType} />
       )}
     </div>
   );
