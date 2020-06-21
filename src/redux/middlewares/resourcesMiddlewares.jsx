@@ -7,9 +7,19 @@ import { resourcesCalls } from 'helpers/reducersHelpers'
 
 function callAPI(callName, args) {
   return async (dispatch) => {
-    console.log(args)
+    dispatch(loginRequest())
     let response = await resourcesCalls[callName](args);
-    console.log(response, 'caaaaaaa')
+    let token = response.headers.get('Authorization')
+    if (response.body.errors !== undefined) {
+      dispatch(loginFailure(response.body.errors))
+      return 'error'
+    } else {
+      Cookies.set('token', response.headers.get('Authorization'), {sameSite: 'lax'})
+      let decoded_token = jwt_decode(response.headers.get('Authorization'))
+      dispatch(loginSuccess(decoded_token))
+      dispatch(infoUserUp(decoded_token))
+      return 'ok'
+    } 
   };
 };
 
