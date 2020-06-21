@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie'
+
 const getAllClubs = () => {
 
   let baseURL = process.env.REACT_APP_API_URL;
@@ -42,8 +44,9 @@ function createClub({ creationDate, clubName, clubDescription, zipCode, city, co
   let endUrl = `/clubs.json`;
   let url = baseUrl + endUrl;
 
-  let headers: {
-    'Content-Type': 'application/json'
+  let headers = {
+    "Content-Type": "application/json",
+    Authorization: Cookies.get('token')
   }
 
   let data = {
@@ -60,16 +63,12 @@ function createClub({ creationDate, clubName, clubDescription, zipCode, city, co
     creator_id: creatorId,
   };
 
-  let request = {
-    method: 'post',
-    headers: headers,
-    body: JSON.stringify(data),
-  }
+  let request = { method: "post", headers: headers, body: JSON.stringify(data), }
 
-  console.log(data)
+  console.log(data, request)
   return fetch(url, request)
-    .then((response) => response.json())
     .then((response) => { return response })
+
 }
 
 export { getClub, getAllClubs, createClub }
