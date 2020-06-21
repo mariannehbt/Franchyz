@@ -1,11 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import '../styles/form.scss'
-import {useSelector } from 'react-redux'
-import {Link, useParams} from 'react-router-dom'
-import DashboardAdmin from 'components/dashboardAdmin.jsx'
+import { useParams } from 'react-router-dom'
 import * as teamAPI from 'services/teamAPI'
-//import PlayerList from 'components/player/playerList.jsx'
-// <PlayerList players={`${team.players}`} />
+import PlayerList from 'components/playerList.jsx'
 
 function TeamShow () {
 
@@ -19,11 +16,14 @@ function TeamShow () {
     setTeam(ans)
   }
 
+
   return(
-    <div className='container'>
-      <h1> {`${team.title}`} </h1>
-    </div>
+    <>
+      <h1> {team.title} </h1>
+      <PlayerList players={team.players} />
+    </>
   )
+
 }
 
 export default TeamShow
