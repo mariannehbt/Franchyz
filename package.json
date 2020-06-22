@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "4.0.0",
     "@fullcalendar/core": "^4.4.2",
     "@fullcalendar/daygrid": "^4.4.2",
     "@fullcalendar/interaction": "^4.4.2",
@@ -24,6 +25,7 @@
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "react-sticky": "^6.0.3",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "webfontloader": "^1.6.28"

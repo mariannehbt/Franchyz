@@ -5,6 +5,8 @@ import {Link} from "react-router-dom";
 import DashboardAdmin from "components/dashboardAdmin.jsx";
 import * as clubAPI from "services/clubAPI.jsx";
 import {Tabs} from "antd";
+import {CheckOutlined} from "@ant-design/icons";
+
 import TeamList from "components/teamList.jsx";
 
 function AdminCoachDashboardPage() {
@@ -64,16 +66,14 @@ function AdminCoachDashboardPage() {
 				)}
 			</div>
 			{/* {setupElements()} */}
-			<div
-				className="container rounded mt-5"
-				style={{backgroundColor: "lightgrey"}}
-			>
+			<div className="container rounded mt-5" style={{backgroundColor: "#E8E7E7"}}>
 				<br />
 				<div className="card-container">
 					<Tabs type="card">
 						<TabPane tab="Your Club" key="1">
 							<h6> Club details:</h6>
 							<p>Club name:{club.name}</p>
+							<p>{club.name}</p>
 							<p> Club description: {club.description}</p>
 							<p>Pool: {club.pool}</p>
 							<p>Conference: {club.conference}</p>
@@ -87,17 +87,17 @@ function AdminCoachDashboardPage() {
 						<TabPane tab="Your teams" key="2">
 							<TeamList teams={club.teams} />
 							<Link to="/create-team">
-								<button type="button" className="btn btn-primary">
-									{" "}
-									Add new Team{" "}
-								</button>{" "}
+								<button type="button" className="btn btn-primary ml-4">
+									Add new Team
+								</button>
 							</Link>
 						</TabPane>
 					</Tabs>
 				</div>
 				<br></br>
 			</div>
-			,
+
+			<br />
 		</>
 	);
 }
