@@ -61,9 +61,7 @@ function createPractice( EventTitleP, EventDescriptionP, AddressP, CityP, Countr
 	});
 }
 
-// /clubs/:club_id/teams/:team_id/practices/:id(.:format)
 function getPractice(practice_id) {
-
 		let baseURL = process.env.REACT_APP_API_URL;
 		let endUrl = `/practices/${practice_id}.json`
 		let url = baseURL + endUrl
@@ -75,7 +73,7 @@ function getPractice(practice_id) {
 		let request = {
 		  headers: headers
 		}
-	  
+		
 		return fetch(url, request)
 		  .then(response => response.json())
 		  .then(response => { return response })
