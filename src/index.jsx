@@ -5,12 +5,7 @@ import WebFont from "webfontloader";
 
 WebFont.load({
 	google: {
-		families: [
-			"Roboto Slab:400,500,600",
-			"sans-serif",
-			"Montserrat:400,500,600",
-			"sans-serif",
-		],
+		families: ["Roboto Slab:400,500,600", "sans-serif"],
 	},
 });
 

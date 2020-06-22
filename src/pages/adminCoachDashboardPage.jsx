@@ -5,8 +5,6 @@ import {Link} from "react-router-dom";
 import DashboardAdmin from "components/dashboardAdmin.jsx";
 import * as clubAPI from "services/clubAPI.jsx";
 import {Tabs} from "antd";
-import {CheckOutlined} from "@ant-design/icons";
-
 import TeamList from "components/teamList.jsx";
 
 function AdminCoachDashboardPage() {
