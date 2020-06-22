@@ -61,6 +61,27 @@ function createPractice( EventTitleP, EventDescriptionP, AddressP, CityP, Countr
 	});
 }
 
+// /clubs/:club_id/teams/:team_id/practices/:id(.:format)
+function getPractice(practice_id) {
+
+		let baseURL = process.env.REACT_APP_API_URL;
+		let endUrl = `/practices/${practice_id}.json`
+		let url = baseURL + endUrl
+	  
+		let headers = {
+		  'Content-Type': 'application/json'
+		}
+	  
+		let request = {
+		  headers: headers
+		}
+	  
+		return fetch(url, request)
+		  .then(response => response.json())
+		  .then(response => { return response })
+	  
+	  }
+
 const getAttendedGames = (player_id, club_id, team_id) => {
 
   let headers = {
@@ -85,4 +106,4 @@ const getAttendedGames = (player_id, club_id, team_id) => {
     })
 }
 
-export { createPractice, createGame, getAttendedGames };
+export { createPractice, createGame, getAttendedGames, getPractice };
