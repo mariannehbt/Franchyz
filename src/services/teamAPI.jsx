@@ -12,6 +12,25 @@ function getAllTeams(id) {
     .then((response) => { return response });
 }
 
+function getTeamsOfClub(id) {
+  
+  let baseURL = process.env.REACT_APP_API_URL;
+  let endUrl = `/clubs/${id}/teams.json`
+  let url = baseURL + endUrl
+
+  let headers = {
+    'Content-Type': 'application/json'
+  }
+
+  let request = {
+    headers: headers
+  }
+
+  return fetch(url, request)
+    .then(response => response.json())
+    .then(response => { return response })
+}
+
 function createTeam(TeamName, Creator_id, Coach_id, Club_id) {
   const data = {
     title: TeamName,
@@ -36,18 +55,21 @@ function createTeam(TeamName, Creator_id, Coach_id, Club_id) {
 }
 
 
-const getTeam = (clubID, teamID) => {
-  const data = {
-    clubID: clubID,
-    teamID: teamID
-  };
+const getTeam = (clubId, teamId) => {
 
-  return fetch(`http://localhost:3000/clubs/${data.clubID}/teams/${data.teamID}`, {
+  let baseUrl = process.env.REACT_APP_API_URL;
+  let endUrl = `/clubs/${clubId}/teams/${teamId}.json`;
+  let url = baseUrl + endUrl;
+
+  let request = {
     headers: {
       'Content-Type': 'application/json'
     }
-  })
+  }
+
+  return fetch(url, request)
     .then(response => response.json())
     .then(response => { return response })
 };
-export { createTeam, getAllTeams, getTeam };
+
+export { createTeam, getAllTeams, getTeamsOfClub, getTeam };

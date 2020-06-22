@@ -40,7 +40,7 @@ function Navbar(){
       <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
         <ul className="navbar-nav d-flex">
           <li className="">
-            <Link to="/" className="logo">FRANCHYZ</Link>
+            <Link to="/" className="logo mr-5">FRANCHYZ</Link>
           </li>
             {myDashboardLink()}
         </ul>
