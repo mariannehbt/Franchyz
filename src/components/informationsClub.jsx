@@ -2,16 +2,16 @@ import React from "react";
 import {Avatar, Col, Row} from "antd";
 
 function InformationsClub({club}) {
-	console.log(club.logo_url);
+	console.log("url image" + club.logo_url);
 	return (
 		<div className="container">
 			<Row>
 				<Col>
-					{club.logo_url !== null ? (
-						<img src={club.logo_url} alt="logo" className="mt-5"></img>
-					) : (
+					{club.logo_url === null || "undefined" ? (
 						<Avatar size={50}>LOGO</Avatar>
-					)}{" "}
+					) : (
+						<img src={club.logo_url} alt="logo" className="mt-5"></img>
+					)}
 				</Col>
 				<Col>
 					<h6 className="font-weight-bold  mt-3 ml-5"> Club details:</h6>

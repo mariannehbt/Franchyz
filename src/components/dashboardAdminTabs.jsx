@@ -1,5 +1,4 @@
 import React from "react";
-// import InformationsClub from "./informationsClub.jsx";
 import TeamList from "./teamList.jsx";
 import {Link} from "react-router-dom";
 import {Tabs} from "antd";

@@ -10,32 +10,37 @@ function AdminCoachDashboardPage() {
 	const myTeamId = useSelector((state) => state.userReducer.team_id);
 
 	console.log(myClubId);
+	const [club, setClub] = useState("");
 
 	useEffect(() => {
 		loadClub();
-	}, []);
-	const [club, setClub] = useState("");
+	}, [club]);
 
 	async function loadClub() {
 		const response = await clubAPI.getClub(myClubId);
 		setClub(response);
 	}
-
+	console.log("teamid" + myTeamId);
+	console.log("clubid" + myClubId);
 	return (
 		<>
 			<div className="text-center mt-5">
-				<h1>Welcome to FRANCHYZ</h1>
-				{myTeamId !== null ? (
+				{(myTeamId === null || "undefined") &&
+				(myClubId === null || "undefined") ? (
 					<div>
-						<h4>You just created an acccount for your sport club.</h4>
-						<h4>Start creating a club and adding a team to create events.</h4>
+						<h1>Dashboard FRANCHYZ</h1>
+						<h4>
+							Start creating a club and adding a team before you start creating events.
+						</h4>
 					</div>
 				) : (
-					<Link to="/newEvent">
-						<button type="button" className="btn btn-primary mt-4">
-							Create event
-						</button>
-					</Link>
+					<div>
+						<h1>Welcome to FRANCHYZ</h1>
+						<h4>You just created an acccount for your sport club.</h4>
+						<h4>
+							Start creating a club and adding a team before you start creating events.
+						</h4>
+					</div>
 				)}
 
 				{myClubId === null ? (
@@ -45,7 +50,11 @@ function AdminCoachDashboardPage() {
 						</button>
 					</Link>
 				) : (
-					""
+					<Link to="/newEvent">
+						<button type="button" className="btn btn-primary mt-4">
+							Create event
+						</button>
+					</Link>
 				)}
 			</div>
 
