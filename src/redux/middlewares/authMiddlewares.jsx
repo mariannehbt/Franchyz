@@ -35,7 +35,6 @@ const login = (email, password, type) => {
         let decoded_token = jwt_decode(response.headers.get('Authorization'))
         dispatch(loginSuccess(decoded_token))
         dispatch(infoUserUp(decoded_token))
-        return 'ok'
       };
     });
   };
