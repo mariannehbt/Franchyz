@@ -14,7 +14,7 @@ function AdminCoachDashboardPage() {
 
 	useEffect(() => {
 		loadClub();
-	}, [club]);
+	});
 
 	async function loadClub() {
 		const response = await clubAPI.getClub(myClubId);
@@ -25,18 +25,17 @@ function AdminCoachDashboardPage() {
 	return (
 		<>
 			<div className="text-center mt-5">
-				{(myTeamId === null || "undefined") &&
-				(myClubId === null || "undefined") ? (
+				{myClubId === null ? (
 					<div>
-						<h1>Dashboard FRANCHYZ</h1>
+						<h1>Welcome to FRANCHYZ</h1>
+						<h4>You just created an acccount for your sport club.</h4>
 						<h4>
 							Start creating a club and adding a team before you start creating events.
 						</h4>
 					</div>
 				) : (
 					<div>
-						<h1>Welcome to FRANCHYZ</h1>
-						<h4>You just created an acccount for your sport club.</h4>
+						<h1>Dashboard FRANCHYZ</h1>
 						<h4>
 							Start creating a club and adding a team before you start creating events.
 						</h4>
@@ -51,7 +50,7 @@ function AdminCoachDashboardPage() {
 					</Link>
 				) : (
 					<Link to="/newEvent">
-						<button type="button" className="btn btn-primary mt-4">
+						<button type="button" className="btn btn-primary mt-4 ml-4">
 							Create event
 						</button>
 					</Link>

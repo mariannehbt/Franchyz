@@ -17,7 +17,9 @@ function InformationsClub({club}) {
 					<h6 className="font-weight-bold  mt-3 ml-5"> Club details:</h6>
 					<div style={{marginLeft: "50px"}}>
 						<p>Club name: {club.name}</p>
-						<p> Club description: {club.description}</p>
+						<p> Founded in: {club.date_of_creation}</p>
+						<p> Club description: {club.de}</p>
+						<p>League: {club.league}</p>
 						<p>Pool: {club.pool}</p>
 						<p>Conference: {club.conference}</p>
 					</div>
