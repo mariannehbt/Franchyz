@@ -3,15 +3,11 @@ import "../styles/form.scss";
 import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import * as clubAPI from "services/clubAPI.jsx";
-import {Tabs} from "antd";
-import TeamList from "components/teamList.jsx";
-import DashboardAdmin from "components/dashboardAdmin.jsx";
 import DashboardAdminTabs from "components/dashboardAdminTabs.jsx";
 
 function AdminCoachDashboardPage() {
-	const {TabPane} = Tabs;
-
 	const myClubId = useSelector((state) => state.userReducer.club_id);
+	console.log(myClubId);
 
 	useEffect(() => {
 		loadClub();
@@ -23,79 +19,29 @@ function AdminCoachDashboardPage() {
 		setClub(response);
 	}
 
-	function setupElements() {
-		let ans;
-
-		if (myClubId == null) {
-			ans = (
-				<Link to="/newClub">
-					<button type="button" className="btn btn-primary">
-						Create Club
-					</button>
-				</Link>
-			);
-		} else {
-			ans = <DashboardAdmin club={club} />;
-		}
-		return ans;
-	}
-
 	return (
 		<>
 			<div className="text-center mt-5">
 				<h1>Welcome to FRANCHYZ</h1>
 				<h4>You just created an acccount for your sport club.</h4>
 				<h4>Start planning training sessions and competitions for your teams.</h4>
-				<Link to="/create-event">
+				<Link to="/newEvent">
 					<button type="button" className="btn btn-primary mt-4">
-						{" "}
-						Create event{" "}
-					</button>{" "}
+						Create event
+					</button>
 				</Link>
-				{myClubId !== "" ? (
+				{myClubId === null ? (
 					<Link to="/newClub">
-						<button type="button" className="btn btn-primary mt-4">
-							{" "}
-							Create club{" "}
-						</button>{" "}
+						<button type="button" className="btn btn-primary mt-4 ml-3">
+							Create club
+						</button>
 					</Link>
 				) : (
 					""
 				)}
 			</div>
 
-			{/* {setupElements()} */}
 			<DashboardAdminTabs club={club} />
-			{/* <div className="container rounded mt-5" style={{backgroundColor: "#E8E7E7"}}>
-				<br />
-				<div className="card-container">
-					<Tabs type="card">
-						<TabPane tab="Your Club" key="1">
-							<h6 className="font-weight-bold"> Club details:</h6>
-							<p>Club name:{club.name}</p>
-							<p>{club.name}</p>
-							<p> Club description: {club.description}</p>
-							<p>Pool: {club.pool}</p>
-							<p>Conference: {club.conference}</p>
-							<br />
-							<h6 className="font-weight-bold"> > Club address:</h6>
-							<p>Address:{club.address}</p>
-							<p>Zip code:{club.zip_code}</p>
-							<p>City: {club.city}</p>
-							<p>Country: {club.country}</p>
-						</TabPane>
-						<TabPane tab="Your teams" key="2">
-							<TeamList teams={club.teams} />
-							<Link to="/create-team">
-								<button type="button" className="btn btn-primary ml-4">
-									Add new Team
-								</button>
-							</Link>
-						</TabPane>
-					</Tabs>
-				</div>
-				<br></br>
-			</div> */}
 
 			<br />
 		</>

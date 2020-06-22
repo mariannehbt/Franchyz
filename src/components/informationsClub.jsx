@@ -23,10 +23,6 @@ function InformationsClub({club}) {
 				</Col>
 			</Row>
 			<div style={{marginLeft: "100px"}}>
-				{/* <p>Club name: {club.name}</p>
-				<p> Club description: {club.description}</p>
-				<p>Pool: {club.pool}</p>
-				<p>Conference: {club.conference}</p> */}
 				<h6 className="font-weight-bold mt-2"> Club address:</h6>
 				<p>Address: {club.address}</p>
 				<p>Zip code: {club.zip_code}</p>
