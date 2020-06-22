@@ -4,6 +4,7 @@ import { Select } from "antd";
 import FormPractice from "components/formPractice";
 import PlayerList from "components/playerList";
 import { useSelector, useDispatch } from 'react-redux';
+import useCheckboxChange from 'customHooks/useCheckboxChange'
 import * as teamAPI from 'services/teamAPI'
 
 function CreateEvents() {
@@ -12,26 +13,31 @@ function CreateEvents() {
   const [eventType, setEventType] = useState("");
   const [teams, setTeams] = useState('')
   const [players, setPlayers] = useState('')
-  const [choices, setChoices] = useState([])
+  const [checkbox, handleCheckboxChange] = useCheckboxChange()
+
   const { Option } = Select;
 
   useEffect(() => { setupTeams() }, [])
 
   async function setupTeams(){
     const ans = await teamAPI.getTeamsOfClub(clubId)
-    console.log(ans)
     setTeams(ans)
-    setPlayers(
-    <PlayerList players={ans[1].players} setChoices={setChoices} />
-    )
+    setPlayers(<PlayerList players={ans[1].players} handleCheckboxChange={handleCheckboxChange} checkbox={checkbox} />)
   }
 
   function onChange(value) {
     setEventType(value);
   }
 
+  function test() {
+    console.log(checkbox)
+  }
+
   return (
     <div>
+      <button onClick={test}> test </button>
+     iiiiiiii 
+      {checkbox.lenght}
       <br />
       <br />
       <hr className="my-4" style={{ width: "600px" }}></hr>

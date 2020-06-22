@@ -3,7 +3,6 @@ import '../styles/form.scss'
 import { useParams } from 'react-router-dom'
 import * as teamAPI from 'services/teamAPI'
 import PlayerList from 'components/playerList.jsx'
-import { Link } from 'react-router-dom';
 
 function TeamShow () {
 

@@ -1,12 +1,15 @@
 import { useState } from 'react'
 
-function useCheckboxChange(init) {
-  const [checkbox, setCheckbox] = useState(init)
+const useCheckboxChange = () => {
+  const [checkbox, setCheckbox] = useState({lol: 'dwd'})
 
-  const handleCheckboxChange = (e) => setCheckbox({
+  const handleCheckboxChange = (e, yolo) => {
+    console.log(checkbox, yolo)
+    
+  setCheckbox({
     ...checkbox,
-    [e.currentTarget.name]: e.currentTarget.value
-  })
+    [e.currentTarget.name]: e.currentTarget.checked
+  })}
 
   return [checkbox, handleCheckboxChange]
 }
