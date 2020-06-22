@@ -6,6 +6,7 @@ import PlayerList from "components/playerList";
 import { useSelector, useDispatch } from 'react-redux';
 import useCheckboxChange from 'customHooks/useCheckboxChange'
 import * as teamAPI from 'services/teamAPI'
+import TransfertList from 'components/transfertList.jsx'
 
 function CreateEvents() {
 
@@ -13,7 +14,7 @@ function CreateEvents() {
   const [eventType, setEventType] = useState("");
   const [teams, setTeams] = useState('')
   const [players, setPlayers] = useState('')
-  const [checkbox, handleCheckboxChange] = useCheckboxChange()
+  const [validateKeys, setValidateKeys] = useState()
 
   const { Option } = Select;
 
@@ -22,24 +23,23 @@ function CreateEvents() {
   async function setupTeams(){
     const ans = await teamAPI.getTeamsOfClub(clubId)
     setTeams(ans)
-    setPlayers(<PlayerList players={ans[1].players} handleCheckboxChange={handleCheckboxChange} checkbox={checkbox} />)
+    console.log(ans[1].players)
+    setPlayers(<TransfertList players={ans[1].players} setValidateKeys={setValidateKeys} />)
+  }
+
+  function test() {
+    console.log(validateKeys)
   }
 
   function onChange(value) {
     setEventType(value);
   }
 
-  function test() {
-    console.log(checkbox)
-  }
-
   return (
     <div>
+      <br />
+      <br />
       <button onClick={test}> test </button>
-     iiiiiiii 
-      {checkbox.lenght}
-      <br />
-      <br />
       <hr className="my-4" style={{ width: "600px" }}></hr>
       <div className="bg-dark pb-3 p-2 mx-auto rounded select" style={{ width: "35%" }} >
 
@@ -55,9 +55,9 @@ function CreateEvents() {
       {players}
 
       {eventType === "game" ? (
-        <FormGame style={{ marginTop: "25px" }} eventType={eventType} />
+        <FormGame style={{ marginTop: "25px" }} eventType={eventType} playersIds={validateKeys} />
       ) : (
-        <FormPractice style={{ marginTop: "25px" }} eventType={eventType} />
+        <FormPractice style={{ marginTop: "25px" }} eventType={eventType} playersIds={validateKeys}/>
       )}
     </div>
   );
