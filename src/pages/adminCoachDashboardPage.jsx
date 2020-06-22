@@ -2,10 +2,11 @@ import React, {useEffect, useState} from "react";
 import "../styles/form.scss";
 import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
-import DashboardAdmin from "components/dashboardAdmin.jsx";
 import * as clubAPI from "services/clubAPI.jsx";
 import {Tabs} from "antd";
 import TeamList from "components/teamList.jsx";
+import DashboardAdmin from "components/dashboardAdmin.jsx";
+import DashboardAdminTabs from "components/dashboardAdminTabs.jsx";
 
 function AdminCoachDashboardPage() {
 	const {TabPane} = Tabs;
@@ -29,9 +30,8 @@ function AdminCoachDashboardPage() {
 			ans = (
 				<Link to="/newClub">
 					<button type="button" className="btn btn-primary">
-						{" "}
-						Create Club{" "}
-					</button>{" "}
+						Create Club
+					</button>
 				</Link>
 			);
 		} else {
@@ -47,14 +47,14 @@ function AdminCoachDashboardPage() {
 				<h4>You just created an acccount for your sport club.</h4>
 				<h4>Start planning training sessions and competitions for your teams.</h4>
 				<Link to="/create-event">
-					<button type="button" className="btn btn-primary">
+					<button type="button" className="btn btn-primary mt-4">
 						{" "}
 						Create event{" "}
 					</button>{" "}
 				</Link>
 				{myClubId !== "" ? (
 					<Link to="/newClub">
-						<button type="button" className="btn btn-primary">
+						<button type="button" className="btn btn-primary mt-4">
 							{" "}
 							Create club{" "}
 						</button>{" "}
@@ -63,20 +63,22 @@ function AdminCoachDashboardPage() {
 					""
 				)}
 			</div>
+
 			{/* {setupElements()} */}
-			<div className="container rounded mt-5" style={{backgroundColor: "#E8E7E7"}}>
+			<DashboardAdminTabs club={club} />
+			{/* <div className="container rounded mt-5" style={{backgroundColor: "#E8E7E7"}}>
 				<br />
 				<div className="card-container">
 					<Tabs type="card">
 						<TabPane tab="Your Club" key="1">
-							<h6> Club details:</h6>
+							<h6 className="font-weight-bold"> Club details:</h6>
 							<p>Club name:{club.name}</p>
 							<p>{club.name}</p>
 							<p> Club description: {club.description}</p>
 							<p>Pool: {club.pool}</p>
 							<p>Conference: {club.conference}</p>
 							<br />
-							<h6> Club address:</h6>
+							<h6 className="font-weight-bold"> > Club address:</h6>
 							<p>Address:{club.address}</p>
 							<p>Zip code:{club.zip_code}</p>
 							<p>City: {club.city}</p>
@@ -93,7 +95,7 @@ function AdminCoachDashboardPage() {
 					</Tabs>
 				</div>
 				<br></br>
-			</div>
+			</div> */}
 
 			<br />
 		</>
