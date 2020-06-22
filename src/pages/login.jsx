@@ -33,8 +33,12 @@ function Login() {
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
     dispatch(login(email, password, type))   
-    dispatch(login(email, password, type))   
-    setRedirect(<Redirect to='/dashboardAdmin' />)
+    if (error !== undefined && error !== null) {
+      setRedirect(<Redirect to='/login' />)
+    } else {
+      setRedirect(<Redirect to='/dashboardAdmin' />)
+    }
+      
   };
 
   return (
