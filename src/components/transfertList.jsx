@@ -1,19 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Space, Transfer, Switch } from 'antd';
 
-
-
-const mockData = [];
-for (let i = 0; i < 20; i++) {
-  mockData.push({
-    key: i.toString(),
-    title: `content${i + 1}`,
-    description: `description of content${i + 1}`,
-    disabled: i % 3 < 1,
-  });
-}
-
-const oriTargetKeys = mockData.filter(item => +item.key % 3 > 1).map(item => item.key);
 
 function TransfertList({players, setValidateKeys}) {
 

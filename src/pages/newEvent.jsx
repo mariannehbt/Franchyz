@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import FormGame from "components/formGame.jsx";
 import { Select } from "antd";
 import FormPractice from "components/formPractice";
-import PlayerList from "components/playerList";
-import { useSelector, useDispatch } from 'react-redux';
-import useCheckboxChange from 'customHooks/useCheckboxChange'
+import { useSelector } from 'react-redux';
 import * as teamAPI from 'services/teamAPI'
 import TransfertList from 'components/transfertList.jsx'
 
@@ -27,10 +25,6 @@ function CreateEvents() {
     setPlayers(<TransfertList players={ans[1].players} setValidateKeys={setValidateKeys} />)
   }
 
-  function test() {
-    console.log(validateKeys)
-  }
-
   function onChange(value) {
     setEventType(value);
   }
@@ -39,7 +33,6 @@ function CreateEvents() {
     <div>
       <br />
       <br />
-      <button onClick={test}> test </button>
       <hr className="my-4" style={{ width: "600px" }}></hr>
       <div className="bg-dark pb-3 p-2 mx-auto rounded select" style={{ width: "35%" }} >
 
