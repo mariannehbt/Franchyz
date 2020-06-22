@@ -19,6 +19,7 @@ function InformationsClub({club}) {
 						<p>Club name: {club.name}</p>
 						<p> Club description: {club.description}</p>
 						<p>Pool: {club.pool}</p>
+						<p>Conference: {club.conference}</p>
 					</div>
 				</Col>
 			</Row>

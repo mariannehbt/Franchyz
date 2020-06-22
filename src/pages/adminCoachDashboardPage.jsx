@@ -7,6 +7,8 @@ import DashboardAdminTabs from "components/dashboardAdminTabs.jsx";
 
 function AdminCoachDashboardPage() {
 	const myClubId = useSelector((state) => state.userReducer.club_id);
+	const myTeamId = useSelector((state) => state.userReducer.team_id);
+
 	console.log(myClubId);
 
 	useEffect(() => {
@@ -23,13 +25,19 @@ function AdminCoachDashboardPage() {
 		<>
 			<div className="text-center mt-5">
 				<h1>Welcome to FRANCHYZ</h1>
-				<h4>You just created an acccount for your sport club.</h4>
-				<h4>Start planning training sessions and competitions for your teams.</h4>
-				<Link to="/newEvent">
-					<button type="button" className="btn btn-primary mt-4">
-						Create event
-					</button>
-				</Link>
+				{myTeamId !== null ? (
+					<div>
+						<h4>You just created an acccount for your sport club.</h4>
+						<h4>Start creating a club and adding a team to create events.</h4>
+					</div>
+				) : (
+					<Link to="/newEvent">
+						<button type="button" className="btn btn-primary mt-4">
+							Create event
+						</button>
+					</Link>
+				)}
+
 				{myClubId === null ? (
 					<Link to="/newClub">
 						<button type="button" className="btn btn-primary mt-4 ml-3">
