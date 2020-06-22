@@ -13,7 +13,7 @@ import Register from "./pages/register.jsx";
 import CreateTeam from "./pages/createTeam.jsx";
 import AdminCoachDashboardPage from "./pages/adminCoachDashboardPage.jsx";
 import ShowTeam from './pages/showTeam.jsx'
-import playerDashboardPage from './pages/playerDashboardPage.jsx'
+import PlayerDashboardPage from './pages/playerDashboardPage.jsx'
 
 //Component
 import Navbar from "./components/layouts/navbar.jsx";
@@ -38,7 +38,7 @@ const App = () => {
           <Route path="/dashboardAdmin"> <AdminCoachDashboardPage /> </Route>
           <Route path="/create-team"> <CreateTeam /> </Route>
           <Route exact path="/"> <Home /> </Route>
-          <Route path="/dashboardPlayer"> <playerDashboardPage /> </Route>
+          <Route path="/dashboardPlayer"> <PlayerDashboardPage /> </Route>
         </Switch>
         <Footer />
       </Router>

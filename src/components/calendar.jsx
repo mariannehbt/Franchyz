@@ -6,18 +6,16 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 
-import { useSelector } from 'react-redux';
-
 import * as EventsAPI from 'services/eventsAPI';
 
 import '../styles/calendar.scss'
 
-function Calendar() {
+function Calendar(props) {
   const [games, setGames] = useState([])
   const [practices, setPractices] = useState([])
-  const user_id = 14
-  const club_id = 1
-  const team_id = 3
+  const user_id = props.player.player_id
+  const club_id = props.player.club_id
+  const team_id = props.player.team_id
   const history = useHistory();
 
   const tmp_event = {title: "Event Now", start: new Date()}
@@ -32,14 +30,16 @@ function Calendar() {
 
   const getGames =() => {
     EventsAPI.getAttendedGames(user_id, club_id, team_id)
-    .then(response => {
+    .then(response => {if (response.length < 1) {
+      console.log("no Attended games!");
+    } else {
       response.map(game => setGames([...games, {
         title: `GAME ${game.title}`,
         start: game.start,
         color: game.color,
         allDay: false
-      }]));
-    })
+      }]))
+    }})
   }
 
   const getPractices =() => {
