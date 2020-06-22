@@ -36,8 +36,6 @@ function profileUpdate({ id, type, first_name }) {
   	};
   };
 
-  console.log(data);
-
 	type = pluralyzeType(type);
 
 	let headers = {
@@ -55,7 +53,11 @@ function profileUpdate({ id, type, first_name }) {
 	let endUrl = `/${type}/${id}.json`;
 	let url = baseURL + endUrl;
 
+	console.log(url)
+	console.log(request)
+
 	return fetch(url, request)
+		.then(response => response.json())
 		.then(response => {return response})
 	};
 

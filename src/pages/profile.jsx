@@ -43,8 +43,6 @@ const Profile = () => {
 			};
 		};
 
-		console.log(data)
-
 		const submit = (event) => {
 			event.preventDefault();
 			let email = document.getElementById('email').value;
