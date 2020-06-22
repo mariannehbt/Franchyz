@@ -24,9 +24,7 @@ function profile(id, type) {
 		.then(response => {return response})
 	};
 
-export { profile };
-
-function profileUpdate(id, type, first_name) {
+function profileUpdate({ id, type, first_name }) {
 	let data;
 	if (type === 'player') {
 		data = {
@@ -48,7 +46,7 @@ function profileUpdate(id, type, first_name) {
 	};
 
 	let request = {
-		method: 'put',
+		method: 'patch',
 		headers: headers,
 		body: JSON.stringify(data)
 	};
@@ -61,4 +59,4 @@ function profileUpdate(id, type, first_name) {
 		.then(response => {return response})
 	};
 
-export { profileUpdate };
+export { profile, profileUpdate };

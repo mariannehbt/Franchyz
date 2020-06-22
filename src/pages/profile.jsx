@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as userAPI from '../services/userAPI.jsx';
+import { callAPI } from 'redux/middlewares/resourcesMiddlewares';
 import { useSelector, useDispatch } from 'react-redux';
 import '../styles/form.scss';
 
@@ -48,7 +49,7 @@ const Profile = () => {
 			event.preventDefault();
 			let email = document.getElementById('email').value;
 			let first_name = document.getElementById('first_name').value
-			dispatch(userAPI.profileUpdate(first_name));
+			dispatch(callAPI('profileUpdate', { id: user_id, type: user_type, first_name: first_name }));
 		};
 
 		return (
@@ -59,7 +60,7 @@ const Profile = () => {
 
 				<div className='form-group'>
 					<label htmlFor='email'>Email :</label>
-					<input id='email' type='email' className='form-control' placeholder={(data.email != null) ? data.email : 'john.doe@gmail.com'} />
+					<input id='email' type='email' className='form-control' placeholder={(data.email != null) ? null : 'john.doe@gmail.com'} value={(data.email != null) ? data.email : null} />
 				</div>
 
 				<div className='form-group'>
