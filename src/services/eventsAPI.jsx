@@ -1,5 +1,11 @@
 import Cookies from 'js-cookie'
 
+function createPractice(game_id) {
+
+
+}
+
+
 function createPractice( EventTitleP, EventDescriptionP, AddressP, CityP, CountryP, ZipCodeP, DateTimeP, DurationP, Club_id, Team_id) {
 
 	const data = {
@@ -179,5 +185,5 @@ const confirmAttendance = (player_id, club_id, team_id, event_id) => {
     })
 }
 
-export { createPractice, getUnconfirmedEvents, getAttendedGames, getUnattendedGames, getAttendedPractices, getUnattendedPractices, confirmAttendance };
+export { getGame, createPractice, getUnconfirmedEvents, getAttendedGames, getUnattendedGames, getAttendedPractices, getUnattendedPractices, confirmAttendance };
 

@@ -13,6 +13,8 @@ import Register from "./pages/register.jsx";
 import CreateTeam from "./pages/createTeam.jsx";
 import AdminCoachDashboardPage from "./pages/adminCoachDashboardPage.jsx";
 import ShowTeam from './pages/showTeam.jsx'
+import ShowGame from './pages/showGame.jsx'
+
 import PlayerDashboardPage from './pages/playerDashboardPage.jsx'
 
 //Component
@@ -35,6 +37,7 @@ const App = () => {
           <Route exact path="/newEvent"> <NewEvent /> </Route>
           <Route exact path="/newClub"> <CreateClub /> </Route>
           <Route path={`/clubs/:clubId/teams/:teamId`}><ShowTeam /></Route>
+		  <Route path={`/games/:gamesId`}><ShowGame /></Route>
           <Route path="/dashboardAdmin"> <AdminCoachDashboardPage /> </Route>
           <Route path="/create-team"> <CreateTeam /> </Route>
           <Route exact path="/"> <Home /> </Route>
