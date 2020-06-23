@@ -4,10 +4,9 @@ import moment from "moment";
 import localization from "moment/locale/fr";
 import { InputNumber } from "antd";
 import "../styles/app.scss";
-import * as API from "services/eventsAPI";
 import { ConfigProvider } from "antd";
 import frFR from "antd/es/locale/fr_FR";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector} from "react-redux";
 import * as gameAPI from 'services/gameAPI'
 import * as eventAPI from 'services/eventAPI'
 
@@ -91,7 +90,7 @@ const FormGame = ({ playersIds }) => {
               <label style={{ marginLeft: "10px", color: "grey" }}>Description:</label>
               <input type="text" className="form-control" placeholder="Description" id="description" onChange={(e) => setEventDescription(e.target.value)} value={eventDescription} />
             </div>
-            <h3>L'adresse de la competition:</h3>
+            <h3>Address of location:</h3>
             <div className="form-group row col-12 ">
               <label style={{ marginLeft: "10px", color: "grey" }}>Address:</label>
               <input type="text" className="form-control" placeholder="Address" id="address" onChange={(e) => setAddress(e.target.value)} value={address} />
