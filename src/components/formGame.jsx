@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import * as gameAPI from 'services/gameAPI'
 import * as eventAPI from 'services/eventAPI'
 
-const FormGame = ({ EventType, ClubId, TeamId, playersIds }) => {
+const FormGame = ({ playersIds }) => {
 
   const [dateTime, setDateTime] = useState("");
   const [duration, setDuration] = useState("");
@@ -55,13 +55,9 @@ const FormGame = ({ EventType, ClubId, TeamId, playersIds }) => {
     }
 
     let game = await gameAPI.createGame(club_id, team_id, eventTitle, eventDescription, address, city, country, zipCode, dateTime, duration)   
-  playersIds.forEach(async function (playerId) {
-      await eventAPI.createEvent(game.id, playerId)
+    playersIds.forEach(async function (playerId) {
+      await eventAPI.createEvent(game.id, playerId, 'game')
     })
-
-    
-
-    //API.createGame( eventTitle, eventDescription, address, city, country, zipCode, dateTime, duration, club_id, team_id).then((response) => console.log(response)); 
   }
   return (
     <ConfigProvider locale={frFR}>
@@ -77,9 +73,9 @@ const FormGame = ({ EventType, ClubId, TeamId, playersIds }) => {
             {dateTime !== "" && (
               <h6 style={{ marginTop: "25px" }}> Date choisie: {dateTime}</h6>
             )}
-            <label>Durée de la competition:</label>
+            <label>Durée de la competition en min:</label>
             <br />
-            <InputNumber style={{ marginBottom: "15px" }} defaultValue={0} step={5} min={0} max={100000} formatter={(valueMin) => `${valueMin} min`} parser={(valueMin) => valueMin.replace(" min", "")} onChange={onChangeDuration} />
+            <InputNumber style={{ marginBottom: "15px" }} defaultValue={0} step={5} min={0} max={100000} formatter={(valueMin) => `${valueMin}`} parser={(valueMin) => valueMin.replace(" min", "")} onChange={onChangeDuration} />
           </Col>
         </Row>
 
