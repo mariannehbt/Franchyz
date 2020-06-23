@@ -8,14 +8,14 @@ import interactionPlugin from "@fullcalendar/interaction";
 
 import * as EventsAPI from 'services/eventsAPI';
 
+import { withPlayerEvent } from 'context/playerEventContext';
+
 import '../styles/calendar.scss'
 
-function Calendar(props) {
+function Calendar({ ctxt }) {
   const [games, setGames] = useState([])
   const [practices, setPractices] = useState([])
-  const user_id = props.player.player_id
-  const club_id = props.player.club_id
-  const team_id = props.player.team_id
+  const ctxt_player = ctxt.playerEvents.player;
   const history = useHistory();
 
   const tmp_event = {title: "Event Now", start: new Date()}
@@ -29,7 +29,7 @@ function Calendar(props) {
   }
 
   const getGames =() => {
-    EventsAPI.getAttendedGames(user_id, club_id, team_id)
+    EventsAPI.getAttendedGames(ctxt_player.player_id, ctxt_player.club_id, ctxt_player.team_id)
     .then(response => {if (response.length < 1) {
       console.log("no Attended games!");
     } else {
@@ -43,7 +43,7 @@ function Calendar(props) {
   }
 
   const getPractices =() => {
-    EventsAPI.getAttendedPractices(user_id, club_id, team_id)
+    EventsAPI.getAttendedPractices(ctxt_player.player_id, ctxt_player.club_id, ctxt_player.team_id)
     .then(response => {
       response.map(practice => setPractices([...practices, {
         title: `PRACTICE ${practice.title}`,
@@ -85,4 +85,4 @@ function Calendar(props) {
   )
 }
 
-export default Calendar
+export default withPlayerEvent(Calendar);

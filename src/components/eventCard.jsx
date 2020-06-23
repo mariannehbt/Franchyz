@@ -1,31 +1,37 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
+import { withPlayerEvent } from 'context/playerEventContext';
 import * as EventsAPI from 'services/eventsAPI';
 
+const EventCard = ({ ctxt }) => {
+	const ctxt_event = ctxt.playerEvents.events;
+	const ctxt_player = ctxt.playerEvents.player;
 
-const EventCard = (props) => {
-  let event = props.event
-  let player = props.player
+	const validate_attendance = (event_id) => {
+		EventsAPI.confirmAttendance(ctxt_player.player_id, ctxt_player.club_id, ctxt_player.team_id, event_id)
+		.then(response => ctxt.upd(response));
+	};
 
-  const validate_attendance = (event) => {
-    EventsAPI.confirmAttendance(player.player_id, player.club_id, player.team_id, event.id)
-  }
+	const setCards = () => {
+		return ctxt_event.map((event, key) => (
+			<div className='card rounded mx-2 my-2' key={key}>
+				<div className='card-body d-flex flex-column align-items-center'>
+					<h5 className='card-title'>{event.title}</h5>
+					<p className='card-text'>{event.start}</p>
+					<button className='btn btn-primary w-75' onClick={ () => validate_attendance(event.id) }>Validate Participation</button>
+				</div>
+			</div>
+		));
+	};
 
-  if (event !== undefined) {
-    return (
-      <>
-      <div>
-        <div className="card rounded mx-2 my-2">
-          <div className="card-body d-flex flex-column align-items-center">
-            <h5 className="card-title">{event.title}</h5>
-            <p className="card-text">{event.start}</p>
-            <button className="btn btn-primary w-75" onClick={() => validate_attendance(event)}>Validate Participation</button>
-          </div>
-        </div>
-      </div>
-      </>
-    )
-  }
-}
+	useEffect( () => {
+		setCards()
+	}, []);
 
-export default EventCard
+	return(
+		<div className='d-flex flex-wrap mb-3'>
+			{ setCards() }
+		</div>
+	);
+};
+
+export default withPlayerEvent(EventCard);

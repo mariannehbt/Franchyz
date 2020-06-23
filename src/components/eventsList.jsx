@@ -1,33 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import EventCard from 'components/eventCard'
+import React, { useEffect } from 'react';
+import { withPlayerEvent } from 'context/playerEventContext';
 
-const EventsList = (props) => {
-  let events = props.events
-  let player = props.player
+const EventsList = ({ ctxt }) => {
+	const ctxt_event = ctxt.playerEvents.events;
 
-  const setList = (events) => {
-    if (events !== null){
-      return events.map(event => <EventCard key={event.id} event={event} player={player}/>)
-    } else {
-      return (
-        <div className='bg-primary'>
-          fxcgbn
-        </div>
-      )
-    }
-  }
+	const setList = () => {
+		return ctxt_event.map((event, key) => <li key={key}>{event.title}</li>);
+	};
 
-  useEffect(() => {
-    setList(events)
-  }, [])
+	useEffect( () => {
+		setList()
+	}, []);
 
-  return (
-    <>
-      <div className='d-flex flex-wrap mb-3'>
-        {setList(events)}
-      </div>
-    </>
-  )
-}
+	return(
+		<div className='d-flex flex-wrap mb-3'>
+			<p>{ctxt_event.length} pending events</p>
+			<ul>
+				{setList()}
+			</ul>
+		</div>
+	);
+};
 
-export default EventsList
+export default withPlayerEvent(EventsList);
