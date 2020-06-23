@@ -40,11 +40,12 @@ function profileUpdate({ id, type, first_name }) {
 
 	let headers = {
 		'Content-Type': 'application/json',
-		Authorization: Cookies.get('token')
+		Authorization: Cookies.get('token'),
+		// 'Access-Control-Allow-Methods': '*'
 	};
 
 	let request = {
-		method: 'patch',
+		method: 'PUT',
 		headers: headers,
 		body: JSON.stringify(data)
 	};

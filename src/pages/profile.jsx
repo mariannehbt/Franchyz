@@ -47,7 +47,7 @@ const Profile = () => {
 			event.preventDefault();
 			let email = document.getElementById('email').value;
 			let first_name = document.getElementById('first_name').value
-			dispatch(callAPI('profileUpdate', { id: user_id, type: user_type, first_name: first_name }));
+			userAPI.profileUpdate({ id: user_id, type: user_type, first_name: first_name });
 		};
 
 		return (
