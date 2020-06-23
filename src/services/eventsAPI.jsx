@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie'
+
 	function getGame(gamesId) {
 		let baseURL = process.env.REACT_APP_API_URL;
 		let endUrl = `/games/${gamesId}.json`
@@ -14,8 +15,8 @@ import Cookies from 'js-cookie'
     
 		return fetch(url, request)
 		  .then(response => response.json())
-		  .then(response => { return response })
-	  
+      .then(response => { return response })
+      .catch(err => console.log("Error: ", err))
 	  }
 
 

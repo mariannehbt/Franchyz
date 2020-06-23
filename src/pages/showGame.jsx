@@ -14,9 +14,12 @@ function GameShow() {
 	
 	}, [])
 
-	  moment.updateLocale('fr', localization);
 
+	  moment.updateLocale('fr', localization);
+	  console.log("game" + game.status);
 	return <>
+
+{ game.status === 404 ? ( <h5 className="text-center mt-5 redtext">The event does not exist.</h5>  ) :
 <div className="card" style={{height:"350px", width:"400px", marginLeft:"100px", marginTop:"100px"}}>
   <div className="card-header">
   <div className="text-uppercase">{game.title}</div> 
@@ -34,7 +37,7 @@ function GameShow() {
 	{ game.canceled !== "false" ? "" : <h6 className="redtext">The event is canceled.</h6>
 	}
   </div>
-</div>
+</div> }
 	
 	</>;
 }
