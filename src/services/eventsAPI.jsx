@@ -11,8 +11,7 @@ import Cookies from 'js-cookie'
 		let request = {
 		  headers: headers
     }
-    console.log("test"+ gamesId)
-		
+    
 		return fetch(url, request)
 		  .then(response => response.json())
 		  .then(response => { return response })

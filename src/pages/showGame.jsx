@@ -14,15 +14,9 @@ function GameShow() {
 	
 	}, [])
 
-
-	//   console.log("response" + game.canceled);
-	//   console.log("response" + game.title);
-	//   console.log("response" + practice.players);
 	  moment.updateLocale('fr', localization);
 
 	return <>
-
-
 <div className="card" style={{height:"350px", width:"400px", marginLeft:"100px", marginTop:"100px"}}>
   <div className="card-header">
   <div className="text-uppercase">{game.title}</div> 
