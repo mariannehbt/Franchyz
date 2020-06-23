@@ -15,6 +15,7 @@ import AdminCoachDashboardPage from "./pages/adminCoachDashboardPage.jsx";
 import ShowTeam from "./pages/showTeam.jsx";
 import ShowPractice from "./pages/showPractice.jsx";
 import PlayerDashboardPage from './pages/playerDashboardPage.jsx'
+import Profile from './pages/profile.jsx';
 
 //Component
 import Navbar from "./components/layouts/navbar.jsx";
@@ -26,26 +27,28 @@ import "bootstrap/dist/css/bootstrap.css";
 import "antd/dist/antd.css";
 
 const App = () => {
-	return (
-		<Provider store={store}>
-			<Router>
-				<Navbar />
-				<Switch>
-					<Route path="/login"><Login /></Route>
-					<Route path="/register"><Register /></Route>
-					<Route exact path="/newEvent"> <NewEvent /> </Route>
-					<Route exact path="/newClub"><CreateClub /></Route>
-					<Route path={`/clubs/:clubId/teams/:teamId`}><ShowTeam /></Route>
-					<Route path={`/practices/:practice_id`}><ShowPractice /></Route>
-					<Route path="/dashboardAdmin"><AdminCoachDashboardPage /></Route>
-					<Route path="/create-team"><CreateTeam /></Route>
-					<Route exact path="/"><Home /></Route>
-					<Route path="/dashboardPlayer"> <PlayerDashboardPage /> </Route>
-				</Switch>
-				<Footer />
-			</Router>
-		</Provider>
-	);
+  return (
+    <Provider store={store}>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route path="/login"> <Login /> </Route>
+          <Route path="/register"> <Register /> </Route>
+          <Route path="/profile"> <Profile /> </Route>
+          <Route exact path="/create-club"> <CreateClub /> </Route>
+          <Route exact path="/newEvent"> <NewEvent /> </Route>
+          <Route exact path="/newClub"> <CreateClub /> </Route>
+          <Route path={`/practices/:practice_id`}><ShowPractice /></Route>
+          <Route path={`/clubs/:clubId/teams/:teamId`}><ShowTeam /></Route>
+          <Route path="/dashboardAdmin"> <AdminCoachDashboardPage /> </Route>
+          <Route path="/create-team"> <CreateTeam /> </Route>
+          <Route exact path="/"> <Home /> </Route>
+          <Route path="/dashboardPlayer"> <PlayerDashboardPage /> </Route>
+        </Switch>
+        <Footer />
+      </Router>
+    </Provider>
+  );
 };
 
 export default App;
