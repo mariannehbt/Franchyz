@@ -50,7 +50,7 @@ function Navbar() {
       return (
         <>
           <li className='nav-item active'>
-            <Link to='/dashboardAdmin' className='nav-link'>My Team</Link>
+            <Link to='/dashboardPlayer' className='nav-link'>Dashboard </Link>
           </li>
         </>
       );

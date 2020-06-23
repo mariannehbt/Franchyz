@@ -1,4 +1,4 @@
-function createGame(clubId, teamId, eventTitle, eventDescription, address, city, country, zipCode, dateTime, duration) {
+function createPractice(clubId, teamId, eventTitle, eventDescription, address, city, country, zipCode, dateTime, duration) {
 
   const data = {
     title: eventTitle,
@@ -13,7 +13,7 @@ function createGame(clubId, teamId, eventTitle, eventDescription, address, city,
   };
 
   let baseURL = process.env.REACT_APP_API_URL;
-  let endUrl = `/clubs/${clubId}/teams/${teamId}/games.json`;
+  let endUrl = `/clubs/${clubId}/teams/${teamId}/practices.json`;
   let url = baseURL + endUrl;
 
   return fetch(url, {
@@ -25,8 +25,9 @@ function createGame(clubId, teamId, eventTitle, eventDescription, address, city,
   })
     .then( response => response.json())
     .then((response) => { 
+      console.log(response)
       return response 
     });
 }
 
-export { createGame }
+export { createPractice }
