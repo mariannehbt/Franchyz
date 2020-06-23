@@ -9,6 +9,8 @@ const EventCard = (props) => {
 
   const validate_attendance = (event) => {
     EventsAPI.confirmAttendance(player.player_id, player.club_id, player.team_id, event.id)
+    let trig = props.trigger + 1
+    props.setTrigger(trig)
   }
 
   if (event !== undefined) {
