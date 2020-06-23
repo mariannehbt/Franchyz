@@ -1,9 +1,22 @@
 import Cookies from 'js-cookie'
-
-function createPractice(game_id) {
-
-
-}
+	function getGame(game_id) {
+		let baseURL = process.env.REACT_APP_API_URL;
+		let endUrl = `/practices/${game_id}.json`
+		let url = baseURL + endUrl
+	  
+		let headers = {
+		  'Content-Type': 'application/json'
+		}
+	  
+		let request = {
+		  headers: headers
+		}
+		
+		return fetch(url, request)
+		  .then(response => response.json())
+		  .then(response => { return response })
+	  
+	  }
 
 
 function createPractice( EventTitleP, EventDescriptionP, AddressP, CityP, CountryP, ZipCodeP, DateTimeP, DurationP, Club_id, Team_id) {
