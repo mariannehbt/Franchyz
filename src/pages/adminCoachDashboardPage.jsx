@@ -14,7 +14,7 @@ function AdminCoachDashboardPage() {
 
   useEffect(() => {
     loadClub();
-  });
+  }, []);
 
   async function loadClub() {
     const response = await clubAPI.getClub(myClubId);
