@@ -6,14 +6,11 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { message} from 'antd';
 
-
-
 const FormTeam = () => {
 	const Creator_id = useSelector((state) => state.userReducer.id);
 	const Club_id = useSelector((state) => state.userReducer.club_id);
 	const Coach_id = useSelector((state) => state.userReducer.id);
 	const [TeamName, setTeamName] = useState("");
-	const [status, setStatus] = useState("");
 	const history = useHistory();
 
 	function onSubmit() {
@@ -27,11 +24,7 @@ const FormTeam = () => {
 				 history.push("/dashboardAdmin");
 			})
 			.then(() => message.success('You added a new team', 2.5))
-
 		}
-	
-
-		
 	}
 
 	return (

@@ -23,11 +23,6 @@ function AdminCoachDashboardPage() {
   console.log("teamid" + myTeamId);
   console.log("clubid" + myClubId);
 
- 
-
-
- 
-
   return (
     <>
       <div className="text-center mt-5">
