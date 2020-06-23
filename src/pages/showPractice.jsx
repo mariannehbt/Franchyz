@@ -11,14 +11,16 @@ function PracticeShow() {
 
 	 useEffect(() => {  eventsAPI.getPractice(practice_id).then((response) => setPractice(response));
 	
-	}, [])
+	},[] )
 
 	  console.log("response" + practice.canceled);
 	  console.log("response" + practice.players);
 	  moment.updateLocale('fr', localization);
 
+	  console.log("status" + practice.status);
+
 	return <>
-<div className="card" style={{height:"350px", width:"400px", marginLeft:"100px", marginTop:"100px"}}>
+	{ practice.status === 404 ? <h3 className="text-center redtext mt-5">Ths practice does not exist.</h3> : <div className="card" style={{height:"350px", width:"400px", marginLeft:"100px", marginTop:"100px"}}>
   <div className="card-header">
   <div className="text-uppercase">{practice.title}</div> 
   </div>
@@ -35,7 +37,8 @@ function PracticeShow() {
 	{ practice.canceled !== "false" ? "" : <h6 className="redtext">The event is canceled.</h6>
 	}
   </div>
-</div>
+</div>}
+
 	
 	</>;
 }
