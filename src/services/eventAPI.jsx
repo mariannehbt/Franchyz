@@ -1,9 +1,17 @@
-function createEvent(gameId, playerId) {
+function createEvent(eventId, playerId, type) {
 
-  const data = {event: {
-    game_id: gameId,
-    player_id: playerId
-  }};
+  let data
+  if (type === 'game') {
+    data = {event: {
+      game_id: eventId,
+      player_id: playerId
+    }};
+  } else if(type === 'practice') {
+    data = {event: {
+      practice_id: eventId,
+      player_id: playerId
+    }};
+  }
 
   let baseURL = process.env.REACT_APP_API_URL;
   let endUrl = `/clubs/4/teams/7/players/7/events`

@@ -7,7 +7,7 @@ const EventsList = (props) => {
 
   const setList = (events) => {
     if (events !== null){
-      return events.map(event => <EventCard key={event.id} event={event} player={player}/>)
+      return events.map(event => <EventCard key={event.id} event={event} player={player} setTrigger={props.setTrigger} trigger={props.trigger}/>)
     } else {
       return (
         <div className='bg-primary'>
