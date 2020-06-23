@@ -8,6 +8,7 @@ import EventsList from 'components/eventsList'
 function PlayerDashboardPage () {
   const [events, setEvents] = useState([])
   const [data, setData] = useState()
+  const [trigger, setTrigger] = useState(0)
   const club_id = useSelector(state => state.userReducer.club_id)
   const team_id = useSelector(state => state.userReducer.team_id)
   const player_id = useSelector(state => state.userReducer.id)
@@ -22,12 +23,16 @@ function PlayerDashboardPage () {
     unconfirmed_events()
   }, [])
 
+  
+  useEffect(() => {
+    unconfirmed_events()
+  }, [trigger])
 
   if (events !== null) {
     return(
       <>
         <div className='my-3 mx-3'>
-          <EventsList events={events} player={player}/>
+          <EventsList events={events} player={player} setTrigger={setTrigger} trigger={trigger}/>
           <Calendar player={player}/>
         </div>
       </>
