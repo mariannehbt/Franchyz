@@ -3,23 +3,35 @@ import { Col, Row } from "antd";
 import "../styles/app.scss";
 import * as API from "services/teamAPI";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { message} from 'antd';
+
+
 
 const FormTeam = () => {
 	const Creator_id = useSelector((state) => state.userReducer.id);
 	const Club_id = useSelector((state) => state.userReducer.club_id);
 	const Coach_id = useSelector((state) => state.userReducer.id);
 	const [TeamName, setTeamName] = useState("");
+	const [status, setStatus] = useState("");
+	const history = useHistory();
 
 	function onSubmit() {
 		if (TeamName === "") {
 			document.getElementById("notice_teamname").innerHTML =
 				"Merci de saisir un nom pour la team";
-		}
-		console.log(TeamName);
+		} else {
+			API.createTeam(TeamName, Creator_id, Coach_id, Club_id).then((response) => {
+				console.log(response);
+				console.log(response.status);
+				 history.push("/dashboardAdmin");
+			})
+			.then(() => message.success('You added a new team', 2.5))
 
-		API.createTeam(TeamName, Creator_id, Coach_id, Club_id).then((response) => {
-			console.log(response);
-		});
+		}
+	
+
+		
 	}
 
 	return (
