@@ -42,7 +42,6 @@ const App = () => {
           <PrivateRoute exact path="/newClub" component={CreateClub} />
           <PrivateRoute exact path="/profile" component={Profile} />
           <PrivateRoute  path={`/clubs/:clubId/teams/:teamId`} component={ShowTeam} />
-          <PrivateRoute path={`/practices/:practice_id`} component={ShowPractice} /> 
           <PrivateRoute path={`/games/:gamesId`} component={ShowGame} />
           <Route path="/login"> <Login /> </Route>
           <Route path="/register"> <Register /> </Route>

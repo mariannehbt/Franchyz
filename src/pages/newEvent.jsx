@@ -21,8 +21,9 @@ function CreateEvents() {
   async function setupTeams(){
     const ans = await teamAPI.getTeamsOfClub(clubId)
     setTeams(ans)
-    console.log(ans[1].players)
-    setPlayers(<TransfertList players={ans[1].players} setValidateKeys={setValidateKeys} />)
+    if (ans.length > 0) {
+      setPlayers(<TransfertList players={ans[1].players} setValidateKeys={setValidateKeys} />)
+    }
   }
 
   function onChange(value) {
