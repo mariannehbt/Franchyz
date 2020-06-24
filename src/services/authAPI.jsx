@@ -1,13 +1,14 @@
 import Cookies from 'js-cookie';
 import {pluralyzeType} from 'helpers/misc.jsx'
 
-function signUp(email, password, type, team) {
+function signUp(email, password, type, teamId) {
+  console.log(type, teamId)
   let data;
   if (type === 'player') {
     data = {[type]: {
       email: email,
       password: password,
-      team_id: team,
+      team_id: teamId,
     }};
   } else {
     data = {[type]: {

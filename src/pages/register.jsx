@@ -2,18 +2,25 @@ import React, { useEffect, useState } from 'react';
 import { logup } from 'redux/middlewares/authMiddlewares';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom'
-import * as api_club from '../services/clubAPI.jsx';
-import * as api_team from '../services/teamAPI.jsx';
+import * as clubAPI from '../services/clubAPI.jsx';
+import * as teamAPI from '../services/teamAPI.jsx';
 import '../styles/form.scss';
 
 const Register = () => {
+  const isAuth = useSelector(state => state.authReducer.isAuth);
+
   const errors = useSelector(state => state.authReducer.error);
+  const [clubs, setClubs] = useState([]);
   const [dataClubs, setDataClubs] = useState([]);
-  const [clubId, setClubId] = useState(1);
+  const [clubId, setClubId] = useState(null);
+  const [teamId, setTeamId] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [type, setType] = useState('coach');
   const [dataTeams, setDataTeams] = useState([]);
   const [redirect, setRedirect] = useState('')
   const dispatch = useDispatch();
-  const isAuth = useSelector(state => state.authReducer.isAuth);
+  
 
   useEffect(() => {
     if (isAuth) {
@@ -45,31 +52,48 @@ const Register = () => {
   };
 
   const getDataClubs = async () => {
-    let response = await api_club.getAllClubs() 
-    let clubs = response.map((club, key) => ( <option key={key} value={club.id}>{club.name}</option>))
-    setDataClubs(clubs);
-  };
-
-  const getClubId = () => {
-    setClubId(document.getElementById('club').value);
-  };
-
-  const getDataTeams = async () => {
-    let response = await api_team.getAllTeams(clubId)
-    let teams = response.map((team, key) =>( <option key={key} value={team.id}>{team.title}</option>));
+    console.log('aaaaaaaaaaaaaa')
+    let response = await clubAPI.getClubs() 
+    setClubs(response)
+    setDataClubs(response.map((club, key) => ( <option key={key} value={club.id}>{club.name}</option>)));
+    let teams = response[0].teams.map((team, key) =>( <option key={key} value={team.id}>{team.title}</option>));
     setDataTeams(teams);
   };
 
-  useEffect(getDataClubs, []);
-  useEffect(getDataTeams, [clubId]);
+
+  useEffect(() => { getDataClubs() }, []);
+
+  const handleClubId = (e) => {
+    setClubId(e.currentTarget.value);
+    let teams = clubs.find(club => { if (club.id == e.currentTarget.value) return club }).teams
+    setTeamId(teams[0].id)
+
+    setDataTeams(teams.map((team, key) =>( <option key={key} value={team.id}>{team.title}</option>)))
+
+  };
+
+
+  const handleTeamId = (e) => {
+    console.log(teamId)
+    setTeamId(e.currentTarget.value)
+  }
+
+  const handleEmail = (e) => {
+    setEmail(e.currentTarget.value)
+  }
+
+  const handlePassword = (e) => {
+    setPassword(e.currentTarget.value)
+  }
+
+  const handleType = (e) => {
+    setType(e.currentTarget.value)
+  }
+
 
   const submit = (event) => {
     event.preventDefault();
-    let type = document.getElementById('type').value;
-    let email = document.getElementById('email').value;
-    let password = document.getElementById('password').value;
-    let team = document.getElementById('team').value;
-    dispatch(logup(email, password, type, team));
+    dispatch(logup(email, password, type, teamId));
   };
 
   return (
@@ -80,7 +104,7 @@ const Register = () => {
 
         <div className="form-group">
           <label htmlFor="email">You are:</label>
-          <select type="email" className="form-control" placeholder="Enter email" id="type">
+          <select type="email" className="form-control" placeholder="Enter email" id="type" onChange={handleType}>
             <option value="coach">Coach</option>
             <option value="player">Player</option>
           </select>
@@ -88,32 +112,26 @@ const Register = () => {
 
         <div className="form-group">
           <label htmlFor="email">If player, choose your club:</label>
-          <select type="email" className="form-control" placeholder="Enter email" id="club" onChange={getClubId}>
+          <select type="email" className="form-control" placeholder="Enter email" id="club" onChange={handleClubId}>
             {dataClubs}
           </select>
         </div>
 
         <div className="form-group">
           <label htmlFor="email">Then, choose your team:</label>
-          <select type="email" className="form-control" placeholder="Enter email" id="team">
+          <select type="email" className="form-control" placeholder="Enter email" id="team" onChange={handleTeamId}>
             {dataTeams}
           </select>
         </div>
 
         <div className="form-group">
           <label htmlFor="email">Email address:</label>
-          <input type="email" className="form-control" placeholder="Enter email" id="email" />
+          <input type="email" className="form-control" placeholder="Enter email" id="email" onChange={handleEmail}/>
         </div>
 
         <div className="form-group">
           <label htmlFor="pwd">Password:</label>
-          <input type="password" className="form-control" placeholder="Enter password" id="password" />
-        </div>
-
-        <div className="form-group form-check">
-          <label className="form-check-label">
-            <input className="form-check-input" type="checkbox" /> Remember me
-          </label>
+          <input type="password" className="form-control" placeholder="Enter password" id="password" onChange={handlePassword} />
         </div>
 
         <button type="submit" className="btn btn-primary">Submit</button>
