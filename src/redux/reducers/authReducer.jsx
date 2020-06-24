@@ -10,7 +10,7 @@ if (Cookies.get('token') === undefined || Cookies.get('token') === null){
     isAuth: false,
     id: null,
     typeUser: '',
-    error: null,
+    error: '',
   }
 }
 else{
@@ -18,7 +18,7 @@ else{
   tempo = {
     loading: false,
     isAuth: true,
-    error: null,
+    error: '',
     typeUser: decoded_token['scp'],
   } 
 }
@@ -40,7 +40,6 @@ const authReducer = (state = initialState, action) => {
         isAuth: true,
         loading: false,
         typeUser: action.typeUser,
-        error: null,
       }
     case LOGIN_FAILURE:
       return {
@@ -54,7 +53,6 @@ const authReducer = (state = initialState, action) => {
         loading: false,
         isAuth: false,
         id: null,
-        username: null
       }
     default:
       return {

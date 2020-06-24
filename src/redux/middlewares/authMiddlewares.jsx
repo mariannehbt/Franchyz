@@ -5,29 +5,26 @@ import {loginRequest, loginSuccess , loginFailure} from 'redux/actions/authActio
 import { infoUserUp } from 'redux/actions/userActions';
 
 const logup = (email, password, type, team) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(loginRequest());
-    let promise = authAPI.signUp(email, password, type, team);
+    let response = await authAPI.signUp(email, password, type, team);
 
-    promise.then((response) => {
-      if (response.body.errors !== undefined) {
-        dispatch(loginFailure(response.body.errors))
-      } else {
-        Cookies.set('token', response.headers.get('Authorization'), {sameSite: 'lax'})
-        let decoded_token = jwt_decode(response.headers.get('Authorization'))
-        dispatch(loginSuccess(decoded_token))
-        dispatch(infoUserUp(decoded_token))
-      };
-    });
+    if (response.body.errors !== undefined) {
+      dispatch(loginFailure(response.body.errors))
+    } else {
+      Cookies.set('token', response.headers.get('Authorization'), {sameSite: 'lax'})
+      let decoded_token = jwt_decode(response.headers.get('Authorization'))
+      dispatch(loginSuccess(decoded_token))
+      dispatch(infoUserUp(decoded_token))
+    };
   };
 };
 
 const login = (email, password, type) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(loginRequest());
-    let promise = authAPI.signIn(email, password, type);
+    let response = await authAPI.signIn(email, password, type);
 
-    promise.then((response) => {
       if (response.body.error !== undefined) {
         dispatch(loginFailure(response.body.error))
       } else {
@@ -36,7 +33,6 @@ const login = (email, password, type) => {
         dispatch(loginSuccess(decoded_token))
         dispatch(infoUserUp(decoded_token))
       };
-    });
   };
 };
 

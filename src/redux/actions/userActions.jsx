@@ -3,13 +3,12 @@ import {INFO_USER_UP, INFO_USER_DOWN} from '../types/userTypes.jsx'
 function infoUserUp(decoded_token){
   return {
     type: INFO_USER_UP,
-    id: decoded_token['sub'],
     email: decoded_token['email'],
-    first_name: decoded_token['first_name'],
-    last_name: decoded_token['last_name'],
+    firstName: decoded_token['first_name'],
+    lastName: decoded_token['last_name'],
     isAdmin: decoded_token['admin?'],
-    club_id: decoded_token['club_id'],
-    team_id: decoded_token['team_id'],
+    clubId: decoded_token['club_id'],
+    teamId: decoded_token['team_id'],
   }
 }
 

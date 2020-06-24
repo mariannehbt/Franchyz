@@ -11,11 +11,6 @@ function loginSuccess(decoded_token){
     type: LOGIN_SUCCESS,
     id: decoded_token['sub'],
     typeUser: decoded_token['scp'],
-    email: decoded_token['email'],
-    first_name: decoded_token['first_name'],
-    last_name: decoded_token['last_name'],
-    isAdmin: decoded_token['admin?'],
-    club_id: decoded_token['club_id'],
   }
 }
 
