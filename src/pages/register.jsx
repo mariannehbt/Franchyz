@@ -8,6 +8,7 @@ import '../styles/form.scss';
 
 const Register = () => {
   const isAuth = useSelector(state => state.authReducer.isAuth);
+  const typeUser = useSelector(state => state.authReducer.typeUser);
 
   const errors = useSelector(state => state.authReducer.error);
   const [clubs, setClubs] = useState([]);
@@ -24,7 +25,10 @@ const Register = () => {
 
   useEffect(() => {
     if (isAuth) {
-      setRedirect(<Redirect to='/dashboardAdmin' />)
+      if (typeUser === 'coach')
+        setRedirect(<Redirect to='/dashboardAdmin' />)
+      if (typeUser === 'player')
+        setRedirect(<Redirect to='/dashboardPlayer' />)
     } else {
       setRedirect(<Redirect to='/register' />)
     }
@@ -52,7 +56,6 @@ const Register = () => {
   };
 
   const getDataClubs = async () => {
-    console.log('aaaaaaaaaaaaaa')
     let response = await clubAPI.getClubs() 
     setClubs(response)
     setDataClubs(response.map((club, key) => ( <option key={key} value={club.id}>{club.name}</option>)));
