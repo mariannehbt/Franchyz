@@ -42,7 +42,7 @@ const Navbar = () => {
 					<li className='nav-item active'>
 						<Link to='/' className='nav-link'>Home</Link>
 					</li>
-					<li>
+					<li className='nav-item'>
 						{ myDashboardLink() }
 					</li>
 				</ul>
