@@ -17,7 +17,7 @@ const TeamList = ({teams}) => {
     );
   } else {
     return (
-      <div className="container">
+      <div className="container scrolly">
         <ul className='list-group list-group-flush'>
           {setList()}
         </ul>
