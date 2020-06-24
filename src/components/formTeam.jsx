@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Col, Row } from "antd";
 import "../styles/app.scss";
 import * as API from "services/teamAPI";
 import { useSelector } from "react-redux";
@@ -7,18 +6,18 @@ import { useHistory } from "react-router-dom";
 import { message} from 'antd';
 
 const FormTeam = () => {
-	const Creator_id = useSelector((state) => state.userReducer.id);
-	const Club_id = useSelector((state) => state.userReducer.club_id);
-	const Coach_id = useSelector((state) => state.userReducer.id);
-	const [TeamName, setTeamName] = useState("");
+	const creatorId = useSelector((state) => state.userReducer.id);
+	const clubId = useSelector((state) => state.userReducer.club_id);
+	const coachId = useSelector((state) => state.userReducer.id);
+	const [team, setTeam] = useState("");
 	const history = useHistory();
 
 	function onSubmit() {
-		if (TeamName === "") {
+		if (team === "") {
 			document.getElementById("notice_teamname").innerHTML =
 				"Merci de saisir un nom pour la team";
 		} else {
-			API.createTeam(TeamName, Creator_id, Coach_id, Club_id).then((response) => {
+			API.createTeam(team, creatorId, coachId, clubId).then((response) => {
 				console.log(response);
 				console.log(response.status);
 				 history.push("/dashboardAdmin");
@@ -41,8 +40,8 @@ const FormTeam = () => {
 								className="form-control"
 								placeholder="Nom"
 								id="title"
-								onChange={(e) => setTeamName(e.target.value)}
-								value={TeamName}
+								onChange={(e) => setTeam(e.target.value)}
+								value={team}
 							/>
 							<p id="notice_teamname" className="redtext"></p>
 						</div>
