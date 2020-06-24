@@ -6,11 +6,11 @@ function loginRequest(){
   }
 }
 
-function loginSuccess(decoded_token){
+function loginSuccess(decodedToken){
   return {
     type: LOGIN_SUCCESS,
-    id: decoded_token['sub'],
-    typeUser: decoded_token['scp'],
+    id: decodedToken['sub'],
+    typeUser: decodedToken['scp'],
   }
 }
 

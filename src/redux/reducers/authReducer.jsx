@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode'
 import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS } from '../types/authTypes'
 
 let tempo
-let decoded_token 
+let decodedToken 
 if (Cookies.get('token') === undefined || Cookies.get('token') === null){
   tempo = {
     loading: false,
@@ -14,12 +14,12 @@ if (Cookies.get('token') === undefined || Cookies.get('token') === null){
   }
 }
 else{
-  decoded_token =jwt_decode(Cookies.get('token'))
+  decodedToken =jwt_decode(Cookies.get('token'))
   tempo = {
     loading: false,
     isAuth: true,
     error: '',
-    typeUser: decoded_token['scp'],
+    typeUser: decodedToken['scp'],
   } 
 }
 

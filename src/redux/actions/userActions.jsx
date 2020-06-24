@@ -1,18 +1,18 @@
 import {INFO_USER_UP, INFO_USER_DOWN} from '../types/userTypes.jsx'
 
-function infoUserUp(decoded_token){
+function infoUserUp(decodedToken){
   return {
     type: INFO_USER_UP,
-    email: decoded_token['email'],
-    firstName: decoded_token['first_name'],
-    lastName: decoded_token['last_name'],
-    isAdmin: decoded_token['admin?'],
-    clubId: decoded_token['club_id'],
-    teamId: decoded_token['team_id'],
+    email: decodedToken['email'],
+    firstName: decodedToken['first_name'],
+    lastName: decodedToken['last_name'],
+    isAdmin: decodedToken['admin?'],
+    clubId: decodedToken['club_id'],
+    teamId: decodedToken['team_id'],
   }
 }
 
-function infoUserDown(decoded_token){
+function infoUserDown(decodedToken){
   return {
     type: INFO_USER_DOWN,
   }
