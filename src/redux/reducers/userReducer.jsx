@@ -6,6 +6,12 @@ let tempo
 let decodedToken 
 if (Cookies.get('token') === undefined){
   tempo = {
+    email: '',
+    firstName: '',
+    lastName: '',
+    isAdmin: null,
+    clubId: null,
+    teamId: null,
   }
 }
 else{
