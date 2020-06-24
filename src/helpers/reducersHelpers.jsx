@@ -10,6 +10,7 @@ const resourcesCalls = {
 
 const setUserInfo = (decodedToken) => {
   let userInfo = {
+    id: decodedToken['sub'],
     email: decodedToken['email'],
     firstName: decodedToken['first_name'],
     lastName: decodedToken['last_name'],
@@ -27,7 +28,6 @@ const authRefresher = () => {
     return {
       loading: false,
       isAuth: false,
-      id: null,
       typeUser: '',
       error: '',
     }
@@ -37,10 +37,27 @@ const authRefresher = () => {
     return {
       loading: false,
       isAuth: true,
-      error: '',
       typeUser: decodedToken['scp'],
+      error: '',
     } 
   }
 }
 
-export { resourcesCalls, setUserInfo, authRefresher }
+const userInfoRefresher = () => {
+  if (Cookies.get('userInfo') === undefined) {
+    return {
+      id: null,
+      email: '',
+      firstName: '',
+      lastName: '',
+      isAdmin: null,
+      clubId: null,
+      teamId: null,
+    }
+  }
+  else {
+    return Cookies.get('userInfo')
+  }
+}
+
+export { resourcesCalls, setUserInfo, authRefresher, userInfoRefresher }

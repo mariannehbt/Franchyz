@@ -3,6 +3,7 @@ import {INFO_USER_UP, INFO_USER_DOWN} from '../types/userTypes.jsx'
 function infoUserUp(decodedToken){
   return {
     type: INFO_USER_UP,
+    id: decodedToken['sub'],
     email: decodedToken['email'],
     firstName: decodedToken['first_name'],
     lastName: decodedToken['last_name'],

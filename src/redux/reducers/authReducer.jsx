@@ -28,7 +28,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         isAuth: false,
-        id: null,
+        typeUser: ''
       }
     default:
       return {

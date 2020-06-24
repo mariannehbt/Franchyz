@@ -1,33 +1,8 @@
-import Cookies from 'js-cookie'
-import jwt_decode from 'jwt-decode'
 import { INFO_USER_UP, INFO_USER_DOWN } from '../types/userTypes'
+import { userInfoRefresher } from 'helpers/reducersHelpers'
 
-let tempo
-let decodedToken 
-if (Cookies.get('token') === undefined){
-  tempo = {
-    email: '',
-    firstName: '',
-    lastName: '',
-    isAdmin: null,
-    clubId: null,
-    teamId: null,
-  }
-}
-else{
-  decodedToken =jwt_decode(Cookies.get('token'))
-  tempo = {
-    id: decodedToken['sub'],
-    email: decodedToken['email'],
-    firstName: decodedToken['first_name'],
-    lastName: decodedToken['last_name'],
-    isAdmin: decodedToken['admin?'],
-    clubId: decodedToken['club_id'],
-    teamId: decodedToken['team_id'],
-  } 
-}
 
-const initialState = tempo
+const initialState = userInfoRefresher()
 
 const userReducer = (state = initialState, action) => {
   switch(action.type){
@@ -45,10 +20,12 @@ const userReducer = (state = initialState, action) => {
     case INFO_USER_DOWN:
       return {
         ...state,
+        id: null,
         email: '',
         firstName: '',
         lastName: '',
         isAdmin: null,
+        teamId: null,
         clubId: null,
       }
     default:

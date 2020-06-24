@@ -9,7 +9,6 @@ function loginRequest(){
 function loginSuccess(decodedToken){
   return {
     type: LOGIN_SUCCESS,
-    id: decodedToken['sub'],
     typeUser: decodedToken['scp'],
   }
 }
