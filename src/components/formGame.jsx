@@ -54,9 +54,11 @@ const FormGame = ({ playersIds }) => {
     }
 
     let game = await gameAPI.createGame(club_id, team_id, eventTitle, eventDescription, address, city, country, zipCode, dateTime, duration)   
-    playersIds.forEach(async function (playerId) {
-      await eventAPI.createEvent(game.id, playerId, 'game')
-    })
+    if (playersIds !== undefined) {
+      playersIds.forEach(async function (playerId) {
+        await eventAPI.createEvent(game.id, playerId, 'game')
+      })
+    }
   }
   return (
     <ConfigProvider locale={frFR}>

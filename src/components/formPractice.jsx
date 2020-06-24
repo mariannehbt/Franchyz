@@ -49,9 +49,11 @@ const FormPractice = ({ playersIds }) => {
     }
 
     let practice = await practiceAPI.createPractice(clubId, teamId, eventTitle, eventDescription, address, city, country, zipCode, dateTime, duration)   
-    playersIds.forEach(async function (playerId) {
-      await eventAPI.createEvent(practice.id, playerId, 'practice')
-    })
+    if (playersIds !== undefined) {
+      playersIds.forEach(async function (playerId) {
+        await eventAPI.createEvent(practice.id, playerId, 'practice')
+      })
+    }
   }
 
   return (
