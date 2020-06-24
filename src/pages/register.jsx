@@ -74,7 +74,6 @@ const Register = () => {
 
 
   const handleTeamId = (e) => {
-    console.log(teamId)
     setTeamId(e.currentTarget.value)
   }
 
