@@ -21,10 +21,7 @@ function profile(id, type) {
 
 	return fetch(url, request)
 	.then(response => response.json())
-	.then(response => {
-		console.log(response)
-		return response
-	})
+	.then(response => {return response})
 };
 
 function profileUpdate({ id, type, fields }) {
