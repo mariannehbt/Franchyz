@@ -7,9 +7,8 @@ import InformationsClub from "./informationsClub.jsx";
 function DashboardAdminTabs({club}) {
   const {TabPane} = Tabs;
   return (
-    <div className="container rounded mt-5" style={{backgroundColor: "#E8E7E7"}}>
-      <br />
-      <div className="card-container">
+    <div className="container rounded mt-5" style={{backgroundColor: "#E8E7E7", height:"400px"}}>
+      <div className="card-container pt-3">
         <Tabs type="card">
           <TabPane tab="Your Club" key="1">
             <InformationsClub club={club} />
@@ -24,7 +23,6 @@ function DashboardAdminTabs({club}) {
           </TabPane>
         </Tabs>
       </div>
-      <br></br>
     </div>
   );
 }
