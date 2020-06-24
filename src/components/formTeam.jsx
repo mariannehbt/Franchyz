@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Col, Row } from "antd";
 import "../styles/app.scss";
 import * as API from "services/teamAPI";
 import { useSelector } from "react-redux";
@@ -13,7 +12,7 @@ const FormTeam = () => {
 	function onSubmit() {
 		if (TeamName === "") {
 			document.getElementById("notice_teamname").innerHTML =
-				"Merci de saisir un nom pour la team";
+				"Please fill in a team name";
 		}
 		console.log(TeamName);
 
@@ -29,12 +28,12 @@ const FormTeam = () => {
 					<div className="row d-flex align-items-center">
 						<div className=" form-group col-4 text-center pb-3 p-2 mx-auto">
 							<label style={{ marginLeft: "10px", color: "grey" }}>
-								Nom de la Team:
+								Team name:
 							</label>
 							<input
 								type="text"
 								className="form-control"
-								placeholder="Nom"
+								placeholder="Name"
 								id="title"
 								onChange={(e) => setTeamName(e.target.value)}
 								value={TeamName}
@@ -49,7 +48,7 @@ const FormTeam = () => {
 					style={{ marginTop: "25px", marginBottom: "25px" }}
 					onClick={onSubmit}
 				>
-					sauvegarder
+					Save
 				</button>
 			</div>
 		</div>

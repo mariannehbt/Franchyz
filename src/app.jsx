@@ -13,6 +13,8 @@ import Register from "./pages/register.jsx";
 import CreateTeam from "./pages/createTeam.jsx";
 import AdminCoachDashboardPage from "./pages/adminCoachDashboardPage.jsx";
 import ShowTeam from './pages/showTeam.jsx'
+import ShowGame from './pages/showGame.jsx'
+
 import PlayerDashboardPage from './pages/playerDashboardPage.jsx'
 import Profile from './pages/profile.jsx';
 
