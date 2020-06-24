@@ -21,7 +21,10 @@ function profile(id, type) {
 
 	return fetch(url, request)
 	.then(response => response.json())
-	.then(response => {return response})
+	.then(response => {
+		console.log(response)
+		return response
+	})
 };
 
 function profileUpdate({ id, type, fields }) {
@@ -43,7 +46,7 @@ function profileUpdate({ id, type, fields }) {
 			phone: fields.data.phone,
 			birthdate: fields.data.birthdate,
 			arrival: fields.data.arrival,
-			availability: fields.data.availability,
+			'availability?': fields.data['availability?'],
 			height: fields.data.height,
 			weight: fields.data.weight,
 			gender: fields.data.gender,
@@ -73,6 +76,7 @@ function profileUpdate({ id, type, fields }) {
 
 	return fetch(url, request)
 	.then(response => response.json())
+	.then(response => console.log(response))
 	.then(response => {return response})
 };
 

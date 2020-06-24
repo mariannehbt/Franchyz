@@ -27,7 +27,7 @@ const ProfileEdit = () => {
 				phone: response.phone,
 				birthdate: response.birthdate,
 				arrival: response.arrival,
-				availability: response.availability,
+				'availability?': response['availability?'],
 				height: response.height,
 				weight: response.weight,
 				gender: response.gender,
@@ -48,7 +48,7 @@ const ProfileEdit = () => {
 						<label>Availability :</label>
 						<select
 							className='form-control'
-							onChange={e => setData({...data, availability: e.target.value })}
+							onChange={e => setData({...data, 'availability?': e.target.value })}
 						>
 							<option value='false'>Not available</option>
 							<option value='true'>Available</option>
@@ -80,7 +80,8 @@ const ProfileEdit = () => {
 					</div>
 
 					<div className='form-group'>
-						<label>Gender :</label>
+						<label>Current Gender :</label>
+						<p>{data.gender}</p>
 						<select
 							className='form-control'
 							onChange={e => setData({...data, gender: e.target.value })}
@@ -104,7 +105,8 @@ const ProfileEdit = () => {
 					</div>
 
 					<div className='form-group'>
-						<label>Position :</label>
+						<label>Current position :</label>
+						<p>{data.position}</p>
 						<select
 							className='form-control'
 							onChange={e => setData({...data, position: e.target.value })}
@@ -147,7 +149,7 @@ const ProfileEdit = () => {
 	};
 
 	let test = '';
-	// test = JSON.stringify(data);
+	test = JSON.stringify(data);
 
 	return (
 		<div>
