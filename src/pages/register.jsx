@@ -23,7 +23,7 @@ const Register = () => {
     }
   } ,[isAuth])
 
-  function setupAlert() {
+  const setupAlert = () => {
     let ans;
     let messageErrors = '';
 
@@ -44,28 +44,20 @@ const Register = () => {
     return ans
   };
 
-  const getDataClubs = () => {
-    api_club.getAllClubs()
-      .then(response => {
-        let clubs = response.map((club, key) => (
-          <option key={key} value={club.id}>{club.name}</option>
-        ));
-        setDataClubs(clubs);
-      });
+  const getDataClubs = async () => {
+    let response = await api_club.getAllClubs() 
+    let clubs = response.map((club, key) => ( <option key={key} value={club.id}>{club.name}</option>))
+    setDataClubs(clubs);
   };
 
   const getClubId = () => {
     setClubId(document.getElementById('club').value);
   };
 
-  const getDataTeams = () => {
-    api_team.getAllTeams(clubId)
-      .then(response => {
-        let teams = response.map((team, key) =>(
-          <option key={key} value={team.id}>{team.title}</option>
-        ));
-        setDataTeams(teams);
-      });
+  const getDataTeams = async () => {
+    let response = await api_team.getAllTeams(clubId)
+    let teams = response.map((team, key) =>( <option key={key} value={team.id}>{team.title}</option>));
+    setDataTeams(teams);
   };
 
   useEffect(getDataClubs, []);

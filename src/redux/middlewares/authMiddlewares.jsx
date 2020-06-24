@@ -1,13 +1,13 @@
 import Cookies from 'js-cookie';
 import jwt_decode from 'jwt-decode';
-import * as API from 'services/authAPI';
+import * as authAPI from 'services/authAPI';
 import {loginRequest, loginSuccess , loginFailure} from 'redux/actions/authActions';
 import { infoUserUp } from 'redux/actions/userActions';
 
 const logup = (email, password, type, team) => {
   return (dispatch) => {
     dispatch(loginRequest());
-    let promise = API.signUp(email, password, type, team);
+    let promise = authAPI.signUp(email, password, type, team);
 
     promise.then((response) => {
       if (response.body.errors !== undefined) {
@@ -25,7 +25,7 @@ const logup = (email, password, type, team) => {
 const login = (email, password, type) => {
   return (dispatch) => {
     dispatch(loginRequest());
-    let promise = API.signIn(email, password, type);
+    let promise = authAPI.signIn(email, password, type);
 
     promise.then((response) => {
       if (response.body.error !== undefined) {
