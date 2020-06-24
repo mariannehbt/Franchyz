@@ -17,7 +17,7 @@ const ProfileEdit = () => {
 				phone: response.phone,
 				birthdate: response.birthdate,
 				arrival: response.arrival,
-				admin: response.admin,
+				'admin?': response['admin?'],
 				club_id: response.club_id,
 			});
 		} else if (user_type === 'player') {
@@ -40,7 +40,7 @@ const ProfileEdit = () => {
 
 	const renderForm = () => {
 		if (user_type === 'coach') {
-
+			return null;
 		} else if (user_type === 'player') {
 			return (
 				<div>
@@ -149,7 +149,7 @@ const ProfileEdit = () => {
 	};
 
 	let test = '';
-	test = JSON.stringify(data);
+	// test = JSON.stringify(data);
 
 	return (
 		<div>

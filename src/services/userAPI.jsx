@@ -36,7 +36,7 @@ function profileUpdate({ id, type, fields }) {
 			phone: fields.data.phone,
 			birthdate: fields.data.birthdate,
 			arrival: fields.data.arrival,
-			admin: fields.data.admin,
+			'admin?': fields.data['admin?'],
 			club_id: fields.data.club_id
 		};
 	} else if (type === 'player') {
