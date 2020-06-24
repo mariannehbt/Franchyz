@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../styles/app.scss";
-import * as API from "services/teamAPI";
+import * as teamAPI from "services/teamAPI";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { message} from 'antd';
@@ -17,7 +17,7 @@ const FormTeam = () => {
 			document.getElementById("notice_teamname").innerHTML =
 				"Merci de saisir un nom pour la team";
 		} else {
-			API.createTeam(team, creatorId, coachId, clubId).then((response) => {
+			teamAPI.createTeam(team, creatorId, coachId, clubId).then((response) => {
 				console.log(response);
 				console.log(response.status);
 				 history.push("/dashboardAdmin");

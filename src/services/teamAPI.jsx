@@ -39,8 +39,6 @@ function createTeam(team, creatorId, coachId, clubId) {
     coach_id: coachId,
   };
 
-  console.log(data);
-
   let baseURL = process.env.REACT_APP_API_URL;
   let endUrl = `/clubs/${clubId}/teams.json`;
   let url = baseURL + endUrl;
