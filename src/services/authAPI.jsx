@@ -2,7 +2,6 @@ import Cookies from 'js-cookie';
 import {pluralyzeType} from 'helpers/misc.jsx'
 
 function signUp(email, password, type, teamId) {
-  console.log(type, teamId)
   let data;
   if (type === 'player') {
     data = {[type]: {
@@ -22,7 +21,6 @@ function signUp(email, password, type, teamId) {
   let endUrl = `/${types}.json`;
   let url = baseURL + endUrl;
 
-  console.log(url)
   let ans = {
     headers: '',
     body: ''
