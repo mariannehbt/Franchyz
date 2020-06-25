@@ -7,12 +7,16 @@ import { Redirect } from 'react-router-dom'
 function Login() {
   const error = useSelector(state => state.authReducer.error);
   const isAuth = useSelector(state => state.authReducer.isAuth);
+  const userType = useSelector(state => state.authReducer.userType);
   const [redirect, setRedirect] = useState('')
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (isAuth) {
-      setRedirect(<Redirect to='/dashboardAdmin' />)
+      if (userType === 'coach')
+        setRedirect(<Redirect to='/dashboardAdmin' />)
+      else if (userType === 'player')
+        setRedirect(<Redirect to='/dashboardPlayer' />)
     } else {
       setRedirect(<Redirect to='/login' />)
     }
@@ -21,7 +25,7 @@ function Login() {
   function setupAlert() {
     let ans;
 
-    if (error !== undefined && error !== null) {
+    if (error !== '') {
       ans = (
         <div className='alert alert-danger alert-dismissible' role='alert'>
           <button type='button' className='close' data-dismiss='alert'>&times;</button>
@@ -41,14 +45,13 @@ function Login() {
     let type = document.getElementById('type').value;
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
-      console.log(isAuth)
     dispatch(login(email, password, type))   
     if (isAuth) {
       setRedirect(<Redirect to='/dashboardAdmin' />)
     } else {
       setRedirect(<Redirect to='/login' />)
     }
-      
+
   };
 
   return (

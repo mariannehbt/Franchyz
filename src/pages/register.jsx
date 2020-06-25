@@ -9,8 +9,8 @@ import '../styles/form.scss';
 const Register = () => {
   const isAuth = useSelector(state => state.authReducer.isAuth);
   const typeUser = useSelector(state => state.authReducer.typeUser);
-
   const errors = useSelector(state => state.authReducer.error);
+
   const [clubs, setClubs] = useState([]);
   const [dataClubs, setDataClubs] = useState([]);
   const [clubId, setClubId] = useState(null);
@@ -38,7 +38,7 @@ const Register = () => {
     let ans;
     let messageErrors = '';
 
-    if (errors !== undefined && errors !== null) {
+    if (errors !== '') {
       for (const error in errors) {
         messageErrors = messageErrors + `${error} ${errors[error]} \n`
       };
