@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {useParams} from "react-router-dom";
-import * as eventsAPI from 'services/eventsAPI.jsx'
+import * as eventsAPI from 'services/gameAPI.jsx'
 import moment from 'moment'
 import "../styles/app.scss";
 import localization from 'moment/locale/fr';
