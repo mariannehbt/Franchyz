@@ -1,6 +1,6 @@
-import {INFO_USER_UP, INFO_USER_DOWN} from '../types/userTypes.jsx'
+import { INFO_USER_UP, INFO_USER_DOWN, UPDATE_CLUB_ID } from '../types/userTypes.jsx'
 
-function infoUserUp(decodedToken){
+const infoUserUp = (decodedToken) => {
   return {
     type: INFO_USER_UP,
     id: decodedToken['sub'],
@@ -13,10 +13,17 @@ function infoUserUp(decodedToken){
   }
 }
 
-function infoUserDown(decodedToken){
+const infoUserDown = () => {
   return {
     type: INFO_USER_DOWN,
   }
 }
 
-export {infoUserUp, infoUserDown}
+const updateClubId = (clubId) => {
+  return {
+    type: UPDATE_CLUB_ID,
+    clubId: clubId,
+  }
+}
+
+export {infoUserUp, infoUserDown, updateClubId}

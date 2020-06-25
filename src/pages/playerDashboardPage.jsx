@@ -9,13 +9,13 @@ function PlayerDashboardPage () {
   const [events, setEvents] = useState([])
   const [data, setData] = useState()
   const [trigger, setTrigger] = useState(0)
-  const club_id = useSelector(state => state.userReducer.club_id)
-  const team_id = useSelector(state => state.userReducer.team_id)
-  const player_id = useSelector(state => state.userReducer.id)
-  const player = {club_id, team_id, player_id}
+  const clubId = useSelector(state => state.userReducer.clubId)
+  const teamId = useSelector(state => state.userReducer.teamId)
+  const playerId = useSelector(state => state.userReducer.id)
+  const player = {clubId, teamId, playerId}
 
   const unconfirmed_events = () => {
-    EventsAPI.getUnconfirmedEvents(player_id, club_id, team_id)
+    EventsAPI.getUnconfirmedEvents(playerId, clubId, teamId)
     .then((response) => {setEvents(response)})
   }
 

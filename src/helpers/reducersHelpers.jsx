@@ -18,9 +18,23 @@ const setUserInfo = (decodedToken) => {
     clubId: decodedToken['club_id'],
     teamId: decodedToken['team_id'],
   }
-
+  userInfo = JSON.stringify(userInfo)
   Cookies.set('userInfo', userInfo, {sameSite: 'lax'})
+}
 
+const updateUserInfo = (hash) => {
+  console.log(hash)
+  let userInfo = JSON.parse(Cookies.get('userInfo'))
+  for(let key in hash) {
+      console.log(hash[key])
+    userInfo = {
+      ...userInfo,
+      [key]: hash[key],
+    }
+  }
+  console.log(userInfo)
+  userInfo = JSON.stringify(userInfo)
+  Cookies.set('userInfo', userInfo, {sameSite: 'lax'})
 }
 
 const authRefresher = () => {
@@ -56,8 +70,8 @@ const userInfoRefresher = () => {
     }
   }
   else {
-    return Cookies.get('userInfo')
+    return JSON.parse(Cookies.get('userInfo'))
   }
 }
 
-export { resourcesCalls, setUserInfo, authRefresher, userInfoRefresher }
+export { resourcesCalls, setUserInfo, updateUserInfo, authRefresher, userInfoRefresher }

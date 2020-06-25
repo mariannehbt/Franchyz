@@ -38,7 +38,6 @@ function signUp(email, password, type, teamId) {
 
   return fetch(url, request)
     .then(response => {
-      console.log(response)
       ans.headers = response.headers
       return response.json()
     })

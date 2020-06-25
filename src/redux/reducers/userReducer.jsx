@@ -1,4 +1,4 @@
-import { INFO_USER_UP, INFO_USER_DOWN } from '../types/userTypes'
+import { INFO_USER_UP, INFO_USER_DOWN, UPDATE_CLUB_ID } from '../types/userTypes'
 import { userInfoRefresher } from 'helpers/reducersHelpers'
 
 
@@ -28,6 +28,12 @@ const userReducer = (state = initialState, action) => {
         teamId: null,
         clubId: null,
       }
+    case UPDATE_CLUB_ID:
+      return {
+        ...state,
+        clubId: action.clubId
+      }
+
     default:
       return {
         ...state
