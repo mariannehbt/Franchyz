@@ -9,6 +9,13 @@ import frFR from "antd/es/locale/fr_FR";
 import { useSelector } from "react-redux";
 import * as practiceAPI from 'services/practiceAPI'
 import * as eventAPI from 'services/eventAPI'
+import { useHistory } from "react-router-dom";
+import { message} from 'antd';
+
+
+
+
+
 
 const FormPractice = ({ playersIds }) => {
   const [dateTime, setDateTime] = useState("");
@@ -20,10 +27,13 @@ const FormPractice = ({ playersIds }) => {
   const [country, setCountry] = useState("");
   const [address, setAddress] = useState("");
 
+
+
   const clubId = useSelector((state) => state.userReducer.coachId);
   const teamId = useSelector((state) => state.userReducer.teamId);
 
   moment.updateLocale("fr", localization);
+  let history = useHistory();
 
   function onChange(value, dateString) {
     setDateTime(dateString);
@@ -46,14 +56,24 @@ const FormPractice = ({ playersIds }) => {
     if (eventTitle === "") {
       document.getElementById("notice_title").innerHTML =
         "Please fill in a title";
+    } else  {
+      let practice = await practiceAPI.createPractice(clubId, teamId, eventTitle, eventDescription, address, city, country, zipCode, dateTime, duration)  
+      if (playersIds !== undefined) {
+        playersIds.forEach(async function (playerId) {
+         await eventAPI.createEvent(practice.id, playerId, 'practice')
+        })
+      }
+      if (practice.errors === undefined ) {
+        message.success('You added a new training session', 2.5);  
+        history.push("/dashboardAdmin");
+      }
+
     }
 
-    let practice = await practiceAPI.createPractice(clubId, teamId, eventTitle, eventDescription, address, city, country, zipCode, dateTime, duration)   
-    if (playersIds !== undefined) {
-      playersIds.forEach(async function (playerId) {
-        await eventAPI.createEvent(practice.id, playerId, 'practice')
-      })
-    }
+   
+    
+
+  
   }
 
   return (

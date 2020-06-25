@@ -9,6 +9,10 @@ import frFR from "antd/es/locale/fr_FR";
 import { useSelector} from "react-redux";
 import * as gameAPI from 'services/gameAPI'
 import * as eventAPI from 'services/eventAPI'
+import { useHistory } from "react-router-dom";
+import { message} from 'antd';
+
+
 
 const FormGame = ({ playersIds }) => {
 
@@ -21,11 +25,14 @@ const FormGame = ({ playersIds }) => {
   const [country, setCountry] = useState("");
   const [address, setAddress] = useState("");
 
+
   const club_id = useSelector((state) => state.userReducer.clubId);
   const team_id = useSelector((state) => state.userReducer.teamId);
 
 
   moment.updateLocale("fr", localization);
+  let history = useHistory();
+
 
   function onChange(value, dateString) {
     setDateTime(dateString);
@@ -51,14 +58,21 @@ const FormGame = ({ playersIds }) => {
     if (eventTitle === "") {
       document.getElementById("notice_title").innerHTML =
         "Please fill in a title";
-    }
+    } else  {
 
-    let game = await gameAPI.createGame(club_id, team_id, eventTitle, eventDescription, address, city, country, zipCode, dateTime, duration)   
-    if (playersIds !== undefined) {
-      playersIds.forEach(async function (playerId) {
-        await eventAPI.createEvent(game.id, playerId, 'game')
-      })
+      let game = await gameAPI.createGame(club_id, team_id, eventTitle, eventDescription, address, city, country, zipCode, dateTime, duration)   
+      if (playersIds !== undefined) {
+        playersIds.forEach(async function (playerId) {
+          await eventAPI.createEvent(game.id, playerId, 'game')
+        })
+      }
+      if (game.errors === undefined ) {
+        message.success('You added a new game', 2.5);  
+        history.push("/dashboardAdmin");
+      }
     }
+  
+  
   }
   return (
     <ConfigProvider locale={frFR}>

@@ -1,5 +1,6 @@
 function createGame(clubId, teamId, eventTitle, eventDescription, address, city, country, zipCode, dateTime, duration) {
 
+
   const data = {
     title: eventTitle,
     long_description: eventDescription,
@@ -26,7 +27,8 @@ function createGame(clubId, teamId, eventTitle, eventDescription, address, city,
     .then( response => response.json())
     .then((response) => { 
       return response 
-    });
+    })
+
 }
 
 export { createGame }
