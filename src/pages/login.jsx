@@ -55,7 +55,7 @@ function Login() {
     <div>
       {setupAlert()}
 
-      <form className="form p-4 mt-3 mb-3 rounded" action="/action_page.php" onSubmit={submit}>
+      <form className="form-auth p-4 mt-3 mb-3 rounded" action="/action_page.php" onSubmit={submit}>
 
         <div className="form-group">
           <label htmlFor="email">You are:</label>
