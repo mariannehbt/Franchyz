@@ -15,6 +15,7 @@ import { updateUserInfo } from 'helpers/reducersHelpers'
       let body = await response.json()
       dispatch(updateClubId(body.id))
       updateUserInfo({clubId: body.id})
+      return response.status
     } 
   };
 };
