@@ -38,7 +38,6 @@ function signUp(email, password, type, teamId) {
 
   return fetch(url, request)
     .then(response => {
-      console.log(response)
       ans.headers = response.headers
       return response.json()
     })
@@ -83,7 +82,7 @@ function signIn(email, password, type) {
     });
 };
 
-function sign_out(type) {
+function signOut(type) {
   let types = pluralyzeType(type);
   let baseURL = process.env.REACT_APP_API_URL;
   let endUrl = `/${types}/sign_out.json`;
@@ -123,4 +122,4 @@ function profile(id, type) {
     .then(response => {return response})
 }
 
-export {signIn, signUp, sign_out, profile}
+export {signIn, signUp, signOut, profile}

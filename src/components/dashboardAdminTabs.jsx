@@ -5,6 +5,7 @@ import ClubInformations from './clubInformations.jsx';
 import ClubEdit from './clubEdit.jsx';
 import TeamList from './teamList.jsx';
 
+
 const DashboardAdminTabs = ({club}) => {
 	const {TabPane} = Tabs;
 	return(
@@ -36,5 +37,6 @@ const DashboardAdminTabs = ({club}) => {
 		</div>
 	);
 };
+
 
 export default DashboardAdminTabs;

@@ -21,8 +21,8 @@ const FormGame = ({ playersIds }) => {
   const [country, setCountry] = useState("");
   const [address, setAddress] = useState("");
 
-  const club_id = useSelector((state) => state.userReducer.club_id);
-  const team_id = useSelector((state) => state.userReducer.team_id);
+  const club_id = useSelector((state) => state.userReducer.clubId);
+  const team_id = useSelector((state) => state.userReducer.teamId);
 
 
   moment.updateLocale("fr", localization);
@@ -66,16 +66,14 @@ const FormGame = ({ playersIds }) => {
         <Row>
           <Col span={10} offset={8}>
             <h3>Competition:</h3>
-            <label>Date and time of competition:</label>
-            <br />
+            <p className="mb-1 ml-2 text-muted">Date and time of competition:</p>
             <DatePicker id="datetime" format="DD-MM-YY HH:mm" disabledDate={disabledDate} onChange={onChange} onOk={onOk} showTime={{ defaultValue: moment("00:00:00", "HH:mm:ss") }} />
             <p id="notice_datetime" className="redtext"></p>
 
             {dateTime !== "" && (
               <h6 style={{ marginTop: "25px" }}> Selected date and time: {dateTime}</h6>
             )}
-            <label>Duration in min:</label>
-            <br />
+            <p className="mb-1 ml-2 text-muted"> Duration in min:</p>
             <InputNumber style={{ marginBottom: "15px" }} defaultValue={0} step={5} min={0} max={100000} formatter={(valueMin) => `${valueMin}`} parser={(valueMin) => valueMin.replace(" min", "")} onChange={onChangeDuration} />
           </Col>
         </Row>

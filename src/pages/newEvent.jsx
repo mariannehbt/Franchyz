@@ -8,7 +8,7 @@ import TransfertList from 'components/transfertList.jsx'
 
 function CreateEvents() {
 
-  const clubId = useSelector(state => state.userReducer.club_id);
+  const clubId = useSelector(state => state.userReducer.clubId);
   const [eventType, setEventType] = useState("");
   const [teams, setTeams] = useState('')
   const [players, setPlayers] = useState('')
@@ -32,9 +32,8 @@ function CreateEvents() {
 
   return (
     <div>
-      <br />
-      <br />
-      <hr className="my-4" style={{ width: "600px" }}></hr>
+  
+      <hr className="my-4 mt-5" style={{ width: "600px" }}></hr>
       <div className="bg-dark pb-3 p-2 mx-auto rounded select" style={{ width: "35%" }} >
 
         <h3 className="text-light text-center">Please choose the event type?</h3>
