@@ -35,12 +35,12 @@ const ClubEdit = ({club}) => {
 
   return (
     <form onSubmit={submit}>
-    <small>{test}</small>
+      <small>{test}</small>
       <Row>
         <Col style={{marginLeft: '20px'}}>
           <h6 className='font-weight-bold'>Club details:</h6>
           <div>
-            <div>
+          <div>
               <label>Club name:</label>
               <input type='text' placeholder={(data.name === null) ? 'Club name' : null } value={(data.name === null) ? '' : data.name} onChange={e => setData({...data, name: e.target.value })} />
             </div>
