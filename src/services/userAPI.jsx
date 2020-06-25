@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import {pluralyzeType} from 'helpers/misc.jsx';
+import { pluralyzeType } from 'helpers/misc.jsx';
 
 const profile = (id, type) => {
   type = pluralyzeType(type);
