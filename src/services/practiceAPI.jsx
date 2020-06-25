@@ -27,7 +27,7 @@ function createPractice(clubId, teamId, eventTitle, eventDescription, address, c
     .then((response) => { 
       console.log(response)
       return response 
-    });
+    })
 }
 
 export { createPractice }
