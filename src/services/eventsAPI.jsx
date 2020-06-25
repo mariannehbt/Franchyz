@@ -148,5 +148,5 @@ const confirmAttendance = (player_id, club_id, team_id, event_id) => {
     })
 }
 
-export { getGame, createPractice, getUnconfirmedEvents, getAttendedGames, getUnattendedGames, getAttendedPractices, getUnattendedPractices, confirmAttendance };
+export { getUnconfirmedEvents, getAttendedGames, getUnattendedGames, getAttendedPractices, getUnattendedPractices, confirmAttendance };
 
