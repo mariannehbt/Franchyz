@@ -1,26 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import ProfileEdit from 'components/profileEdit';
+import ProfileShow from 'components/profileShow';
 import * as userAPI from 'services/playerAPI'
 import { useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-const [player, setPlayer] = useState('')
+const [profile, setProfile] = useState('')
+const userId = useSelector(state => state.userReducer.userId);
 
 let { clubId, teamId, playerId } = useParams();
 
 
-  useEffect(() => {
-    loadPlayer();
-  }, []);
+useEffect(() => {
+  setupElements()
+}, []);
 
-  const loadPlayer = async () => {
-    const response = await userAPI.getPlayer(clubId, teamId, playerId);
-    setPlayer(response);
+const setupElements = async () => {
+  const response = await userAPI.getPlayer(clubId, teamId, playerId);
+  if (userId === playerId) {
+    setProfile(<ProfileEdit player={response} />);
+  } else {
+    setProfile(<ProfileShow player={response} />);
   }
+}
 
 const Profile = () => {
   return (
     <div className='text-center mt-5'>
-      <ProfileEdit player={player} />
+      {profile}
     </div>
   );
 };
