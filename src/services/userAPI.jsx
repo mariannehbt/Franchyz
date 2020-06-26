@@ -19,9 +19,31 @@ const profile = (id, type) => {
   };
 
   return fetch(url, request)
-  .then(response => response.json())
-  .then(response => {return response})
+    .then(response => response.json())
+    .then(response => {return response})
 };
+
+const getPlayer = (clubId, teamId, playerId) => {
+
+  let baseURL = process.env.REACT_APP_API_URL;
+  let endUrl = `clubs/${clubId}/teams/${teamId}/players/${playerId}.json`;
+  let url = baseURL + endUrl;
+
+  let headers = {
+    'Content-Type': 'application/json',
+    Authorization: Cookies.get('token')
+  };
+
+  let request = {
+    method: 'get',
+    headers: headers,
+  };
+
+  return fetch(url, request)
+    .then(response => response.json())
+    .then(response => {return response})
+
+}
 
 const profileUpdate = ({ id, type, fields }) => {
   let data;
@@ -71,8 +93,8 @@ const profileUpdate = ({ id, type, fields }) => {
   };
 
   return fetch(url, request)
-  .then(response => response.json())
-  .then(response => {return response})
+    .then(response => response.json())
+    .then(response => {return response})
 };
 
-export { profile, profileUpdate };
+export { profile, profileUpdate, getProfile };
