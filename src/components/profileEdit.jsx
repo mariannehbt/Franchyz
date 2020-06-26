@@ -83,17 +83,11 @@ const ProfileEdit = (player) => {
       );
   };
 
-  const submit = (event) => {
+  const submit = async (event) => {
     event.preventDefault();
-    userAPI.profileUpdate({
-      id: userId,
-      type: userType,
-      fields: {data},
-    });
+    let response = userAPI.playerUpdate({ id: userId, type: userType, fields: {data}, });
+    setData(response)
   };
-
-  let test = '';
-  // test = JSON.stringify(data);
 
   return (
     <div>
