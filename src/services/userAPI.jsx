@@ -1,5 +1,4 @@
 import Cookies from 'js-cookie';
-import { pluralyzeType } from 'helpers/misc.jsx';
 
 const getPlayer = (clubId, teamId, playerId) => {
 
