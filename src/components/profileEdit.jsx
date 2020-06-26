@@ -3,10 +3,8 @@ import * as userAPI from '../services/userAPI.jsx';
 import { useSelector } from 'react-redux';
 
 const ProfileEdit = (player) => {
-  const userId = useSelector(state => state.userReducer.id);
-  const userType = useSelector(state => state.authReducer.userType);
   const [data, setData] = useState([]);
-
+  
   useEffect(setupElements(), [])
 
   const setupElements = () => {
@@ -85,7 +83,7 @@ const ProfileEdit = (player) => {
 
   const submit = async (event) => {
     event.preventDefault();
-    let response = userAPI.playerUpdate({ id: userId, type: userType, fields: {data}, });
+    let response = userAPI.playerUpdate({ clubId: player.team.club.id, teamId: player.team.id, playerId: player.id, data: data, });
     setData(response)
   };
 
