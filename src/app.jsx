@@ -28,26 +28,29 @@ import "bootstrap/dist/js/bootstrap.js";
 import "bootstrap/dist/css/bootstrap.css";
 import "antd/dist/antd.css";
 
-const App = () => (
-  <Provider store={store}>
-    <Router>
-      <Navbar />
-      <Switch>
-        <PrivateRoute exact path="/dashboardAdmin" component={AdminCoachDashboardPage} />
-        <PrivateRoute exact path="/dashboardPlayer" component={PlayerDashboardPage} />
-        <PrivateRoute exact path="/newTeam" component={CreateTeam} />
-        <PrivateRoute exact path="/newEvent" component={NewEvent} />
-        <PrivateRoute exact path="/newClub" component={CreateClub} />
-        <PrivateRoute exact path="/profile" component={Profile} />
-        <PrivateRoute path="/clubs/:clubId/teams/:teamId" component={TeamShow} />
-        <PrivateRoute path="/games/:gamesId" component={ShowGame} />
-        <Route path="/login"> <Login /> </Route>
-        <Route path="/register"> <Register /> </Route>
-        <Route exact path="/"> <Home /> </Route>
-      </Switch>
-      <Footer />
-    </Router>
-  </Provider>
-);
+const App = () => {
+  return (
+    <Provider store={store}>
+      <Router>
+        <Navbar />
+        <Switch>
+          <PrivateRoute exact path="/dashboardAdmin" component={AdminCoachDashboardPage} />
+          <PrivateRoute exact path="/dashboardPlayer" component={PlayerDashboardPage} />
+          <PrivateRoute exact path="/newTeam" component={CreateTeam} />
+          <PrivateRoute exact path="/newEvent" component={NewEvent} />
+          <PrivateRoute exact path="/newClub" component={CreateClub} />
+          <PrivateRoute exact path="/profile" component={Profile} />
+          <PrivateRoute exact path={`/clubs/:clubId/teams/:teamId`} component={ShowTeam} />
+          <PrivateRoute exact path={`/games/:gamesId`} component={ShowGame} />
+          <Route path={`/clubs/:clubId/teams/:teamId/players/:playerId`} component={Profile} />
+          <Route exact path="/login"> <Login /> </Route>
+          <Route exact path="/register"> <Register /> </Route>
+          <Route exact path="/"> <Home /> </Route>
+        </Switch>
+        <Footer />
+      </Router>
+    </Provider>
+  );
+};
 
 export default App;

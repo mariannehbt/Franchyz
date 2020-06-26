@@ -1,17 +1,11 @@
-import React, { useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const Player = ({player, handleCheckboxChange, checkbox}) => {
-  const location = useLocation()
   const clubId = useSelector(state => state.userReducer.clubId);
 
-  function test(e) {
-    console.log(checkbox)
-    handleCheckboxChange(e, checkbox)
-  }
-
-  function setupElements() {
+  const setupElements = () => {
     if (player !== undefined){ 
       {
         return (
