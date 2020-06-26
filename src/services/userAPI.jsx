@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 const getPlayer = (clubId, teamId, playerId) => {
 
   let baseURL = process.env.REACT_APP_API_URL;
-  let endUrl = `clubs/${clubId}/teams/${teamId}/players/${playerId}.json`;
+  let endUrl = `/clubs/${clubId}/teams/${teamId}/players/${playerId}.json`;
   let url = baseURL + endUrl;
 
   let headers = {
@@ -25,7 +25,7 @@ const getPlayer = (clubId, teamId, playerId) => {
 const playerUpdate = ({clubId, teamId, playerId, data}) => {
 
   let baseURL = process.env.REACT_APP_API_URL;
-  let endUrl = `clubs/${clubId}/teams/${teamId}/players/${playerId}`;
+  let endUrl = `/clubs/${clubId}/teams/${teamId}/players/${playerId}`;
   let url = baseURL + endUrl;
 
   let headers = {
