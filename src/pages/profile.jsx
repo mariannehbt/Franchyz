@@ -10,7 +10,7 @@ const Profile = () => {
 
   console.log('deded')
   const [profile, setProfile] = useState('')
-  const userId = useSelector(state => state.userReducer.userId);
+  const userId = useSelector(state => state.userReducer.id);
 
   let { clubId, teamId, playerId } = useParams();
 
@@ -21,10 +21,9 @@ const Profile = () => {
 
   const setupElements = async () => {
     const response = await userAPI.getPlayer(clubId, teamId, playerId);
-    if (userId === playerId) {
+    if (userId === response.id.toString()) {
       setProfile(<ProfileEdit player={response} />);
     } else {
-      setProfile(<ProfileShow player={response} />);
     }
   }
   return (
