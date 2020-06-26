@@ -1,7 +1,7 @@
 import React from "react";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // Redux
-import {Provider} from "react-redux";
+import { Provider } from "react-redux";
 import store from "./redux/store.js";
 
 // Pages
@@ -12,17 +12,16 @@ import Login from "./pages/login.jsx";
 import Register from "./pages/register.jsx";
 import CreateTeam from "./pages/createTeam.jsx";
 import AdminCoachDashboardPage from "./pages/adminCoachDashboardPage.jsx";
-import ShowGame from './pages/showGame.jsx'
-import ShowTeam from "./pages/showTeam.jsx";
+import ShowGame from "./pages/showGame.jsx";
+import TeamCard from "./components/TeamCardx.jsx";
 import ShowPractice from "./pages/showPractice.jsx";
-import PlayerDashboardPage from './pages/playerDashboardPage.jsx'
-import Profile from './pages/profile.jsx';
+import PlayerDashboardPage from "./pages/playerDashboardPage.jsx";
+import Profile from "./pages/profile.jsx";
 
 //Component
 import Navbar from "./components/layouts/navbar.jsx";
 import Footer from "./components/layouts/footer.jsx";
 import PrivateRoute from "./components/privateRoute";
-
 
 //CSS
 import "bootstrap/dist/js/bootstrap.js";
@@ -35,17 +34,37 @@ const App = () => {
       <Router>
         <Navbar />
         <Switch>
-          <PrivateRoute exact path="/dashboardAdmin" component={AdminCoachDashboardPage} />
-          <PrivateRoute exact path="/dashboardPlayer" component={PlayerDashboardPage} />
+          <PrivateRoute
+            exact
+            path="/dashboardAdmin"
+            component={AdminCoachDashboardPage}
+          />
+          <PrivateRoute
+            exact
+            path="/dashboardPlayer"
+            component={PlayerDashboardPage}
+          />
           <PrivateRoute exact path="/newTeam" component={CreateTeam} />
           <PrivateRoute exact path="/newEvent" component={NewEvent} />
           <PrivateRoute exact path="/newClub" component={CreateClub} />
           <PrivateRoute exact path="/profile" component={Profile} />
-          <PrivateRoute  path={`/clubs/:clubId/teams/:teamId`} component={ShowTeam} />
+          <PrivateRoute
+            path={`/clubs/:clubId/teams/:teamId`}
+            component={TeamCard}
+          />
           <PrivateRoute path={`/games/:gamesId`} component={ShowGame} />
-          <Route path="/login"> <Login /> </Route>
-          <Route path="/register"> <Register /> </Route>
-          <Route exact path="/"> <Home /> </Route>
+          <Route path="/login">
+            {" "}
+            <Login />{" "}
+          </Route>
+          <Route path="/register">
+            {" "}
+            <Register />{" "}
+          </Route>
+          <Route exact path="/">
+            {" "}
+            <Home />{" "}
+          </Route>
         </Switch>
         <Footer />
       </Router>
