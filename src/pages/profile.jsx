@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux'
 
 const Profile = () => {
 
-  console.log('deded')
   const [profile, setProfile] = useState('')
   const userId = useSelector(state => state.userReducer.id);
 
