@@ -17,6 +17,8 @@ import ShowTeam from "./pages/showTeam.jsx";
 import ShowPractice from "./pages/showPractice.jsx";
 import PlayerDashboardPage from './pages/playerDashboardPage.jsx'
 import Profile from './pages/profile.jsx';
+import GameEdit from './pages/gameEdit.jsx';
+import PracticeEdit from './pages/practiceEdit.jsx';
 
 //Component
 import Navbar from "./components/layouts/navbar.jsx";
@@ -39,6 +41,8 @@ const App = () => {
           <PrivateRoute exact path="/dashboardPlayer" component={PlayerDashboardPage} />
           <PrivateRoute exact path="/newTeam" component={CreateTeam} />
           <PrivateRoute exact path="/newEvent" component={NewEvent} />
+          <PrivateRoute path={`/games/:gameId/edit`} component={GameEdit} />
+          <PrivateRoute path={`/practices/:practiceId/edit`} component={PracticeEdit} />
           <PrivateRoute exact path="/newClub" component={CreateClub} />
           <PrivateRoute exact path="/profile" component={Profile} />
           <PrivateRoute  path={`/clubs/:clubId/teams/:teamId`} component={ShowTeam} />
@@ -47,7 +51,7 @@ const App = () => {
           <Route path="/register"> <Register /> </Route>
           <Route exact path="/"> <Home /> </Route>
         </Switch>
-        <Footer />
+        
       </Router>
     </Provider>
   );
