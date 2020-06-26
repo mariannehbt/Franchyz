@@ -2,46 +2,26 @@ import React, { useEffect, useState } from 'react';
 import * as userAPI from '../services/userAPI.jsx';
 import { useSelector } from 'react-redux';
 
-const ProfileEdit = () => {
+const ProfileEdit = (player) => {
   const userId = useSelector(state => state.userReducer.id);
   const userType = useSelector(state => state.authReducer.userType);
   const [data, setData] = useState([]);
-  useEffect(getData, []);
 
-  async function getData() {
-    const response = await userAPI.profile(userId, userType);
-    if (userType === 'coach') {
+  useEffect(setupElements(), [])
+
+  const setupElements = () => {
       setData({
-        first_name: response.first_name,
-        last_name: response.last_name,
-        phone: response.phone,
-        birthdate: response.birthdate,
-        arrival: response.arrival,
-        'admin?': response['admin?'],
-        club_id: response.club_id,
+        first_name: player.first_name,
+        last_name: player.last_name,
+        phone: player.phone,
+        birthdate: player.birthdate,
+        arrival: player.arrival,
+        'admin?': player['admin?'],
+        club_id: player.club_id,
       });
-    } else if (userType === 'player') {
-      setData({
-        first_name: response.first_name,
-        last_name: response.last_name,
-        phone: response.phone,
-        birthdate: response.birthdate,
-        arrival: response.arrival,
-        'availability?': response['availability?'],
-        height: response.height,
-        weight: response.weight,
-        gender: response.gender,
-        jersey_number: response.jersey_number,
-        position: response.position,
-        team_id: response.team_id,
-      });
-    };
-  };
+  }
 
   const renderForm = () => {
-    if (userType === 'coach') {
-      return null;
-    } else if (userType === 'player') {
       return (
         <div>
           <div className='form-group'>
@@ -101,7 +81,6 @@ const ProfileEdit = () => {
           </div>
         </div>
       );
-    };
   };
 
   const submit = (event) => {
@@ -132,7 +111,7 @@ const ProfileEdit = () => {
         <div className='form-group'>
           <label>Phone :</label>
           <input className='form-control' type='tel' placeholder={(data.phone === null) ? '0623451789' : null } value={(data.phone === null) ? '' : data.phone} onChange={e => setData({...data, phone: e.target.value })} />
-          </div>
+        </div>
         <div className='form-group'>
           <label>Birthdate :</label>
           <input className='form-control' type='date' placeholder={(data.birthdate === null) ? '2018-07-22' : null } value={(data.birthdate === null) ? '' : data.birthdate} onChange={e => setData({...data, birthdate: e.target.value })} />
