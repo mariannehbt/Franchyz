@@ -5,16 +5,11 @@ import * as practiceAPI from 'services/practiceAPI';
 
 const PracticeEdit = () => {
   const clubId = useSelector((state) => state.userReducer.clubId);
-  const teamId = useSelector((state) => state.userReducer.teamId);
-  const { practiceId } = useParams();
+  const { teamId, practiceId } = useParams();
   const [data, setData] = useState([]);
-  useEffect(getData, []);
+  useEffect(() => {getData()}, []);
 
-  console.log(clubId);
-  console.log(teamId);
-  console.log(practiceId);
-
-  async function getData() {
+  const getData = async () => {
     const response = await practiceAPI.getPractice(practiceId);
     setData({
       title: response.title,
@@ -29,20 +24,18 @@ const PracticeEdit = () => {
     });
   };
 
-  console.log(data);
-
   const submit = (event) => {
     event.preventDefault();
     practiceAPI.editPractice({
-      club_id: clubId,
-      team_id: teamId,
-      practice_id: practiceId,
+      clubId: clubId,
+      teamId: teamId,
+      practiceId: practiceId,
       fields: {data},
     });
   };
 
   let test = '';
-  test = JSON.stringify(data);
+  // test = JSON.stringify(data);
 
   return (
     <form onSubmit={submit}>

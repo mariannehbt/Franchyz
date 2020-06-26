@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie';
+
 function createGame(clubId, teamId, eventTitle, eventDescription, address, city, country, zipCode, dateTime, duration) {
   const data = {
     title: eventTitle,
@@ -26,9 +28,9 @@ function createGame(clubId, teamId, eventTitle, eventDescription, address, city,
   .then((response) => {return response})
 };
 
-const getGame = (club_id, team_id, game_id) => {
+const getGames = (clubId, teamId) => {
   let baseURL = process.env.REACT_APP_API_URL;
-  let endUrl = `/clubs/${club_id}/teams/${team_id}/games/${game_id}.json`;
+  let endUrl = `/clubs/${clubId}/teams/${teamId}/games.json`;
   let url = baseURL + endUrl;
 
   let headers = {
@@ -44,14 +46,32 @@ const getGame = (club_id, team_id, game_id) => {
   .then(response => {return response});
 };
 
-const editGame = ({club_id, team_id, game_id, fields}) => {
+const getGame = (clubId, teamId, gameId) => {
+  let baseURL = process.env.REACT_APP_API_URL;
+  let endUrl = `/clubs/${clubId}/teams/${teamId}/games/${gameId}.json`;
+  let url = baseURL + endUrl;
+
+  let headers = {
+    'Content-Type': 'application/json'
+  };
+
+  let request = {
+    headers: headers
+  };
+
+  return fetch(url, request)
+  .then(response => response.json())
+  .then(response => {return response});
+};
+
+const editGame = ({clubId, teamId, gameId, fields}) => {
   let baseUrl = process.env.REACT_APP_API_URL;
-  let endUrl = `/clubs/${club_id}/teams/${team_id}/games/${game_id}.json`;
+  let endUrl = `/clubs/${clubId}/teams/${teamId}/games/${gameId}.json`;
   let url = baseUrl + endUrl;
 
   let headers = {
     'Content-Type': 'application/json',
-    // Authorization: Cookies.get('token')
+    Authorization: Cookies.get('token')
   };
 
   let data = {
@@ -73,7 +93,8 @@ const editGame = ({club_id, team_id, game_id, fields}) => {
   };
 
   return fetch(url, request)
+  .then(response => response.json())
   .then((response) => {return response});
 };
 
-export { createGame, getGame, editGame }
+export { createGame, getGames, getGame, editGame }

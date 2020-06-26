@@ -5,20 +5,20 @@ import { Provider } from "react-redux";
 import store from "./redux/store.js";
 
 // Pages
-import NewEvent from "./pages/newEvent.jsx";
-import CreateClub from "./pages/createClub.jsx";
 import Home from "./pages/home.jsx";
-import Login from "./pages/login.jsx";
 import Register from "./pages/register.jsx";
-import CreateTeam from "./pages/createTeam.jsx";
+import Login from "./pages/login.jsx";
+import Profile from "./pages/profile.jsx";
 import AdminCoachDashboardPage from "./pages/adminCoachDashboardPage.jsx";
+import PlayerDashboardPage from "./pages/playerDashboardPage.jsx";
+import CreateClub from "./pages/createClub.jsx";
+import TeamShow from "./pages/teamShow.jsx";
+import CreateTeam from "./pages/createTeam.jsx";
+import NewEvent from "./pages/newEvent.jsx";
 import ShowGame from "./pages/showGame.jsx";
-import TeamCard from "./components/TeamCardx.jsx";
-import ShowPractice from "./pages/showPractice.jsx";
-import PlayerDashboardPage from './pages/playerDashboardPage.jsx'
-import Profile from './pages/profile.jsx';
-import GameEdit from './pages/gameEdit.jsx';
-import PracticeEdit from './pages/practiceEdit.jsx';
+import GameEdit from "./pages/gameEdit.jsx";
+// import ShowPractice from "./pages/showPractice.jsx";
+import PracticeEdit from "./pages/practiceEdit.jsx";
 
 //Component
 import Navbar from "./components/layouts/navbar.jsx";
@@ -36,41 +36,21 @@ const App = () => {
       <Router>
         <Navbar />
         <Switch>
-          <PrivateRoute
-            exact
-            path="/dashboardAdmin"
-            component={AdminCoachDashboardPage}
-          />
-          <PrivateRoute
-            exact
-            path="/dashboardPlayer"
-            component={PlayerDashboardPage}
-          />
+          <PrivateRoute exact path="/dashboardAdmin" component={AdminCoachDashboardPage} />
+          <PrivateRoute exact path="/dashboardPlayer" component={PlayerDashboardPage} />
           <PrivateRoute exact path="/newTeam" component={CreateTeam} />
           <PrivateRoute exact path="/newEvent" component={NewEvent} />
-          <PrivateRoute path={`/games/:gameId/edit`} component={GameEdit} />
-          <PrivateRoute path={`/practices/:practiceId/edit`} component={PracticeEdit} />
           <PrivateRoute exact path="/newClub" component={CreateClub} />
           <PrivateRoute exact path="/profile" component={Profile} />
-          <PrivateRoute
-            path={`/clubs/:clubId/teams/:teamId`}
-            component={TeamCard}
-          />
+          <PrivateRoute path={`/clubs/:clubId/teams/:teamId/practices/:practiceId/edit`} component={PracticeEdit} />
+          <PrivateRoute path={`/clubs/:clubId/teams/:teamId/games/:gameId/edit`} component={GameEdit} />
+          <PrivateRoute path={`/clubs/:clubId/teams/:teamId`} component={TeamShow} />
           <PrivateRoute path={`/games/:gamesId`} component={ShowGame} />
-          <Route path="/login">
-            {" "}
-            <Login />{" "}
-          </Route>
-          <Route path="/register">
-            {" "}
-            <Register />{" "}
-          </Route>
-          <Route exact path="/">
-            {" "}
-            <Home />{" "}
-          </Route>
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route exact path="/" component={Home} />
         </Switch>
-        
+        <Footer />
       </Router>
     </Provider>
   );

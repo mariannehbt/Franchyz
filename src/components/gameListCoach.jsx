@@ -1,18 +1,28 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import * as gameAPI from 'services/gameAPI';
 
-const GameListCoach = ({club, games}) => {
-  const setList = () => {
-    return games.map((game, key) =>(
+const GameListCoach = () => {
+  const clubId = useSelector((state) => state.userReducer.clubId);
+  const { teamId } = useParams();
+  const [data, setData] = useState([]);
+  useEffect(() => {getData()}, [])
+
+  const getData = async () => {
+    let response = await gameAPI.getGames(clubId, teamId);
+    let games = response.map((game, key) => (
       <tr key={key}>
-        <td><Link to={`/games/${game.id}/edit`}>{game.title}</Link></td>
+        <td><Link to={`/clubs/${clubId}/teams/${teamId}/games/${game.id}/edit`}>{game.title}</Link></td>
         <td>{game.starting_date_time}</td>
       </tr>
     ));
+    setData(games);
   };
 
   return (
     <div>
+      <h2>Games</h2>
       <table className='table'>
         <thead>
           <tr>
@@ -21,7 +31,7 @@ const GameListCoach = ({club, games}) => {
           </tr>
         </thead>
         <tbody>
-          {setList()}
+          {data}
         </tbody>
       </table>
     </div>

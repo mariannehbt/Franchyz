@@ -5,46 +5,38 @@ import * as gameAPI from 'services/gameAPI';
 
 const GameEdit = () => {
   const clubId = useSelector((state) => state.userReducer.clubId);
-  const teamId = useSelector((state) => state.userReducer.teamId);
-  const { gameId } = useParams();
+  const { teamId, gameId } = useParams();
   const [data, setData] = useState([]);
-  useEffect(getData, []);
+  useEffect(() => {getData()}, []);
 
-  console.log(clubId);
-  console.log(teamId);
-  console.log(gameId);
-
-  async function getData() {
+  const getData = async () => {
     const response = await gameAPI.getGame(clubId, teamId, gameId);
+    const games = response.game;
     setData({
-      title: response.title,
-      long_description: response.long_description,
-      starting_date_time: response.starting_date_time,
-      duration: response.duration,
-      address: response.address,
-      zip_code: response.zip_code,
-      city: response.city,
-      country: response.country,
-      home_team_score: response.home_team_score,
-      away_team_score: response.away_team_score,
-      canceled: response.canceled,
+      title: games.title,
+      long_description: games.long_description,
+      starting_date_time: games.starting_date_time,
+      duration: games.duration,
+      address: games.address,
+      zip_code: games.zip_code,
+      city: games.city,
+      country: games.country,
+      canceled: games.canceled,
     });
   };
-
-  console.log(data);
 
   const submit = (event) => {
     event.preventDefault();
     gameAPI.editGame({
-      club_id: clubId,
-      team_id: teamId,
-      game_id: gameId,
+      clubId: clubId,
+      teamId: teamId,
+      gameId: gameId,
       fields: {data},
     });
   };
 
   let test = '';
-  test = JSON.stringify(data);
+  // test = JSON.stringify(data);
 
   return (
     <form onSubmit={submit}>

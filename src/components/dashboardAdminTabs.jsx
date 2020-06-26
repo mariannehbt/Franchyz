@@ -4,8 +4,6 @@ import { Tabs } from 'antd';
 import ClubInformations from './clubInformations.jsx';
 import ClubEdit from './clubEdit.jsx';
 import TeamList from './teamList.jsx';
-import PracticeListCoach from './practiceListCoach.jsx';
-import GameListCoach from './gameListCoach.jsx';
 
 const DashboardAdminTabs = ({club}) => {
   const {TabPane} = Tabs;
@@ -27,12 +25,6 @@ const DashboardAdminTabs = ({club}) => {
                 Add new Team
               </button>
             </Link>
-          </TabPane>
-          <TabPane tab='Your Practices' key='4'>
-            <PracticeListCoach club={club} practices={club.practices} />
-          </TabPane>
-          <TabPane tab='Your Games' key='5'>
-            <GameListCoach club={club} games={club.games} />
           </TabPane>
         </Tabs>
       </div>
