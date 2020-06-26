@@ -12,13 +12,13 @@ import Profile from "./pages/profile.jsx";
 import AdminCoachDashboardPage from "./pages/adminCoachDashboardPage.jsx";
 import PlayerDashboardPage from "./pages/playerDashboardPage.jsx";
 import CreateClub from "./pages/createClub.jsx";
-import TeamShow from "./pages/teamShow.jsx";
+import TeamShow from "./pages/showTeam.jsx";
 import CreateTeam from "./pages/createTeam.jsx";
 import NewEvent from "./pages/newEvent.jsx";
+import ShowPractice from "./pages/showPractice.jsx";
+import PracticeEdit from "./pages/practiceEdit.jsx";
 import ShowGame from "./pages/showGame.jsx";
 import GameEdit from "./pages/gameEdit.jsx";
-// import ShowPractice from "./pages/showPractice.jsx";
-import PracticeEdit from "./pages/practiceEdit.jsx";
 
 //Component
 import Navbar from "./components/layouts/navbar.jsx";
@@ -44,11 +44,12 @@ const App = () => {
           <PrivateRoute exact path="/profile" component={Profile} />
           <PrivateRoute path={`/clubs/:clubId/teams/:teamId/practices/:practiceId/edit`} component={PracticeEdit} />
           <PrivateRoute path={`/clubs/:clubId/teams/:teamId/games/:gameId/edit`} component={GameEdit} />
-          <PrivateRoute path={`/clubs/:clubId/teams/:teamId`} component={TeamShow} />
-          <PrivateRoute path={`/games/:gamesId`} component={ShowGame} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route exact path="/" component={Home} />
+          <PrivateRoute exact path={`/clubs/:clubId/teams/:teamId`} component={ShowTeam} />
+          <PrivateRoute exact path={`/games/:gamesId`} component={ShowGame} />
+          <Route path={`/clubs/:clubId/teams/:teamId/players/:playerId`} component={Profile} />
+          <Route exact path="/login"> <Login /> </Route>
+          <Route exact path="/register"> <Register /> </Route>
+          <Route exact path="/"> <Home /> </Route>
         </Switch>
         <Footer />
       </Router>
