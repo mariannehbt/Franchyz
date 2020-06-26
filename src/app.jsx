@@ -34,37 +34,17 @@ const App = () => {
       <Router>
         <Navbar />
         <Switch>
-          <PrivateRoute
-            exact
-            path="/dashboardAdmin"
-            component={AdminCoachDashboardPage}
-          />
-          <PrivateRoute
-            exact
-            path="/dashboardPlayer"
-            component={PlayerDashboardPage}
-          />
+          <PrivateRoute exact path="/dashboardAdmin" component={AdminCoachDashboardPage} />
+          <PrivateRoute exact path="/dashboardPlayer" component={PlayerDashboardPage} />
           <PrivateRoute exact path="/newTeam" component={CreateTeam} />
           <PrivateRoute exact path="/newEvent" component={NewEvent} />
           <PrivateRoute exact path="/newClub" component={CreateClub} />
           <PrivateRoute exact path="/profile" component={Profile} />
-          <PrivateRoute
-            path={`/clubs/:clubId/teams/:teamId`}
-            component={TeamCard}
-          />
+          <PrivateRoute path={`/clubs/:clubId/teams/:teamId`} component={TeamCard} />
           <PrivateRoute path={`/games/:gamesId`} component={ShowGame} />
-          <Route path="/login">
-            {" "}
-            <Login />{" "}
-          </Route>
-          <Route path="/register">
-            {" "}
-            <Register />{" "}
-          </Route>
-          <Route exact path="/">
-            {" "}
-            <Home />{" "}
-          </Route>
+          <Route path="/login"> {" "} <Login /> {" "} </Route>
+          <Route path="/register"> {" "} <Register /> {" "} </Route>
+          <Route exact path="/"> {" "} <Home />{" "} </Route>
         </Switch>
         <Footer />
       </Router>
