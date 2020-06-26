@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ProfileEdit from 'components/profileEdit';
-import * as playerAPI from 'services/playerAPI'
+import * as userAPI from 'services/playerAPI'
 import { useParams } from 'react-router-dom'
 
 const [player, setPlayer] = useState('')
@@ -13,7 +13,7 @@ let { clubId, teamId, playerId } = useParams();
   }, []);
 
   const loadPlayer = async () => {
-    const response = await playerAPI.getPlayer(clubId, teamId, playerId);
+    const response = await userAPI.getPlayer(clubId, teamId, playerId);
     setPlayer(response);
   }
 
